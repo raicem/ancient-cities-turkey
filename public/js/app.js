@@ -24,12 +24,12 @@ App.Models.App = Backbone.Model.extend({
         mapboxgl.accessToken = Config.mapboxToken;
         var map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v9',
-            center: [32, 37.8],
-            zoom: 5
+            style: 'mapbox://styles/mapbox/streets-v9'
         });
+
         map.addControl(new mapboxgl.NavigationControl(), 'top-left');
         map.addControl(new mapboxgl.GeolocateControl());
+        var deneme = map.fitBounds([[25.059009, 35.259924], [45.351057, 42.210808]]);
         this.map = map;
     }
 });
@@ -141,6 +141,7 @@ App.Views.Ruin = Backbone.View.extend({
     initialize: function () {
         var that = this;
         this.model.fetch().then(function () {
+            $(document).attr('title', that.model.get('name'));
             that.render();
         })
     },
@@ -148,11 +149,13 @@ App.Views.Ruin = Backbone.View.extend({
     render: function () {
         var template = Handlebars.compile($('#ruin-bar').html());
         this.$el.html(template(this.model.attributes));
+
         $(document.body).append(this.el);
         $(this.el).addClass('show-info-bar');
     },
 
     unrender: function () {
+        $(document).attr('title', 'Ancient Cities Turkey');
         this.remove();
     }
 });

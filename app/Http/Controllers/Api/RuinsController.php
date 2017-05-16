@@ -46,6 +46,7 @@ class RuinsController extends Controller
      */
     public function show(Ruin $ruin)
     {
-        return $ruin->load('links');
+
+        return $ruin;
     }
 }

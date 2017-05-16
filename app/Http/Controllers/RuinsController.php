@@ -9,7 +9,7 @@ class RuinsController extends Controller
     public function index()
     {
         return view('index', [
-            'ruins' => Ruin::all()
+            'ruins' => Ruin::orderBy('name', 'asc')->get()
         ]);
     }
 
@@ -23,7 +23,7 @@ class RuinsController extends Controller
     public function show(Ruin $ruin)
     {
         return view('show', [
-            'ruin' => $ruin->load('links')
+            'ruin' => $ruin
         ]);
     }
 

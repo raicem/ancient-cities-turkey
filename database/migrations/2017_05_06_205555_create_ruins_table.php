@@ -21,7 +21,10 @@ class CreateRuinsTable extends Migration
             $table->decimal('latitude', 10, 7);
             $table->decimal('longitude', 10, 7);
             $table->text('information')->nullable();
-            $table->text('image');
+            $table->string('image');
+            $table->string('tripadvisor')->nullable();
+            $table->string('foursquare')->nullable();
+            $table->boolean('official_site')->default(0);
             $table->timestamps();
         });
     }

@@ -8,6 +8,19 @@ class Ruin extends Model
 {
     protected $guarded = [];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('turkishLinks', function ($builder) {
+            $builder->with('turkishLinks');
+        });
+
+        static::addGlobalScope('englishLinks', function ($builder) {
+            $builder->with('englishLinks');
+        });
+    }
+
     /**
      * Changes the key for route-model binding.
      *
@@ -26,5 +39,15 @@ class Ruin extends Model
     public function links()
     {
         return $this->hasMany(Link::class);
+    }
+
+    public function turkishLinks()
+    {
+        return $this->links()->turkish();
+    }
+
+    public function englishLinks()
+    {
+        return $this->links()->english();
     }
 }

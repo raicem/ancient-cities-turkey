@@ -18,6 +18,7 @@ class CreateLinksTable extends Migration
             $table->unsignedInteger('ruin_id');
             $table->string('description');
             $table->string('url');
+            $table->string('language');
             $table->timestamps();
         });
     }
