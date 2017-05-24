@@ -43,11 +43,11 @@ class Ruin extends Model
 
     public function turkishLinks()
     {
-        return $this->links()->turkish();
+        return $this->links()->turkish()->orderBy('description', 'ASC');
     }
 
     public function englishLinks()
     {
-        return $this->links()->english();
+        return $this->links()->english()->orderBy('description', 'ASC');
     }
 }

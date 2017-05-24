@@ -1,0 +1,16 @@
+{
+    "extends": "airbnb-base/legacy",
+    "env": {
+      "browser": true
+    },
+    "globals": {
+      "Backbone": true,
+      "_": true,
+      "ga": true,
+      "Config": true,
+      "vent": true,
+      "mapboxgl": true,
+      "App": true,
+      "$": true,
+    }
+}

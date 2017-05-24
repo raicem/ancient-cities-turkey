@@ -15,7 +15,7 @@
             <ul class="info-bar-link-list">
                 <li>
                     <a data-bypass
-                        href="http://maps.apple.com/?q={{ $ruin->slug }}&sll={{ $ruin->latitude }},{{ $ruin->longitude }}"
+                        href="http://maps.apple.com/?ll={{ $ruin->latitude }},{{ $ruin->longitude }}"
                         class="info-bar-map-link">Open in default Maps App</a>
                 </li>
                 @if($ruin->tripadvisor)
@@ -26,7 +26,7 @@
                 @endif
             </ul>
             <ul class="info-bar-link-list">
-                <h4 class="info-bar-title">English Resources</h4>
+                <h4 class="info-bar-title">Resources in English</h4>
                 @foreach($ruin->englishLinks as $link)
                     <li class="info-bar-link"><a data-bypass href="{{$link->url}}">{{$link->description}}</a></li>
                 @endforeach

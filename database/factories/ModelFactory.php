@@ -40,5 +40,6 @@ $factory->define(App\Link::class, function (Faker\Generator $faker) {
     return [
         'description' => $faker->word,
         'url' => $faker->url,
+        'language' => $faker->randomElement(['tr', 'en'])
     ];
 });

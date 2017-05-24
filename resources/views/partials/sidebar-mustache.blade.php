@@ -8,7 +8,7 @@
         <p class="info-bar-description">@{{ information }}</p>
         <ul class="info-bar-link-list">
             <li>
-                <a data-bypass href="http://maps.apple.com/?q=@{{ slug }}&sll=@{{ latitude }},@{{ longitude }}"
+                <a data-bypass href="http://maps.apple.com/?ll=@{{ latitude }},@{{ longitude }}"
                    class="info-bar-map-link">Open in default Maps App</a>
             </li>
             @{{#if tripadvisor}}
@@ -19,7 +19,7 @@
             @{{/if}}
         </ul>
         <ul class="info-bar-link-list">
-            <h4 class="info-bar-title">English Resources</h4>
+            <h4 class="info-bar-title">Resources in English</h4>
             @{{#each english_links}}
                 <li class="info-bar-link"><a data-bypass href="@{{this.url}}">@{{this.description}}</a></li>
             @{{/each }}
