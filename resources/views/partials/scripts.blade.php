@@ -8,10 +8,31 @@
     ga('send', 'pageview');
 
 </script>
+
 <script src="{{ asset('js/config.js') }}"></script>
-<script src="{{ asset('js/underscore.js') }}"></script>
-<script src="{{ asset('js/jquery.js') }}"></script>
-<script src="{{ asset('js/backbone.js') }}"></script>
-<script src="{{ asset('js/handlebars.js') }}"></script>
-<script src="{{ asset('js/mapbox-gl.js') }}"></script>
+<script src="{{ asset('js/vendor/underscore.js') }}"></script>
+<script src="{{ asset('js/vendor/jquery.js') }}"></script>
+<script src="{{ asset('js/vendor/backbone.js') }}"></script>
+<script src="{{ asset('js/vendor/handlebars.js') }}"></script>
+<script src="{{ asset('js/vendor/mapbox-gl.js') }}"></script>
+
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/models.js') }}"></script>
+<script src="{{ asset('js/views.js') }}"></script>
+<script src="{{ asset('js/router.js') }}"></script>
+<script>
+    var router = new App.Router();
+    Backbone.history.start({ pushState: true });
+
+    $(document).on('click', 'a:not([data-bypass])', function (e) {
+      var href = $(e.currentTarget).attr('href');
+      e.preventDefault();
+      router.navigate(href, true);
+    });
+
+    var map = new App.Models.App();
+    new App.Views.App({
+        model: map
+    });
+</script>
+

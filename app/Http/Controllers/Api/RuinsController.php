@@ -12,7 +12,7 @@ class RuinsController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
+     */    
     public function index()
     {
         $geoJson = [
@@ -28,7 +28,7 @@ class RuinsController extends Controller
                     'coordinates' => [$ruin->longitude, $ruin->latitude]
                 ],
                 'properties' => [
-                    'title' => $ruin->name,
+                    'name' => $ruin->name,
                     'slug' => $ruin->slug
                 ]
             ];
@@ -46,7 +46,6 @@ class RuinsController extends Controller
      */
     public function show(Ruin $ruin)
     {
-
         return $ruin;
     }
 }
