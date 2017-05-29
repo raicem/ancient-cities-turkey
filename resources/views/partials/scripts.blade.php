@@ -6,7 +6,6 @@
 
     ga('create', 'UA-11941941-7', 'auto');
     ga('send', 'pageview');
-
 </script>
 
 <script src="{{ asset('js/config.js') }}"></script>
@@ -22,8 +21,7 @@
 <script src="{{ asset('js/router.js') }}"></script>
 <script>
     var router = new App.Router();
-    Backbone.history.start({ pushState: true });
-
+    
     $(document).on('click', 'a:not([data-bypass])', function (e) {
       var href = $(e.currentTarget).attr('href');
       e.preventDefault();
@@ -34,5 +32,7 @@
     new App.Views.App({
         model: map
     });
+    
+    Backbone.history.start({ pushState: true });
 </script>
 

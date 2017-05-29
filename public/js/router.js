@@ -8,7 +8,12 @@ App.Router = Backbone.Router.extend({
   },
 
   show: function (slug) {
-    vent.trigger('ruin:show', slug);
+    // decide if there is a server side rendered portion on the page
+    if ($('.info-bar[data-server]').length) {
+      vent.trigger('ruin:show-server', slug);
+    } else {
+      vent.trigger('ruin:show', slug);
+    }
   },
 
   pageView: function () {

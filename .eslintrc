@@ -12,5 +12,6 @@
       "mapboxgl": true,
       "App": true,
       "$": true,
+      "Handlebars": true
     }
 }

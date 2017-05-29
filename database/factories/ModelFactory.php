@@ -43,3 +43,13 @@ $factory->define(App\Link::class, function (Faker\Generator $faker) {
         'language' => $faker->randomElement(['tr', 'en'])
     ];
 });
+
+
+$factory->define(App\Feedback::class, function (Faker\Generator $faker) {
+    $ruin = factory(App\Ruin::class)->create();
+    return [
+        'ruin_id' => $ruin->id,
+        'ruin'    => $ruin->slug,
+        'body' => $faker->paragraph
+    ];
+});

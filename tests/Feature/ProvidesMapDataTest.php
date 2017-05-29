@@ -22,7 +22,7 @@ class ProvidesMapDataTest extends TestCase
                     'coordinates' => ["$ruin->longitude", "$ruin->latitude"]
                 ],
                 'properties' => [
-                    'title' => $ruin->name,
+                    'name' => $ruin->name,
                     'slug'  => $ruin->slug
                 ]
             ]);

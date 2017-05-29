@@ -21,3 +21,14 @@ App.Models.Ruin = Backbone.Model.extend({
     return [this.get('longitude'), this.get('latitude')];
   }
 });
+
+App.Models.Feedback = Backbone.Model.extend({
+  urlRoot: 'api/feedback',
+
+  validate: function (attrs) {
+    if (attrs.body.length < 1) {
+      return 'Please enter a message';
+    }
+  }
+
+});

@@ -4,8 +4,9 @@
 @endsection
 @section('content')
     <div id="map"></div>
-
-    @include('partials/sidebar-mustache')
+    <div class="info-bar-container"></div>
+    @include('partials.sidebar-handlebars')
+    @include('partials.feedback-handlebars')
 @endsection
 @section('scripts')
     @include('partials/scripts')
