@@ -10,7 +10,7 @@
                 <button class="button button-red close-button">Close</button>
             </div>
             <div class="ruin-info">
-                <div class="info-bar-image" style="background-image: url({{ $ruin->image }})"></div>
+                <div class="info-bar-image" style="background-image: url({{ asset('img/ruins/' . $ruin->image) }})"></div>
                 <h3 class="link-list-title">{{ $ruin->name }}</h3>
                 <p class="info-bar-description">{{ $ruin->information }}</p>
                 <ul class="image-list flex">

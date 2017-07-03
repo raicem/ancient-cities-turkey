@@ -3,7 +3,7 @@
         <button class="button button-red close-button">Close</button>
     </div>
     <div class="ruin-info">
-        <div class="info-bar-image" style="background-image: url(@{{ image }})"></div>
+        <div class="info-bar-image" style="background-image: url('/img/ruins/@{{ image }}')"></div>
         <h3 class="link-list-title">@{{ name }}</h3>
         <p class="info-bar-description">@{{ information }}</p>
         <ul class="image-list flex">
