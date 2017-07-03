@@ -40,5 +40,13 @@
         <div class="feedback">
             <button class="button button-blue feedback-button">Report Issue / Hata Bildirin</button>
         </div>
+        <div class="lang-buttons">
+            <button onclick="i18next.changeLanguage('en')">
+                english
+            </button>
+            <button onclick="i18next.changeLanguage('tr')">
+                türkçe
+            </button>
+        </div>
     </div>
 </script>

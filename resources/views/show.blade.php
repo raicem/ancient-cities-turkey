@@ -62,4 +62,35 @@
 @endsection
 @section('scripts')
     @include('partials/scripts')
+    <script src="https://unpkg.com/i18next@8.4.2/i18next.min.js"></script>
+    <script>
+        i18next.init({
+            lng: 'en',
+            debug: true,
+            resources: {
+                en: { 
+                    translation: { "close": "Close" } 
+                },
+                tr: {
+                    translation: { "close": "Kapat" }
+                }
+            }
+        }, function(err, t) {
+            // initialized and ready to go!
+            updateContent();
+        });
+
+        function updateContent() {
+            console.log(document.querySelector('button.close-button'));
+            document.querySelector('button.close-button').innerHTML = i18next.t('close');
+        }
+
+        function changeLng(lng) {
+            i18next.changeLanguage(lng);
+        }
+
+        i18next.on('languageChanged', () => {
+            updateContent();
+        });
+    </script>
 @endsection
