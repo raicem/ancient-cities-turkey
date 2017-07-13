@@ -48,4 +48,16 @@ class RuinsController extends Controller
     {
         return $ruin;
     }
+
+    /**
+     * Display the specified resource in Turkish.
+     *
+     * @param Ruin $ruin
+     * @return Ruin
+     * @internal param int $id
+     */
+    public function showTurkish(Ruin $ruin)
+    {
+        dd('Showing in Turkish', $ruin);
+    }
 }

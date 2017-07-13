@@ -1,7 +1,8 @@
-define(['backbone', 'ga'], function (Backbone, ga) {
+define(['backbone'], function (Backbone) {
   return Backbone.Router.extend({
     routes: {
-      ':slug': 'show'
+      ':slug': 'show',
+      'tr/:slug': 'showTurkish'
     },
 
     initialize: function () {
@@ -17,10 +18,13 @@ define(['backbone', 'ga'], function (Backbone, ga) {
       }
     },
 
+    showTurkish: function (slug) {
+      vent.trigger('ruin:show-turkish', slug);
+    },
+
     pageView: function () {
       var path = Backbone.history.getFragment();
       // ga('send', 'pageview', { page: '/' + path });
     }
   });
-
 });

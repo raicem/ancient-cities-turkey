@@ -1,10 +1,11 @@
-define(['backbone', 'mapboxgl', 'app/models/ruin', 'app/views/ruin'], function (Backbone, mapboxgl,RuinModel, RuinView) {
+define(['backbone', 'mapboxgl', 'app/models/ruin', 'app/views/ruin'], function (Backbone, mapboxgl, RuinModel, RuinView) {
   return Backbone.View.extend({
     initialize: function () {
       var appView = this;
 
       vent.on('ruin:show', this.showRuin, this);
       vent.on('ruin:show-server', this.showRuinServer, this);
+      vent.on('ruin:show-turkish', this.showTurkish, this);
 
       this.model.map.on('load', function () {
         appView.addLayers();
@@ -26,6 +27,11 @@ define(['backbone', 'mapboxgl', 'app/models/ruin', 'app/views/ruin'], function (
           ruin.get('slug'));
       });
 
+      this.ruinView = new RuinView({ model: ruin });
+    },
+
+    showTurkish: function (slug) {
+      var ruin = new RuinModel({ language: 'tr', slug: slug });
       this.ruinView = new RuinView({ model: ruin });
     },
 

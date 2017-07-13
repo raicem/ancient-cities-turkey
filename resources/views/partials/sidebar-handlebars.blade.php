@@ -38,15 +38,12 @@
             @{{/each }}
         </ul>
         <div class="feedback">
-            <button class="button button-blue feedback-button">Report Issue / Hata Bildirin</button>
+            <button class="button button-blue feedback-button">Report Issue</button>
         </div>
         <div class="lang-buttons">
-            <button onclick="i18next.changeLanguage('en')">
-                english
-            </button>
-            <button onclick="i18next.changeLanguage('tr')">
+            <a href="/tr/@{{ this.slug }}">
                 türkçe
-            </button>
+            </a>
         </div>
     </div>
 </script>

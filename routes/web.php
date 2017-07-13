@@ -7,6 +7,12 @@ use Intervention\Image\ImageManagerStatic as Image;
 Route::get('/', 'RuinsController@home');
 Route::get('/sitemap', 'RuinsController@index');
 Route::get('/{ruin}', 'RuinsController@show');
+
+
+
+
+
+
 Route::get('/tools/get-images', function () {
     set_time_limit(0);
     Image::configure(array('driver' => 'imagick'));

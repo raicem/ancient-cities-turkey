@@ -51,7 +51,12 @@
                     @endforeach
                 </ul>
                 <div class="feedback">
-                    <button class="feedback-button">Report Issue / Hata Bildirin</button>
+                    <button class="feedback-button">Report Issue</button>
+                </div>
+                <div class="lang-buttons">
+                    <a href="/tr/{{ $ruin->slug }}">
+                        türkçe
+                    </a>
                 </div>
             </div>
         </div>
