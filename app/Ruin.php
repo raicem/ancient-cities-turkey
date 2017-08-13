@@ -50,4 +50,11 @@ class Ruin extends Model
     {
         return $this->links()->english()->orderBy('description', 'ASC');
     }
+
+    public function asTurkish()
+    {
+        $this->information = $this->information_tr;
+        $this->name = $this->name_tr;
+        return $this;
+    }
 }

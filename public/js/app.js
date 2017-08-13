@@ -6,12 +6,13 @@ require.config({
     underscore: 'vendor/underscore',
     mapboxgl: 'vendor/mapbox-gl',
     ga: '//www.google-analytics.com/analytics',
-    handlebars: 'vendor/handlebars'
+    handlebars: 'vendor/handlebars',
+    i18next: 'vendor/i18n'
   }
 });
 
-require(['backbone', 'app/router', 'app/models/map', 'app/views/map'],
-  function (Backbone, Router, Map, MapView) {
+require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next'],
+  function (Backbone, Router, Map, MapView, i18next) {
     window.router = new Router();
     window.vent = _.extend({}, Backbone.Events);
 

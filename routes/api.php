@@ -1,6 +1,6 @@
 <?php
 
-Route::middleware('api')->get('ruins', '\App\Http\Controllers\Api\RuinsController@index');
-Route::middleware('api')->get('/ruins/{ruin}', '\App\Http\Controllers\Api\RuinsController@show');
-Route::middleware('api')->get('/tr/ruins/{ruin}', '\App\Http\Controllers\Api\RuinsController@showTurkish');
-Route::middleware('api')->post('/feedback', '\App\Http\Controllers\Api\FeedbackController@store');
+Route::middleware('api')->get('ruins', 'Api\RuinsController@index');
+Route::middleware('api')->get('/ruins/{ruin}', 'Api\RuinsController@show');
+Route::middleware('api')->get('/tr/ruins/{ruin}', 'Api\RuinsController@showTurkish');
+Route::middleware('api')->post('/feedback', 'Api\FeedbackController@store');

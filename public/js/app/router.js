@@ -2,24 +2,22 @@ define(['backbone'], function (Backbone) {
   return Backbone.Router.extend({
     routes: {
       ':slug': 'show',
-      'tr/:slug': 'showTurkish'
+      ':lang/:slug': 'show'
     },
 
     initialize: function () {
       this.bind('route', this.pageView);
     },
 
-    show: function (slug) {
+    show: function (lang, slug) {
+      var language = lang || 'en';
+      vent.trigger('language:change', language);
       // decide if there is a server side rendered portion on the page
       if ($('.info-bar[data-server]').length) {
-        vent.trigger('ruin:show-server', slug);
+        vent.trigger('ruin:show-server', slug, language);
       } else {
-        vent.trigger('ruin:show', slug);
+        vent.trigger('ruin:show', slug, language);
       }
-    },
-
-    showTurkish: function (slug) {
-      vent.trigger('ruin:show-turkish', slug);
     },
 
     pageView: function () {

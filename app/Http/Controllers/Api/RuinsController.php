@@ -58,6 +58,6 @@ class RuinsController extends Controller
      */
     public function showTurkish(Ruin $ruin)
     {
-        dd('Showing in Turkish', $ruin);
+        return $ruin->asTurkish();
     }
 }
