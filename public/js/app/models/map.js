@@ -1,11 +1,11 @@
-define(['backbone', 'mapboxgl', 'app/config'],
+define(['backbone', 'mapboxgl', 'app/config', 'i18next'],
   function (Backbone, mapboxgl, config) {
     return Backbone.Model.extend({
       initialize: function () {
         var map;
 
         this.determineUserLanguage();
-        vent.on('language:change', this.changeLanguage, this);
+        vent.on('language:check', this.changeLanguage, this);
 
         mapboxgl.accessToken = config.mapboxToken;
         map = new mapboxgl.Map({
@@ -27,8 +27,6 @@ define(['backbone', 'mapboxgl', 'app/config'],
           lang = lang.substring(0, 2);
         }
 
-        console.log('the language is calculated as ' + lang);
-
         if (lang !== 'en' && lang !== 'tr') {
           lang = 'en';
         }
@@ -37,10 +35,10 @@ define(['backbone', 'mapboxgl', 'app/config'],
       },
 
       changeLanguage: function (language) {
-        var currentLang = localStorage.getItem('lang') || 'tr';
+        var currentLang = this.get('lang');
 
         if (currentLang !== language) {
-          localStorage.setItem('lang', language);
+          vent.trigger('language:changed', language);
         }
       }
     });

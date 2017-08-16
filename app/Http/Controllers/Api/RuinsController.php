@@ -28,7 +28,8 @@ class RuinsController extends Controller
                     'coordinates' => [$ruin->longitude, $ruin->latitude]
                 ],
                 'properties' => [
-                    'name' => $ruin->name,
+                    'name_tr' => $ruin->name_tr,
+                    'name_en' => $ruin->name,
                     'slug' => $ruin->slug
                 ]
             ];

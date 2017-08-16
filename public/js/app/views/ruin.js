@@ -27,6 +27,7 @@ define(['backbone', 'handlebars', 'app/views/feedback'], function (Backbone, Han
       this.$el.html(template(this.model.attributes));
 
       $('.info-bar-container').html(this.el);
+      i18next.changeLanguage(this.model.get('language'));
     },
 
     unrender: function () {

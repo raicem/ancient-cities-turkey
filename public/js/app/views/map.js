@@ -1,11 +1,12 @@
-define(['backbone', 'mapboxgl', 'app/models/ruin', 'app/views/ruin'],
-  function (Backbone, mapboxgl, RuinModel, RuinView) {
+define(['backbone', 'mapboxgl', 'app/models/ruin', 'app/views/ruin', 'i18next'],
+  function (Backbone, mapboxgl, RuinModel, RuinView, i18next) {
     return Backbone.View.extend({
       initialize: function () {
         var appView = this;
 
         vent.on('ruin:show', this.showRuin, this);
         vent.on('ruin:show-server', this.showRuinServer, this);
+        vent.on('language:changed', this.refreshLinks, this);
 
         this.model.map.on('load', function () {
           appView.addLayers();
@@ -30,11 +31,14 @@ define(['backbone', 'mapboxgl', 'app/models/ruin', 'app/views/ruin'],
         this.ruinView = new RuinView({ model: ruin });
       },
 
-      refreshLinks: function () {
-        var map = this.model.map;
+      refreshLinks: function (lang) {
+        this.model.map.off('click');
+        this.attach(lang);
 
-        map.off('click');
-        this.attach('tr');
+        localStorage.setItem('lang', lang);
+        this.model.set({ lang: lang });
+
+        i18next.changeLanguage(lang);
       },
 
       addLayers: function () {
@@ -79,9 +83,10 @@ define(['backbone', 'mapboxgl', 'app/models/ruin', 'app/views/ruin'],
       addPopup: function (feature, language) {
         var lang = language || 'tr';
 
+        var name = 'name_' + lang;
         var link = '/' + lang + '/' + feature.properties.slug;
-        var html = feature.properties.name + '<br><a href=' + link +
-          ' class="link">More...</a>';
+        var html = feature.properties[name] + '<br><a href=' + link +
+        ' class="link">More...</a>';
 
         var popup = new mapboxgl.Popup({
           closeButton: false

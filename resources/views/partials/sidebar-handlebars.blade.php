@@ -1,6 +1,6 @@
 <script id="ruin-bar" type="text/x-handlebars-template">
     <div>
-        <button class="button button-red close-button">Close</button>
+        <button class="button button-red close-button" id="close">Close</button>
     </div>
     <div class="ruin-info">
         <div class="info-bar-image" style="background-image: url('/img/ruins/@{{ image }}')"></div>
@@ -28,23 +28,23 @@
             @{{/if}}
         </ul>
         <ul class="link-list">
-            <h4 class="link-list-title">Resources in English</h4>
+            <h4 class="link-list-title" id="englishResources">Resources in English</h4>
             @{{#each english_links}}
                 <li class="link-list-item"><a data-bypass href="@{{this.url}}">@{{this.description}}</a></li>
             @{{/each }}
-            <h4 class="link-list-title">Türkçe Kaynaklar</h4>
+            <h4 class="link-list-title" id="turkishResources">Türkçe Kaynaklar</h4>
             @{{#each turkish_links}}
                 <li class="link-list-item"><a data-bypass href="@{{this.url}}">@{{this.description}}</a></li>
             @{{/each }}
         </ul>
         <div class="feedback">
-            <button id="output" class="button button-blue feedback-button">Report Issue</button>
+            <button id="reportIssue" class="button button-blue feedback-button">Report Issue</button>
         </div>
         <div class="lang-buttons">
-            <a href="/tr/@{{ this.slug }}">
+            <a href="/tr/@{{ this.slug }}" id="turkish">
                 türkçe
             </a>
-            <a href="/en/@{{ this.slug }}">
+            <a href="/en/@{{ this.slug }}" id="english">
                 english
             </a>
         </div>
