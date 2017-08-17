@@ -11,7 +11,9 @@ define(['backbone'], function (Backbone) {
 
     show: function (lang, slug) {
       var language = lang || 'en';
+
       vent.trigger('language:check', language);
+
       // decide if there is a server side rendered portion on the page
       if ($('.info-bar[data-server]').length) {
         vent.trigger('ruin:show-server', slug, language);
