@@ -1,4 +1,4 @@
-define(['backbone', 'app/models/feedback'], function(Backbone, FeedbackModel) {
+define(['backbone', 'app/models/feedback', 'handlebars'], function (Backbone, FeedbackModel, Handlebars) {
   return Backbone.View.extend({
     className: 'feedback-form',
 
