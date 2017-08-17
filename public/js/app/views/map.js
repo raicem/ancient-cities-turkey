@@ -5,7 +5,6 @@ define(['backbone', 'mapboxgl', 'app/models/ruin', 'app/views/ruin', 'i18next'],
         var appView = this;
 
         vent.on('ruin:show', this.showRuin, this);
-        vent.on('ruin:show-server', this.showRuinServer, this);
         vent.on('language:changed', this.languageChange, this);
 
         this.model.map.on('load', function () {
@@ -16,18 +15,6 @@ define(['backbone', 'mapboxgl', 'app/models/ruin', 'app/views/ruin', 'i18next'],
 
       showRuin: function (slug, language) {
         var ruin = new RuinModel({ slug: slug, language: language });
-        this.ruinView = new RuinView({ model: ruin });
-      },
-
-      showRuinServer: function (slug, language) {
-        var thisView = this;
-        var ruin = new RuinModel({ slug: slug, language: language });
-
-        ruin.fetch().then(function () {
-          thisView.addPopup(ruin.getCoordinates(), ruin.get('name'),
-            ruin.get('slug'));
-        });
-
         this.ruinView = new RuinView({ model: ruin });
       },
 
