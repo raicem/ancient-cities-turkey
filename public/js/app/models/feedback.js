@@ -1,6 +1,6 @@
-define('backbone', function (Backbone) {
+define(['backbone'], function (Backbone) {
   return Backbone.Model.extend({
-    urlRoot: 'api/feedback',
+    urlRoot: '/api/feedback',
 
     validate: function (attrs) {
       if (attrs.body.length < 1) {
