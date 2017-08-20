@@ -22,8 +22,7 @@ class ExampleController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Ancient Cities Turkey');
 
             $content->body($this->grid());
         });
@@ -39,8 +38,7 @@ class ExampleController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Edit');
 
             $content->body($this->form()->edit($id));
         });
@@ -55,8 +53,7 @@ class ExampleController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Create');
 
             $content->body($this->form());
         });

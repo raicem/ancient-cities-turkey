@@ -10,7 +10,7 @@ return [
     /*
      * Logo in admin panel header.
      */
-    'logo'      => '<b>Laravel</b> admin',
+    'logo'      => 'Ancient Cities Turkey',
 
     /*
      * Mini-logo in admin panel header.
