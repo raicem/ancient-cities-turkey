@@ -7,7 +7,7 @@
         <div class="level info-bar-title">
             <h3 class="link-list-title">@{{ name }}</h3>
             @{{#if official_site}}
-                <img class="ministry-logo" src="/img/official.png" alt="official site">
+                <img class="ministry-logo" src="/img/official.png" alt="Official Site" id="officialLogo">
                 <a data-bypass href="@{{ official_site_link }}" id="visitingInfo">Visiting Info</a>
             @{{/if}}
         </div>
@@ -15,20 +15,20 @@
         <ul class="image-list flex">
             <li class="image-list-item">
                 <a data-bypass href="http://maps.apple.com/?ll=@{{ latitude }},@{{ longitude }}">
-                    <img src="/img/map.png" alt="">
+                    <img src="/img/map.png" alt="Open in default maps app">
                 </a>    
             </li>
             @{{#if tripadvisor}}
                 <li class="image-list-item">
                     <a data-bypass href="@{{ tripadvisor }}">
-                        <img src="/img/tripadvisor.png" alt="">
+                        <img src="/img/tripadvisor.png" alt="Tripadvisor">
                     </a>
                 </li>
             @{{/if}}
             @{{#if foursquare}}
                 <li class="image-list-item">
                     <a data-bypass href="@{{ foursquare }}">
-                        <img src="/img/foursquare.png" alt="">
+                        <img src="/img/foursquare.png" alt="Foursquare">
                     </a>
                 </li>
             @{{/if}}
