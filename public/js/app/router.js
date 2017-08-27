@@ -9,7 +9,7 @@ define(['backbone'], function (Backbone) {
       this.bind('route', this.pageView);
     },
 
-    showWithoutLang(slug) {
+    showWithoutLang: function (slug) {
       vent.trigger('ruin:showWithoutLang', slug);
     },
 
@@ -22,7 +22,7 @@ define(['backbone'], function (Backbone) {
 
     pageView: function () {
       var path = Backbone.history.getFragment();
-      // ga('send', 'pageview', { page: '/' + path });
+      ga('send', 'pageview', { page: '/' + path });
     }
   });
 });

@@ -73,7 +73,7 @@ class RuinsController extends Controller
         return Admin::grid(Ruin::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->column('name');
+            $grid->column('name')->sortable();
             $grid->column('name_tr');
             $grid->links('Links')->display(function ($link) {
                 $count = count($link);
@@ -93,9 +93,12 @@ class RuinsController extends Controller
 
             $form->text('name', 'Name EN');
             $form->text('name_tr', 'Name TR');
+            $form->text('slug', 'Slug');
             $form->textarea('information', 'Info EN');
             $form->textarea('information_tr', 'Info TR');
             $form->image('image');
+            $form->text('latitude', 'Latitude');
+            $form->text('longitude', 'Longitude');
             $form->text('tripadvisor', 'Tripadvisor');
             $form->text('foursquare', 'Foursquare');
             $form->radio('official_site', 'Official Site')->options([0 => 'Hayır', 1 => 'Evet'])->default(0);

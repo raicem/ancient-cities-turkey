@@ -47,7 +47,7 @@ class RuinsController extends Controller
      */
     public function show(Ruin $ruin)
     {
-        return $ruin;
+        return $ruin->asEnglish();
     }
 
     /**

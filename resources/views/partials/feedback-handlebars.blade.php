@@ -10,7 +10,7 @@
             <textarea name="body" id="body" rows="5" placeholder="Please enter info about @{{ name }}"></textarea>
         </div>
         <div class="form-group">
-            <button class="button button-blue" type="submit" value="">Send</button>
+            <button class="button button-blue" type="submit" id="send">Send</button>
         </div>
     </form>
 </script>

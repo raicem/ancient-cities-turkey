@@ -42,6 +42,7 @@ define(['backbone', 'app/models/feedback', 'handlebars'], function (Backbone, Fe
       var ruin = this.model;
       var template = Handlebars.compile($('#feedback-form').html());
       $('.feedback').html(this.$el.html(template(ruin.attributes)));
+      i18next.changeLanguage(this.model.get('language'));
     }
   });
 });

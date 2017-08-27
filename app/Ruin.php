@@ -55,6 +55,18 @@ class Ruin extends Model
     {
         $this->information = $this->information_tr;
         $this->name = $this->name_tr;
+        $this->official_site_link = $this->official_site_tr;
+        return $this;
+    }
+
+    /**
+     * Since there is no official_site_link column we manually mutate it.
+     * If we do change the column name this method is not
+     * necessery.
+     */
+    public function asEnglish()
+    {
+        $this->official_site_link = $this->official_site_en;
         return $this;
     }
 }

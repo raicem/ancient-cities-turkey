@@ -78,6 +78,7 @@ body {
 .image-list-item {
     flex: 1;
     max-width: 33%;
+    margin: 0;
 }
 
 .image-list-item a {
@@ -98,8 +99,12 @@ body {
     padding: 0.2em 0;
 }
 
+.info-bar-title {
+    padding: 1em 0 0 0;
+}
+
 .link-list-title {
-    margin-bottom: 0;
+    margin: 0;
 }
 
 .alert-error {
@@ -115,6 +120,16 @@ body {
     padding: 10px 10px;
     margin-bottom: 10px;
     color: #FFFFFF;
+}
+
+.level {
+    display: flex;
+    align-items: center;
+}
+
+.ministry-logo {
+    width: 20px;
+    margin: 0 0.5em 0 0.1em;
 }
 
 @media (max-width: 632px) {

@@ -39,7 +39,9 @@ require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next']
             englishResources: 'English Resources',
             turkishResources: 'Turkish Resources',
             turkish: 'Turkish',
-            english: 'English'
+            english: 'English',
+            send: 'Send',
+            visitingInfo: 'Visiting Info'
           }
         },
         tr: {
@@ -50,7 +52,9 @@ require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next']
             englishResources: 'İngilizce Kaynaklar',
             turkishResources: 'Türkçe Kaynaklar',
             turkish: 'Türkçe',
-            english: 'İngilizce'
+            english: 'İngilizce',
+            send: 'Gönder',
+            visitingInfo: 'Ziyaret Bilgileri'
           }
         }
       }
@@ -63,6 +67,8 @@ require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next']
       document.getElementById('turkishResources').innerHTML = i18next.t('turkishResources');
       document.getElementById('turkish').innerHTML = i18next.t('turkish');
       document.getElementById('english').innerHTML = i18next.t('english');
+      document.getElementById('send').innerHTML = i18next.t('send');
+      document.getElementById('visitingInfo').innerHTML = i18next.t('visitingInfo');
     }
 
     i18next.on('languageChanged', function () {
