@@ -8,7 +8,7 @@
             <h3 class="link-list-title">@{{ name }}</h3>
             @{{#if official_site}}
                 <img class="ministry-logo" src="/img/official.png" alt="official site">
-                <a href="@{{ official_site_link }}" id="visitingInfo">Visiting Info</a>
+                <a data-bypass href="@{{ official_site_link }}" id="visitingInfo">Visiting Info</a>
             @{{/if}}
         </div>
         <p class="info-bar-description">@{{ information }}</p>
