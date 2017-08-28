@@ -43,7 +43,8 @@ define(['backbone', 'mapboxgl', 'app/models/ruin', 'app/views/ruin', 'i18next'],
             data: '/api/ruins'
           },
           layout: {
-            'icon-image': 'star-15'
+            'icon-image': 'star-15',
+            'icon-allow-overlap': true
           }
         });
       },
