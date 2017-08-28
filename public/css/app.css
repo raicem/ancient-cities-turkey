@@ -22,6 +22,17 @@ body {
     z-index: 0;
 }
 
+.link {
+    text-decoration: none;
+    color: inherit;
+    justify-content: space-around;
+}
+
+.info-image {
+    width: 20px;
+    margin-left: 0.3em;
+}
+
 .button {
     border: none;
     width: 100%;
@@ -130,6 +141,10 @@ body {
 .ministry-logo {
     width: 20px;
     margin: 0 0.5em 0 0.1em;
+}
+
+.about {
+    margin-top: 1em;
 }
 
 @media (max-width: 632px) {

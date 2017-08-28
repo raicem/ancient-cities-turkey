@@ -43,7 +43,9 @@ require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next']
             send: 'Send',
             officialLogo: 'Ministry of Culture and Tourism Archeological Site',
             visitingInfo: 'Visiting Info',
-            more: 'More...'
+            more: 'More...',
+            about: 'About this project',
+            projectLink: 'https://raicem.github.io/2017/08/28/ancient-cities-of-turkey/'
           }
         },
         tr: {
@@ -58,7 +60,9 @@ require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next']
             send: 'Gönder',
             officialLogo: 'Kültür ve Turizm Bakanlığı Ören Yeri',
             visitingInfo: 'Ziyaret Bilgileri',
-            more: 'Daha fazla...'
+            more: 'Daha fazla...',
+            about: 'Bu proje hakkında',
+            projectLink: 'https://raicem.github.io/2017/08/28/turkiyenin-antik-kentleri/'
           }
         }
       }
@@ -73,11 +77,16 @@ require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next']
       document.getElementById('english').innerHTML = i18next.t('english');
       document.getElementById('visitingInfo').textContent = i18next.t('visitingInfo');
       document.getElementById('officialLogo').alt = i18next.t('officialLogo');
-      document.getElementById('more').textContent = i18next.t('more');
+      document.getElementById('aboutLink').textContent = i18next.t('about');
+      document.getElementById('aboutLink').href = i18next.t('projectLink');
     }
 
     i18next.on('languageChanged', function () {
-      updateContent();
+      try {
+        updateContent();
+      } catch (e) {
+        //
+      }
     });
 
     Backbone.history.start({ pushState: true });

@@ -48,11 +48,14 @@
         </div>
         <div class="lang-buttons">
             <a href="/tr/@{{ this.slug }}" id="turkish">
-                türkçe
+                Türkçe
             </a>
             <a href="/en/@{{ this.slug }}" id="english">
-                english
+                English
             </a>
+        </div>
+        <div class="about">
+            <a data-bypass href="https://raicem.github.io/2017/08/28/ancient-cities-of-turkey/" id="aboutLink">About this project</a>
         </div>
     </div>
 </script>
