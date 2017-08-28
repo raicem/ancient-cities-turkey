@@ -42,7 +42,8 @@ require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next']
             english: 'English',
             send: 'Send',
             officialLogo: 'Ministry of Culture and Tourism Archeological Site',
-            visitingInfo: 'Visiting Info'
+            visitingInfo: 'Visiting Info',
+            more: 'More...'
           }
         },
         tr: {
@@ -56,7 +57,8 @@ require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next']
             english: 'İngilizce',
             send: 'Gönder',
             officialLogo: 'Kültür ve Turizm Bakanlığı Ören Yeri',
-            visitingInfo: 'Ziyaret Bilgileri'
+            visitingInfo: 'Ziyaret Bilgileri',
+            more: 'Daha fazla...'
           }
         }
       }
@@ -69,14 +71,14 @@ require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next']
       document.getElementById('turkishResources').innerHTML = i18next.t('turkishResources');
       document.getElementById('turkish').innerHTML = i18next.t('turkish');
       document.getElementById('english').innerHTML = i18next.t('english');
-      document.getElementById('visitingInfo').innerHTML = i18next.t('visitingInfo');
+      document.getElementById('visitingInfo').textContent = i18next.t('visitingInfo');
       document.getElementById('officialLogo').alt = i18next.t('officialLogo');
+      document.getElementById('more').textContent = i18next.t('more');
     }
 
     i18next.on('languageChanged', function () {
       updateContent();
     });
-
 
     Backbone.history.start({ pushState: true });
   });

@@ -75,11 +75,17 @@ define(['backbone', 'mapboxgl', 'app/models/ruin', 'app/views/ruin', 'i18next'],
 
       addPopup: function (feature, language) {
         var lang = language || 'tr';
+        var moreLink = 'More...';
+
+        if (lang === 'tr') {
+          moreLink = 'Daha fazla...';
+        }
 
         var name = 'name_' + lang;
+
         var link = '/' + lang + '/' + feature.properties.slug;
         var html = feature.properties[name] + '<br><a href=' + link +
-        ' class="link">More...</a>';
+        ' class="link">' + moreLink + '</a>';
 
         var popup = new mapboxgl.Popup({
           closeButton: false
