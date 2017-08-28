@@ -38,8 +38,6 @@ require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next']
             close: 'Close',
             englishResources: 'English Resources',
             turkishResources: 'Turkish Resources',
-            turkish: 'Turkish',
-            english: 'İngilizce',
             send: 'Send',
             officialLogo: 'Ministry of Culture and Tourism Archeological Site',
             visitingInfo: 'Visiting Info',
@@ -55,8 +53,6 @@ require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next']
             close: 'Kapat',
             englishResources: 'İngilizce Kaynaklar',
             turkishResources: 'Türkçe Kaynaklar',
-            turkish: 'Türkçe',
-            english: 'English',
             send: 'Gönder',
             officialLogo: 'Kültür ve Turizm Bakanlığı Ören Yeri',
             visitingInfo: 'Ziyaret Bilgileri',
@@ -73,8 +69,6 @@ require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next']
       document.getElementById('close').innerHTML = i18next.t('close');
       document.getElementById('englishResources').innerHTML = i18next.t('englishResources');
       document.getElementById('turkishResources').innerHTML = i18next.t('turkishResources');
-      document.getElementById('turkish').innerHTML = i18next.t('turkish');
-      document.getElementById('english').innerHTML = i18next.t('english');
       document.getElementById('visitingInfo').textContent = i18next.t('visitingInfo');
       document.getElementById('officialLogo').alt = i18next.t('officialLogo');
       document.getElementById('aboutLink').textContent = i18next.t('about');

@@ -47,10 +47,10 @@
             <button id="reportIssue" class="button button-blue feedback-button">Report Issue</button>
         </div>
         <div class="lang-buttons">
-            <a href="/tr/@{{ this.slug }}" id="turkish">
+            <a href="/tr/@{{ this.slug }}">
                 Türkçe
             </a>
-            <a href="/en/@{{ this.slug }}" id="english">
+            <a href="/en/@{{ this.slug }}">
                 English
             </a>
         </div>
