@@ -53,9 +53,9 @@
             <a href="/en/@{{ this.slug }}">
                 English
             </a>
-        </div>
+        </div>  
         <div class="about">
-            <a data-bypass href="https://raicem.github.io/2017/08/28/ancient-cities-of-turkey/" id="aboutLink">About this project</a>
+            <a href="#" id="aboutLink">About this project</a>
         </div>
     </div>
 </script>

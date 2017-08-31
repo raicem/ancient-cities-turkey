@@ -36,7 +36,7 @@ define(['backbone', 'mapboxgl', 'app/models/ruin', 'app/views/ruin', 'app/views/
       },
 
       showAbout: function (lang) {
-        new AboutView();
+        new AboutView({ lang: lang });
       },
 
       addLayers: function () {

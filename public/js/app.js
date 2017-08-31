@@ -43,7 +43,7 @@ require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next']
             visitingInfo: 'Visiting Info',
             more: 'More...',
             about: 'About this project',
-            projectLink: 'https://raicem.github.io/2017/08/28/ancient-cities-of-turkey/'
+            aboutLink: '/about'
           }
         },
         tr: {
@@ -58,7 +58,7 @@ require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next']
             visitingInfo: 'Ziyaret Bilgileri',
             more: 'Daha fazla...',
             about: 'Bu proje hakkında',
-            projectLink: 'https://raicem.github.io/2017/08/28/turkiyenin-antik-kentleri/'
+            aboutLink: '/hakkinda'
           }
         }
       }
@@ -72,7 +72,7 @@ require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next']
       document.getElementById('visitingInfo').textContent = i18next.t('visitingInfo');
       document.getElementById('officialLogo').alt = i18next.t('officialLogo');
       document.getElementById('aboutLink').textContent = i18next.t('about');
-      document.getElementById('aboutLink').href = i18next.t('projectLink');
+      document.getElementById('aboutLink').href = i18next.t('aboutLink');
     }
 
     i18next.on('languageChanged', function () {

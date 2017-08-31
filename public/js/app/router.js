@@ -1,8 +1,9 @@
 define(['backbone'], function (Backbone) {
   return Backbone.Router.extend({
     routes: {
+      'hakkinda': 'showAboutTr',
+      'about': 'showAboutEn',
       ':slug': 'showWithoutLang',
-      ':lang/about': 'showAbout',
       ':lang/:slug': 'show'
     },
 
@@ -14,8 +15,12 @@ define(['backbone'], function (Backbone) {
       vent.trigger('ruin:showWithoutLang', slug);
     },
 
-    showAbout: function (lang) {
-      vent.trigger('about:show', lang);
+    showAboutTr: function () {
+      vent.trigger('about:show', 'tr');
+    },
+
+    showAboutEn: function () {
+      vent.trigger('about:show', 'en');
     },
 
     show: function (lang, slug) {

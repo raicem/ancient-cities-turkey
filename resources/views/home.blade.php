@@ -10,6 +10,7 @@
     <div class="info-bar-container"></div>
     @include('partials.sidebar-handlebars')
     @include('partials.feedback-handlebars')
+    @include('partials.about-handlebars')
 @endsection
 @section('scripts')
     <script>
