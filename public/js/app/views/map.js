@@ -1,5 +1,5 @@
-define(['backbone', 'mapboxgl', 'app/models/ruin', 'app/views/ruin', 'i18next'],
-  function (Backbone, mapboxgl, RuinModel, RuinView, i18next) {
+define(['backbone', 'mapboxgl', 'app/models/ruin', 'app/views/ruin', 'app/views/about', 'i18next'],
+  function (Backbone, mapboxgl, RuinModel, RuinView, AboutView, i18next) {
     return Backbone.View.extend({
       initialize: function () {
         var appView = this;
@@ -7,6 +7,7 @@ define(['backbone', 'mapboxgl', 'app/models/ruin', 'app/views/ruin', 'i18next'],
         vent.on('ruin:show', this.showRuin, this);
         vent.on('ruin:showWithoutLang', this.showRuinWithoutLang, this);
         vent.on('language:changed', this.languageChange, this);
+        vent.on('about:show', this.showAbout, this);
 
         this.model.map.on('load', function () {
           appView.addLayers();
@@ -32,6 +33,10 @@ define(['backbone', 'mapboxgl', 'app/models/ruin', 'app/views/ruin', 'i18next'],
         this.model.set({ lang: lang });
 
         i18next.changeLanguage(lang);
+      },
+
+      showAbout: function (lang) {
+        new AboutView();
       },
 
       addLayers: function () {

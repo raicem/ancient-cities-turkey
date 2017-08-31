@@ -8,7 +8,7 @@
     <meta name="description" content="Map of Ancient Cities in Turkey. You can get discover new places with useful links to history, visiting and much more.">
     <link href='{{ asset('css/mapbox-gl.css') }}' rel='stylesheet'/>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <script src="{{ asset('js/vendor/require.js') }}" data-main="{{ asset('js/app') }}"></script>
+    @yield('head-scripts')
 </head>
 <body>
 

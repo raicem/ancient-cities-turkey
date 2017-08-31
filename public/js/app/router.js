@@ -2,6 +2,7 @@ define(['backbone'], function (Backbone) {
   return Backbone.Router.extend({
     routes: {
       ':slug': 'showWithoutLang',
+      ':lang/about': 'showAbout',
       ':lang/:slug': 'show'
     },
 
@@ -11,6 +12,10 @@ define(['backbone'], function (Backbone) {
 
     showWithoutLang: function (slug) {
       vent.trigger('ruin:showWithoutLang', slug);
+    },
+
+    showAbout: function (lang) {
+      vent.trigger('about:show', lang);
     },
 
     show: function (lang, slug) {

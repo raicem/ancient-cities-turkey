@@ -1,4 +1,7 @@
 @extends('app')
+@section('head-scripts')
+    <script src="{{ asset('js/vendor/require.js') }}" data-main="{{ asset('js/app') }}"></script>
+@endsection
 @section('title')
     Ancient Cities Turkey
 @endsection
