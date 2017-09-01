@@ -69,17 +69,18 @@ require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next']
       document.getElementById('close').innerHTML = i18next.t('close');
       document.getElementById('englishResources').innerHTML = i18next.t('englishResources');
       document.getElementById('turkishResources').innerHTML = i18next.t('turkishResources');
-      document.getElementById('visitingInfo').textContent = i18next.t('visitingInfo');
-      document.getElementById('officialLogo').alt = i18next.t('officialLogo');
       document.getElementById('aboutLink').textContent = i18next.t('about');
       document.getElementById('aboutLink').href = i18next.t('aboutLink');
+      document.getElementById('officialLogo').alt = i18next.t('officialLogo');
+      document.getElementById('visitingInfo').textContent = i18next.t('visitingInfo');
+      console.log('called');
     }
 
     i18next.on('languageChanged', function () {
       try {
         updateContent();
       } catch (e) {
-        //
+        console.log(e);
       }
     });
 
