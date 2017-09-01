@@ -73,7 +73,6 @@ require(['backbone', 'app/router', 'app/models/map', 'app/views/map', 'i18next']
       document.getElementById('aboutLink').href = i18next.t('aboutLink');
       document.getElementById('officialLogo').alt = i18next.t('officialLogo');
       document.getElementById('visitingInfo').textContent = i18next.t('visitingInfo');
-      console.log('called');
     }
 
     i18next.on('languageChanged', function () {
