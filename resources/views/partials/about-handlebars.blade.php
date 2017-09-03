@@ -21,6 +21,6 @@
     <p>Topladığım verilerin doğruluğuna özen gösterdim ancak bu konular hakkında herhangi bir resmi eğitimim olmadığı için, lütfen bazı bilgilerin güncel veya doğru olmayabileceğini göz önünde bulundurun. Bu durumlarda hata bildir formunu kullanarak bana ulaşabilirsiniz.</p>
     <h3>Hakkımda</h3>
     <p>
-        Benim adım Cem Ünalan. <a href="http://atolye15.com">Atölye15'te</a> back-end geliştirici olarak çalışmaktayım. 
+        Benim adım Cem Ünalan. <a data-bypass href="http://atolye15.com">Atölye15'te</a> back-end geliştirici olarak çalışmaktayım. 
     </p>
 </script>
