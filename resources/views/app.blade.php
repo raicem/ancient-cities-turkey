@@ -9,11 +9,11 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Ancient Cities of Turkey">
     <meta name="twitter:description" content="Map of Ancient Cities in Turkey. You can get discover new places with useful links to history, visiting info and much more.">
-    <meta name="twitter:image" content="/img/preview.jpeg">
+    <meta name="twitter:image" content="http://ancientcitiesturkey.com/img/preview.jpeg">
     <meta property="og:url" content="http://ancientcitiesturkey.com" />
     <meta property="og:title" content="Ancient Cities of Turkey" />
     <meta property="og:description" content="Map of Ancient Cities in Turkey. You can get discover new places with useful links to history, visiting info and much more." />
-    <meta property="og:image" content="/img/preview.jpeg" />
+    <meta property="og:image" content="http://ancientcitiesturkey.com/img/preview.jpeg" />
     <link href='{{ asset('css/mapbox-gl.css') }}' rel='stylesheet'/>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @yield('head-scripts')
