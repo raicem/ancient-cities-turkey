@@ -9,7 +9,7 @@
     <p>You can reach me via the report issue form, <a data-bypass href="https://twitter.com/ciftehavuz">Twitter</a> or <a data-bypass href="mailto:unalancem@gmail.com">unalancem@gmail.com</a>.</p>
     <h3>About me</h3>
     <p>
-        My name is Cem Ünalan. I'm a back-end developer working at <a href="http://atolye15.com">Atölye15.</a>
+        My name is Cem Ünalan. I'm a back-end developer working at <a data-bypass href="http://atolye15.com">Atölye15.</a>
     </p>
 </script>
 <script id="about-page-tr" type="text/x-handlebars-template">
