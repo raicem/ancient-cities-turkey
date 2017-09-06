@@ -9,6 +9,7 @@ body {
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
     color: #444;
+    -webkit-overflow-scrolling: touch;
 }
 
 .container {
@@ -52,7 +53,7 @@ body {
 }
 
 .info-bar {
-    padding: 20px;
+    padding: 20px 20px 100px 20px;
     position: fixed;
     top: 0;
     right: 0;
