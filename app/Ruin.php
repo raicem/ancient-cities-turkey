@@ -18,7 +18,7 @@ class Ruin extends Model
      *
      * @var array
      */
-    protected $events = [
+    protected $dispatchesEvents = [
         'saved' => RuinSaved::class,
     ];
 

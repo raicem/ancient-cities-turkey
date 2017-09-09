@@ -5,22 +5,29 @@ return [
     /*
      * Laravel-admin name.
      */
-    'name'      => 'Laravel-admin',
+    'name'      => 'Ruins',
 
     /*
      * Logo in admin panel header.
      */
-    'logo'      => 'Ancient Cities Turkey',
+    'logo'      => '<b>Ruins</b>',
 
     /*
      * Mini-logo in admin panel header.
      */
-    'logo-mini' => '<b>La</b>',
+    'logo-mini' => '<b>Ru</b>',
 
     /*
-     * Laravel-admin url prefix.
+     * Route configration.
      */
-    'prefix'    => 'admin',
+    'route' => [
+
+        'prefix' => 'admin',
+
+        'namespace'     => 'App\\Admin\\Controllers',
+
+        'middleware'    => ['web', 'admin'],
+    ],
 
     /*
      * Laravel-admin install directory.
@@ -30,15 +37,30 @@ return [
     /*
      * Laravel-admin html title.
      */
-    'title'  => 'Admin',
+    'title'  => 'Ruins',
+
+    /*
+     * Use `https`.
+     */
+    'secure' => false,
 
     /*
      * Laravel-admin auth setting.
      */
     'auth' => [
-        'driver'   => 'session',
-        'provider' => '',
-        'model'    => Encore\Admin\Auth\Database\Administrator::class,
+        'guards' => [
+            'admin' => [
+                'driver'   => 'session',
+                'provider' => 'admin',
+            ],
+        ],
+
+        'providers' => [
+            'admin' => [
+                'driver' => 'eloquent',
+                'model'  => Encore\Admin\Auth\Database\Administrator::class,
+            ],
+        ],
     ],
 
     /*
@@ -49,11 +71,9 @@ return [
         'disk' => 'admin',
 
         'directory'  => [
-            'image'  => 'img/ruins',
-            'file'   => 'file',
+            'image'  => 'img',
+            'file'   => 'filesw',
         ],
-
-        'host' => 'http://ruins.dev/img/ruins',
     ],
 
     /*
@@ -91,17 +111,23 @@ return [
     /*
      * By setting this option to open or close operation log in laravel-admin.
      */
-    'operation_log'   => true,
+    'operation_log'   => [
+
+        'enable' => true,
+
+        /*
+         * Routes that will not log to database.
+         *
+         * All method to path like: admin/auth/logs
+         * or specific method to path like: get:admin/auth/logs
+         */
+        'except' => [
+            'admin/auth/logs*',
+        ],
+    ],
 
     /*
-    |---------------------------------------------------------|
-    | SKINS         | skin-blue                               |
-    |               | skin-black                              |
-    |               | skin-purple                             |
-    |               | skin-yellow                             |
-    |               | skin-red                                |
-    |               | skin-green                              |
-    |---------------------------------------------------------|
+     * @see https://adminlte.io/docs/2.4/layout
      */
     'skin'    => 'skin-blue',
 
@@ -114,10 +140,17 @@ return [
     |               | sidebar-mini                            |
     |---------------------------------------------------------|
      */
-    'layout'  => ['sidebar-mini'],
+    'layout'  => ['sidebar-mini', 'sidebar-collapse'],
 
     /*
      * Version displayed in footer.
      */
-    'version'   => '1.0',
+    'version'   => '1.5.x-dev',
+
+    /*
+     * Settings for extensions.
+     */
+    'extensions' => [
+
+    ],
 ];

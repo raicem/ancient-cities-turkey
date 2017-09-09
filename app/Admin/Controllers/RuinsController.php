@@ -76,6 +76,10 @@ class RuinsController extends Controller
                 $count = count($link);
                 return "<span class='label label-warning'>{$count}</span>";
             });
+
+            $grid->filter(function ($filter) {
+                $filter->like('name', 'Name');
+            });
         });
     }
 
@@ -88,34 +92,39 @@ class RuinsController extends Controller
     {
         return Admin::form(Ruin::class, function (Form $form) {
 
-            $form->text('name', 'Name EN');
-            $form->text('name_tr', 'Name TR');
+            $form->tab('Main Info', function ($form) {
 
-            $form->textarea('information', 'Info EN');
-            $form->textarea('information_tr', 'Info TR');
+                $form->text('name', 'Name EN');
+                $form->text('name_tr', 'Name TR');
 
-            $form->image('image');
+                $form->textarea('information', 'Info EN');
+                $form->textarea('information_tr', 'Info TR');
 
-            $form->text('latitude', 'Latitude');
-            $form->text('longitude', 'Longitude');
-            $form->text('tripadvisor', 'Tripadvisor');
-            $form->text('foursquare', 'Foursquare');
+                $form->image('image')->move('img/ruins');
 
-            $form->radio('official_site', 'Official Site')->options([
-                0 => 'No',
-                1 => 'Yes'
-            ])->default(0);
+                $form->text('latitude', 'Latitude');
+                $form->text('longitude', 'Longitude');
+                $form->text('tripadvisor', 'Tripadvisor');
+                $form->text('foursquare', 'Foursquare');
 
-            $form->text('official_site_en', 'Official Site EN');
-            $form->text('official_site_tr', 'Official Site TR');
+                $form->radio('official_site', 'Official Site')->options([
+                    0 => 'No',
+                    1 => 'Yes'
+                ])->default(0);
 
-            $form->hasMany('links', function (Form\NestedForm $form) {
-                $form->text('description', 'Description');
-                $form->url('url', 'URL');
-                $form->radio('language', 'Language')->options([
-                    'en' => 'EN',
-                    'tr' => 'TR'
-                ])->default('tr');
+                $form->text('official_site_en', 'Official Site EN');
+                $form->text('official_site_tr', 'Official Site TR');
+
+            })->tab('Links', function ($form) {
+                $form->hasMany('links', function (Form\NestedForm $form) {
+
+                    $form->text('description', 'Description');
+                    $form->url('url', 'URL');
+                    $form->radio('language', 'Language')->options([
+                        'en' => 'EN',
+                        'tr' => 'TR'
+                    ])->default('tr');
+                });
             });
         });
     }

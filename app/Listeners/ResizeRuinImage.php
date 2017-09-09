@@ -20,22 +20,20 @@ class ResizeRuinImage
     /**
      * Handle the event.
      *
-     * @param  RuinSaved  $event
+     * @param  RuinSaved $event
      * @return void
      */
     public function handle(RuinSaved $event)
     {
-        $imagePath = 'public/' . $event->ruin->image;
-        dd($imagePath);
-        $image = Image::make($imagePath);
+        if ($event->ruin->image) {
+            $image = Image::make(public_path() . '/' . $event->ruin->image);
 
-        $fileSize = $image->fileSize();
-        $width = $image->width();
-        dd($fileSize, $width);
-
-        // Open the image with intervention
-
-        // dissect the size and width
-        // if its to high resize it and save it
+            if ($image->filesize() > 350000) {
+                $image->resize(1080, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $image->save();
+            }
+        }
     }
 }

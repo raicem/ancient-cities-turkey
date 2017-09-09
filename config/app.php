@@ -167,8 +167,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
-        Cviebrock\EloquentSluggable\ServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
+        Spatie\Backup\BackupServiceProvider::class,
 
         /*
          * Application Service Providers...

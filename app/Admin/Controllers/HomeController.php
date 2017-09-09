@@ -3,11 +3,11 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Link;
-use App\Ruin;
+use Encore\Admin\Controllers\Dashboard;
 use Encore\Admin\Facades\Admin;
+use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Content;
-use Encore\Admin\Widgets\InfoBox;
+use Encore\Admin\Layout\Row;
 
 class HomeController extends Controller
 {
@@ -15,44 +15,23 @@ class HomeController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('Panel');
+            $content->header('ancientcitiesturkey.com');
 
-            $number['ruins'] = Ruin::all()->count();
-            $number['links'] = Link::all()->count();
-            $number['withInfo'] = Ruin::where('information_tr', '!=', null)->count();
-            $number['percentage'] = ceil($number['withInfo'] / $number['ruins'] * 100);
+            $content->row(Dashboard::title());
 
-            $content->row(function ($row) use ($number) {
-                $row->column(
-                    3,
-                    new InfoBox(
-                        'Ruins',
-                        'university',
-                        'aqua',
-                        '/admin/ruins',
-                        $number['ruins']
-                    )
-                );
-                $row->column(
-                    3,
-                    new InfoBox(
-                        'Links',
-                        'link',
-                        'green',
-                        '/admin/links',
-                        $number['links']
-                    )
-                );
-                $row->column(
-                    3,
-                    new InfoBox(
-                        'Information Completed',
-                        'info',
-                        'yellow',
-                        '/admin/ruins',
-                        '%' . $number['percentage']
-                    )
-                );
+            $content->row(function (Row $row) {
+
+                $row->column(4, function (Column $column) {
+                    $column->append(Dashboard::environment());
+                });
+
+                $row->column(4, function (Column $column) {
+                    $column->append(Dashboard::extensions());
+                });
+
+                $row->column(4, function (Column $column) {
+                    $column->append(Dashboard::dependencies());
+                });
             });
         });
     }

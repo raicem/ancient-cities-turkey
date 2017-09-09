@@ -3,7 +3,7 @@
         <button class="button button-red close-button" id="close">Close</button>
     </div>
     <div class="ruin-info">
-        <div class="info-bar-image" style="background-image: url('/img/ruins/@{{ image }}')"></div>
+        <div class="info-bar-image" style="background-image: url('/@{{ image }}')"></div>
         <div class="level info-bar-title">
             <h3 class="link-list-title">@{{ name }}</h3>
             @{{#if official_site}}

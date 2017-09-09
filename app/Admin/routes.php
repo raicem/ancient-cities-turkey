@@ -1,17 +1,19 @@
 <?php
 
+use Encore\Admin\Facades\Admin;
 use Illuminate\Routing\Router;
 
-Admin::registerHelpersRoutes();
+Admin::registerAuthRoutes();
 
 Route::group([
-    'prefix'        => config('admin.prefix'),
-    'namespace'     => Admin::controllerNamespace(),
-    'middleware'    => ['web', 'admin'],
+    'prefix'        => config('admin.route.prefix'),
+    'namespace'     => config('admin.route.namespace'),
+    'middleware'    => config('admin.route.middleware'),
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index');
-    $router->resource('ruins', RuinsController::class);
-    $router->resource('links', LinksController::class);
-    
+    $router->resource('ruins', 'RuinsController');
+    $router->resource('links', 'LinksController');
+    $router->resource('feedback', 'FeedbackController');
+
 });

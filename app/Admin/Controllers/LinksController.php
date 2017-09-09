@@ -41,8 +41,7 @@ class LinksController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Links');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +56,7 @@ class LinksController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Links');
 
             $content->body($this->form());
         });
@@ -98,7 +96,7 @@ class LinksController extends Controller
             $form->text('description', 'Description');
             $form->text('url', 'URL');
             $form->radio('language', 'Language')->options(['en' => 'EN', 'tr' => 'TR'])->default('tr');
-            
+
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
         });
