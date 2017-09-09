@@ -2,14 +2,25 @@
 
 namespace App;
 
+use App\Events\RuinSaved;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Ruin extends Model
 {
-    use Sluggable;
+    use Sluggable, Notifiable;
 
     protected $guarded = [];
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $events = [
+        'saved' => RuinSaved::class,
+    ];
 
     public static function boot()
     {
