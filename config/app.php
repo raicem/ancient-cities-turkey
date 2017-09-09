@@ -168,6 +168,7 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Encore\Admin\Providers\AdminServiceProvider::class,
+        Cviebrock\EloquentSluggable\ServiceProvider::class,
         
         /*
          * Application Service Providers...

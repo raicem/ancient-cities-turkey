@@ -2,10 +2,13 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Ruin extends Model
 {
+    use Sluggable;
+
     protected $guarded = [];
 
     public static function boot()
@@ -68,5 +71,20 @@ class Ruin extends Model
     {
         $this->official_site_link = $this->official_site_en;
         return $this;
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name',
+                'separator' => '-'
+            ]
+        ];
     }
 }

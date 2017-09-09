@@ -15,6 +15,8 @@ define(['backbone', 'handlebars', 'app/views/feedback'], function (Backbone, Han
     },
 
     initialize: function () {
+      vent.on('ruin:hide', this.unrender, this);
+
       var thisView = this;
       this.model.fetch().then(function () {
         $(document).attr('title', thisView.model.get('name'));
