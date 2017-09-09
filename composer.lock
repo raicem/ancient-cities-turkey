@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4dc5b8744c18b707b3bc54fa426de2fc",
+    "content-hash": "eae1885b7027e6de910c0c1d2f6141ca",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -1141,6 +1141,115 @@
                 }
             ],
             "time": "2015-04-20T18:58:01+00:00"
+        },
+        {
+            "name": "laravel-admin-ext/backup",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel-admin-extensions/backup.git",
+                "reference": "2dc805be1ac94c66a0a8d5f2384ddda268928848"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel-admin-extensions/backup/zipball/2dc805be1ac94c66a0a8d5f2384ddda268928848",
+                "reference": "2dc805be1ac94c66a0a8d5f2384ddda268928848",
+                "shasum": ""
+            },
+            "require": {
+                "encore/laravel-admin": "1.5.*",
+                "laravel/framework": "5.5.*",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "laravel/laravel": "5.*",
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Encore\\Admin\\Backup\\BackupServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Encore\\Admin\\Backup\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "z-song",
+                    "email": "zosong@126.com"
+                }
+            ],
+            "description": "Backup extension for laravel-admin",
+            "homepage": "https://github.com/laravel-admin-extensions/backup",
+            "keywords": [
+                "backup",
+                "laravel-admin"
+            ],
+            "time": "2017-08-09T08:53:26+00:00"
+        },
+        {
+            "name": "laravel-admin-ext/log-viewer",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel-admin-extensions/log-viewer.git",
+                "reference": "33a159a2a8ad30624b2daf889e62c907e4e0d6fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel-admin-extensions/log-viewer/zipball/33a159a2a8ad30624b2daf889e62c907e4e0d6fc",
+                "reference": "33a159a2a8ad30624b2daf889e62c907e4e0d6fc",
+                "shasum": ""
+            },
+            "require": {
+                "encore/laravel-admin": "1.5.*",
+                "laravel/framework": "5.5.*",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "laravel/laravel": "5.*",
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Encore\\Admin\\LogViewer\\LogViewerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Encore\\Admin\\LogViewer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "z-song",
+                    "email": "zosong@126.com"
+                }
+            ],
+            "description": "Log viewer for laravel",
+            "homepage": "https://github.com/laravel-admin-extensions/log-viewer",
+            "keywords": [
+                "Viewer",
+                "laravel-admin",
+                "log"
+            ],
+            "time": "2017-08-15T08:43:48+00:00"
         },
         {
             "name": "laravel/framework",
