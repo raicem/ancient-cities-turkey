@@ -12,5 +12,4 @@ npm-debug.log
 .env
 .php_cs.cache
 _ide_helper.php
-/public/vendor
 /public/img/ruins/*
