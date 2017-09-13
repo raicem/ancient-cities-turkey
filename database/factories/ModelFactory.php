@@ -44,7 +44,6 @@ $factory->define(App\Link::class, function (Faker\Generator $faker) {
     ];
 });
 
-
 $factory->define(App\Feedback::class, function (Faker\Generator $faker) {
     $ruin = factory(App\Ruin::class)->create();
     return [
