@@ -2,16 +2,11 @@
 
 namespace App\Admin\Controllers;
 
-use App\Feedback;
 use App\Ruin;
 use App\Link;
-use Encore\Admin\Layout\Row;
 use Encore\Admin\Facades\Admin;
-use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
-use Encore\Admin\Controllers\Dashboard;
-use Encore\Admin\Widgets\Table;
 use Encore\Admin\Widgets\InfoBox;
 
 class HomeController extends Controller
@@ -20,7 +15,7 @@ class HomeController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('Panel');
+            $content->header('KAPSAM IS KING');
 
             $number['ruins'] = Ruin::all()->count();
             $number['links'] = Link::all()->count();
@@ -30,23 +25,11 @@ class HomeController extends Controller
             $content->row(function ($row) use ($number) {
                 $row->column(
                     3,
-                    new InfoBox(
-                        'Ruins',
-                        'university',
-                        'aqua',
-                        '/admin/ruins',
-                        $number['ruins']
-                    )
+                    new InfoBox('Ruins', 'university', 'aqua', '/admin/ruins', $number['ruins'])
                 );
                 $row->column(
                     3,
-                    new InfoBox(
-                        'Links',
-                        'link',
-                        'green',
-                        '/admin/links',
-                        $number['links']
-                    )
+                    new InfoBox('Links', 'link', 'green', '/admin/links', $number['links'])
                 );
                 $row->column(
                     3,
@@ -55,7 +38,7 @@ class HomeController extends Controller
                         'link',
                         'red',
                         '/admin/ruins',
-                        round($number['links']/$number['ruins'], 1)
+                        round($number['links'] / $number['ruins'], 1)
                     )
                 );
                 $row->column(
@@ -77,19 +60,6 @@ class HomeController extends Controller
                         '/admin/ruins',
                         $number['ruins'] . '/140'
                     )
-                );
-            });
-
-            $content->row(function ($row) use ($number) {
-                $feedback = Feedback::latest()
-                    ->select(['ruin', 'body', 'created_at'])
-                    ->limit(5)
-                    ->get()
-                    ->toArray();
-                $headers = ['Ruin', 'Message', 'Time'];
-                $row->column(
-                    6,
-                    new Table($headers, $feedback)
                 );
             });
         });
