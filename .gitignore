@@ -1,4 +1,5 @@
 /node_modules
+/public/img/*
 /public/hot
 /public/storage
 /public/js/app/config.js
