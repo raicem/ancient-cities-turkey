@@ -1,158 +1,160 @@
-*, *:before, *:after {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #444;
-    -webkit-overflow-scrolling: touch;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #444;
+  -webkit-overflow-scrolling: touch;
 }
 
 .container {
-    margin: 0 auto;
-    max-width: 800px;
+  margin: 0 auto;
+  max-width: 800px;
 }
 
 #map {
-    height: 100vh;
-    width: 100%;
-    z-index: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 0;
 }
 
 .link {
-    text-decoration: none;
-    color: inherit;
-    justify-content: space-around;
+  text-decoration: none;
+  color: inherit;
+  justify-content: space-around;
 }
 
 .info-image {
-    width: 20px;
-    margin-left: 0.3em;
+  width: 20px;
+  margin-left: 0.3em;
 }
 
 .button {
-    border: none;
-    width: 100%;
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    background-color: #A61919;
-    color: #ffffff;
-    cursor: pointer;
+  border: none;
+  width: 100%;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  background-color: #a61919;
+  color: #ffffff;
+  cursor: pointer;
 }
 
 .button-red {
-    background-color: #A61919;
+  background-color: #a61919;
 }
 
 .button-blue {
-    background-color: #1e90ff;
+  background-color: #1e90ff;
 }
 
 .info-bar {
-    padding: 20px 20px 75px 20px;
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 400px;
-    float: right;
-    z-index: 1;
-    background-color: #FFFFFF;
-    transition: all 0.2s ease-in-out;
-    overflow-y: scroll;
+  padding: 20px 20px 75px 20px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 400px;
+  float: right;
+  z-index: 1;
+  background-color: #ffffff;
+  transition: all 0.2s ease-in-out;
+  overflow-y: scroll;
 }
 
 .info-bar-image {
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-    height: 10em;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 10em;
 }
 
 .form-group textarea {
-    width: 100%;
+  width: 100%;
 }
 
 .image-list {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 .flex {
-    display: flex;
-    align-content: space-around;
+  display: flex;
+  align-content: space-around;
 }
 
 .image-list-item {
-    flex: 1;
-    max-width: 33%;
-    margin: 0;
+  flex: 1;
+  max-width: 33%;
+  margin: 0;
 }
 
 .image-list-item a {
-    display: block;
+  display: block;
 }
 
 .image-list-item img {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
 }
 
 .link-list {
-    padding: 0;
+  padding: 0;
 }
 
 .link-list-item {
-    margin-left: 20px;
-    padding: 0.2em 0;
+  margin-left: 20px;
+  padding: 0.2em 0;
 }
 
 .info-bar-title {
-    padding: 1em 0 0 0;
+  padding: 1em 0 0 0;
 }
 
 .link-list-title {
-    margin: 0;
+  margin: 0;
 }
 
 .alert-error {
-    background-color: #8b0000;
+  background-color: #8b0000;
 }
 
 .alert-success {
-    background-color: #008000;
+  background-color: #008000;
 }
 
 .alert .validation {
-    font-size: 11px;
-    padding: 10px 10px;
-    margin-bottom: 10px;
-    color: #FFFFFF;
+  font-size: 11px;
+  padding: 10px 10px;
+  margin-bottom: 10px;
+  color: #ffffff;
 }
 
 .level {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .ministry-logo {
-    width: 20px;
-    margin: 0 0.5em 0 0.1em;
+  width: 20px;
+  margin: 0 0.5em 0 0.1em;
 }
 
 .about {
-    margin-top: 1em;
+  margin-top: 1em;
 }
 
 @media (max-width: 632px) {
-    .info-bar {
-        width: 100%;
-    }
-    .feedback {
-        margin-bottom: 2em;
-    }
+  .info-bar {
+    width: 100%;
+  }
+  .feedback {
+    margin-bottom: 2em;
+  }
 }
