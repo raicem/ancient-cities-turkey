@@ -10,55 +10,31 @@ class RuinsController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */    
-    public function index()
+     */
+    public function index($language)
     {
-        $geoJson = [
-            'type'     => 'FeatureCollection',
-            'features' => []
-        ];
-
-        foreach (Ruin::all() as $ruin) {
-            $geoJson['features'][] = [
-                'type' => 'Feature',
-                'geometry' => [
-                    'type' => 'Point',
-                    'coordinates' => [$ruin->longitude, $ruin->latitude]
-                ],
-                'properties' => [
-                    'name_tr' => $ruin->name_tr,
-                    'name_en' => $ruin->name,
-                    'slug' => $ruin->slug
-                ]
-            ];
+        $ruins = Ruin::select('name', 'name_tr', 'slug', 'latitude', 'longitude')->get();
+        
+        if ($language === 'tr') {
+            $ruins->map(function ($item) {
+                $item['name'] = $item['name_tr'];
+            });
         }
 
-        return $geoJson;
+        return $ruins;
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param Ruin $ruin
-     * @return Ruin
-     * @internal param int $id
      */
-    public function show(Ruin $ruin)
+    public function show($language = 'en', Ruin $ruin)
     {
-        return $ruin->asEnglish();
-    }
+        $ruin = Ruin::with('turkishLinks', 'englishLinks')->find($ruin->id);
+        
+        if ($language === 'tr') {
+            return $ruin->asTurkish();
+        }
 
-    /**
-     * Display the specified resource in Turkish.
-     *
-     * @param Ruin $ruin
-     * @return Ruin
-     * @internal param int $id
-     */
-    public function showTurkish(Ruin $ruin)
-    {
-        return $ruin->asTurkish();
+        return $ruin->asEnglish();
     }
 }
