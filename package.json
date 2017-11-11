@@ -28,6 +28,7 @@
     "mapbox-gl": "^0.40.1",
     "prettier": "^1.7.4",
     "prettier-eslint": "^8.2.1",
+    "prop-types": "^15.6.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-intl": "^2.4.0",

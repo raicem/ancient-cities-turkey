@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
-import ReactMapboxGL, { Layer, Feature, Popup } from 'react-mapbox-gl';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import ReactMapboxGL, { Layer, Feature } from 'react-mapbox-gl';
 import { addLocaleData, IntlProvider } from 'react-intl';
 import trLocaleData from 'react-intl/locale-data/tr';
 import axios from 'axios';
 import Sidebar from './components/Sidebar';
 import AboutTr from './components/AboutTr';
 import AboutEn from './components/AboutEn';
+import FeaturePopup from './components/FeaturePopup';
 import messages from './messages';
 
 const Map = ReactMapboxGL({
@@ -118,21 +119,7 @@ class App extends React.Component {
                 />
               ))}
             </Layer>
-            {selected && (
-              <Popup
-                key={selected.id}
-                anchor="bottom"
-                offset={[0, -10]}
-                coordinates={[selected.longitude, selected.latitude]}
-              >
-                <div>
-                  <Link href to={`/${this.state.language}/${selected.slug}`} className="level link">
-                    <p>{selected.name}</p>
-                    <img src="/img/info.jpg" className="info-image" alt="Click for info" />
-                  </Link>
-                </div>
-              </Popup>
-            )}
+            {selected && <FeaturePopup selected={selected} language={language} />}
           </Map>
           <Switch>
             <Route exact path="/tr/hakkinda" component={AboutTr} />
