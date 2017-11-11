@@ -18,6 +18,7 @@ class RuinsController extends Controller
         if ($language === 'tr') {
             $ruins->map(function ($item) {
                 $item['name'] = $item['name_tr'];
+                unset($item['name_tr']);
             });
         }
 
