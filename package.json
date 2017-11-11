@@ -30,6 +30,8 @@
     "prettier-eslint": "^8.2.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-mapbox-gl": "^2.7.0"
+    "react-intl": "^2.4.0",
+    "react-mapbox-gl": "^2.7.0",
+    "react-router-dom": "^4.2.2"
   }
 }
