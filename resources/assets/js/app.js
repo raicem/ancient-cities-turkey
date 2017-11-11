@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import ReactMapboxGL, { Layer, Feature, Popup } from 'react-mapbox-gl';
-import { addLocaleData, IntlProvider, FormattedMessage } from 'react-intl';
+import { addLocaleData, IntlProvider } from 'react-intl';
 import trLocaleData from 'react-intl/locale-data/tr';
 import axios from 'axios';
 import Sidebar from './components/Sidebar';
@@ -108,7 +108,7 @@ class App extends React.Component {
               {ruins.map(item => (
                 <Feature
                   item={item}
-                  key={item.id}
+                  key={item.slug}
                   coordinates={[item.longitude, item.latitude]}
                   onClick={() => {
                     this.handleClick(item);
