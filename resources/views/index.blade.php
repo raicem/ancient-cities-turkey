@@ -1,4 +1,5 @@
 @extends('app')
+
 @section('content')
 <div class="container">
     <h1>Sitemap</h1>

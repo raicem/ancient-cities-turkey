@@ -17,6 +17,8 @@
     <link href='{{ asset('css/mapbox-gl.css') }}' rel='stylesheet'/>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css' rel='stylesheet' />
     @yield('head-scripts')
 </head>
 <body>
