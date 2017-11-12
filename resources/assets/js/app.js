@@ -24,66 +24,64 @@ let locale =
 locale = locale.substring(0, 2);
 
 class App extends React.Component {
+  static changeCursor({ map, type }) {
+    const cursor = type === 'mouseenter' ? 'pointer' : 'move';
+    map.getCanvas().style.cursor = cursor;
+  }
+
   constructor(props) {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
-    this.changeCursor = this.changeCursor.bind(this);
+
+    const language = this.props.match.params.language || locale;
 
     this.state = {
       ruins: [],
       selected: null,
-      language: locale,
+      language,
     };
   }
 
   componentWillMount() {
     console.log('app - component will mount');
 
-    const language = this.props.match.params.language || locale;
-
-    this.setState({ language });
-
-    axios.get(`/api/${language}/ruins`).then(response => {
-      this.setState(
-        {
-          ruins: response.data,
-        },
-        this.checkSelected,
-      );
+    axios.get(`/api/${this.state.language}/ruins`).then(response => {
+      this.setState({ ruins: response.data }, () => {
+        const newState = this.syncStateWithUrl(this.props);
+        this.setState(newState);
+      });
     });
   }
 
   componentWillReceiveProps(nextProps) {
     console.log('app - component will receive props');
 
-    const newLanguage = nextProps.match.params.language || this.state.language;
-
-    this.setState({
-      language: newLanguage,
-    });
-
-    if (nextProps.location.pathname === '/') {
-      this.setState({ selected: null });
-    }
+    const newState = this.syncStateWithUrl(nextProps);
+    this.setState(newState);
   }
 
-  checkSelected() {
-    const selected = this.state.ruins.find(item => item.slug === this.props.match.params.ruin);
-    this.setState({
-      selected,
-    });
+  syncStateWithUrl(props) {
+    const { language, ruin } = props.match.params;
+    let newState = {};
+
+    if (language !== this.state.language) {
+      newState = { language };
+    }
+
+    if (this.state.selected === null || ruin !== this.state.selected.slug) {
+      const selected = this.state.ruins.find(item => item.slug === this.props.match.params.ruin);
+      
+      newState = { selected };
+    }
+
+    return newState;
   }
 
   handleClick(feature) {
     if (feature !== undefined) {
       this.setState({ selected: feature });
     }
-  }
-
-  changeCursor({ map, type }) {
-    const cursor = type === 'mouseenter' ? 'pointer' : 'move';
-    map.getCanvas().style.cursor = cursor;
   }
 
   render() {
@@ -114,8 +112,8 @@ class App extends React.Component {
                   onClick={() => {
                     this.handleClick(item);
                   }}
-                  onMouseEnter={this.changeCursor}
-                  onMouseLeave={this.changeCursor}
+                  onMouseEnter={App.changeCursor}
+                  onMouseLeave={App.changeCursor}
                 />
               ))}
             </Layer>

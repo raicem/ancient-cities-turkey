@@ -24,8 +24,8 @@ export default function FeaturePopup(props) {
 
 FeaturePopup.propTypes = {
   selected: PropTypes.shape({
-    latitude: PropTypes.number,
-    longitude: PropTypes.number,
+    latitude: PropTypes.string,
+    longitude: PropTypes.string,
     name: PropTypes.string,
     slug: PropTypes.string,
   }).isRequired,

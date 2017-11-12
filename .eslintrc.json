@@ -3,6 +3,7 @@
   "plugins": ["react", "jsx-a11y", "import"],
   "rules": {
     "react/jsx-filename-extension": "off",
+    "react/style-prop-object": "off",
     "react/sort-comp": [
       2,
       {
