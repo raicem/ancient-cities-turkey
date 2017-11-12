@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import PropTypes from 'prop-types';
 
 export default function LinkList(props) {
   const { links, titleId } = props;
@@ -17,3 +18,12 @@ export default function LinkList(props) {
     </div>
   );
 }
+
+LinkList.propTypes = {
+  links: PropTypes.arrayOf(PropTypes.object),
+  titleId: PropTypes.string.isRequired,
+};
+
+LinkList.defaultProps = {
+  links: [],
+};
