@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import FeedbackContainer from './FeedbackContainer';
+import FeedbackContainer from '../FeedbackContainer';
+import LinkList from './LinkList';
 
 export default function Sidebar(props) {
   const { ruin, isLoaded, isFormShowing, language, handleClick } = props;
@@ -56,49 +57,33 @@ export default function Sidebar(props) {
               )}
             </ul>
             <ul className="link-list">
-              <h4 className="link-list-title" id="englishResources">
-                <FormattedMessage id="resourcesInEnglish" />
-              </h4>
-              {ruin.english_links &&
-                ruin.english_links.map(item => (
-                  <li key={item.url} className="link-list-item">
-                    <a href={item.url}>{item.description}</a>
-                  </li>
-                ))}
-              <h4 className="link-list-title" id="turkishResources">
-                <FormattedMessage id="resourcesInTurkish" />
-              </h4>
-              {ruin.turkish_links &&
-                ruin.turkish_links.map(item => (
-                  <li key={item.url} className="link-list-item">
-                    <a href={item.url}>{item.description}</a>
-                  </li>
-                ))}
+              <LinkList links={ruin.english_links} titleId="resourcesInEnglish" />
+              <LinkList links={ruin.turkish_links} titleId="resourcesInTurkish" />
             </ul>
             {!isFormShowing && (
               <div className="feedback">
-                <button
-                  id="reportIssue"
-                  className="button button-blue feedback-button"
-                  onClick={handleClick}
-                >
+                <button className="button button-blue feedback-button" onClick={handleClick}>
                   <FormattedMessage id="reportIssue" />
                 </button>
               </div>
             )}
             {isFormShowing && <FeedbackContainer ruin={ruin} />}
             <div className="lang-buttons">
-              <Link to={`/tr/${ruin.slug}`}>Türkçe</Link>
-              <Link to={`/en/${ruin.slug}`}>English</Link>
+              <Link to={`/tr/${ruin.slug}`} href={`/tr/${ruin.slug}`}>
+                Türkçe
+              </Link>
+              <Link to={`/en/${ruin.slug}`} href={`/en/${ruin.slug}`}>
+                English
+              </Link>
             </div>
             <div className="about">
               {language === 'tr' && (
-                <Link to="/tr/hakkinda" id="aboutLink">
+                <Link to="/tr/hakkinda" href="/tr/hakkinda" id="aboutLink">
                   <FormattedMessage id="about" />
                 </Link>
               )}
               {language === 'en' && (
-                <Link to="/en/about" id="aboutLink">
+                <Link to="/en/about" href="/en/about" id="aboutLink">
                   <FormattedMessage id="about" />
                 </Link>
               )}
@@ -128,9 +113,13 @@ Sidebar.propTypes = {
     period: PropTypes.string,
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
-  }).isRequired,
+  }),
   isLoaded: PropTypes.bool.isRequired,
   isFormShowing: PropTypes.bool.isRequired,
   language: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
+};
+
+Sidebar.defaultProps = {
+  ruin: {},
 };

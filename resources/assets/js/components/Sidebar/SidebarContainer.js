@@ -19,13 +19,10 @@ class SidebarContainer extends React.Component {
   }
 
   componentWillMount() {
-    console.log('sidebar - component will mount');
     this.fetchStateData();
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('sidebar - component will receive props', nextProps);
-
     this.setState(
       {
         language: nextProps.match.params.language,
@@ -37,7 +34,7 @@ class SidebarContainer extends React.Component {
 
   fetchStateData() {
     axios.get(`/api/${this.state.language}/ruins/${this.state.ruinSlug}`).then(response => {
-      this.setState({ ruin: response.data, isLoaded: true });
+      this.setState({ ruin: response.data, isLoaded: true, isFormShowing: false });
     });
   }
 
