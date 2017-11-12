@@ -43,8 +43,12 @@ export default function Feedback(props) {
 
 Feedback.propTypes = {
   placeholder: PropTypes.string.isRequired,
-  isSent: PropTypes.bool.isRequired,
+  isSent: PropTypes.bool,
   message: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
+};
+
+Feedback.defaultProps = {
+  isSent: null,
 };
