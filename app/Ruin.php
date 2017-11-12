@@ -57,6 +57,14 @@ class Ruin extends Model
         $this->information = $this->information_tr;
         $this->name = $this->name_tr;
         $this->official_site_link = $this->official_site_tr;
+        
+        unset(
+            $this->information_tr,
+            $this->official_site_tr,
+            $this->official_site_en,
+            $this->name_tr
+        );
+
         return $this;
     }
 
@@ -68,6 +76,14 @@ class Ruin extends Model
     public function asEnglish()
     {
         $this->official_site_link = $this->official_site_en;
+        
+        unset(
+            $this->information_tr,
+            $this->official_site_tr,
+            $this->official_site_en,
+            $this->name_tr
+        );
+        
         return $this;
     }
 
