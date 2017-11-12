@@ -5,7 +5,7 @@ import ReactMapboxGL, { Layer, Feature } from 'react-mapbox-gl';
 import { addLocaleData, IntlProvider } from 'react-intl';
 import trLocaleData from 'react-intl/locale-data/tr';
 import axios from 'axios';
-import SidebarContainer from './components/SidebarContainer';
+import SidebarContainer from './components/Sidebar/SidebarContainer';
 import AboutTr from './components/AboutTr';
 import AboutEn from './components/AboutEn';
 import FeaturePopup from './components/FeaturePopup';
@@ -44,8 +44,6 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    console.log('app - component will mount');
-
     axios.get(`/api/${this.state.language}/ruins`).then(response => {
       this.setState({ ruins: response.data }, () => {
         const newState = this.syncStateWithUrl(this.props);
@@ -55,8 +53,6 @@ class App extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('app - component will receive props');
-
     const newState = this.syncStateWithUrl(nextProps);
     this.setState(newState);
   }
