@@ -5,7 +5,7 @@ import ReactMapboxGL, { Layer, Feature } from 'react-mapbox-gl';
 import { addLocaleData, IntlProvider } from 'react-intl';
 import trLocaleData from 'react-intl/locale-data/tr';
 import axios from 'axios';
-import Sidebar from './components/Sidebar';
+import SidebarContainer from './components/SidebarContainer';
 import AboutTr from './components/AboutTr';
 import AboutEn from './components/AboutEn';
 import FeaturePopup from './components/FeaturePopup';
@@ -71,7 +71,7 @@ class App extends React.Component {
 
     if (this.state.selected === null || ruin !== this.state.selected.slug) {
       const selected = this.state.ruins.find(item => item.slug === this.props.match.params.ruin);
-      
+
       newState = { selected };
     }
 
@@ -122,7 +122,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/tr/hakkinda" component={AboutTr} />
             <Route exact path="/en/about" component={AboutEn} />
-            <Route path="/:language/:ruin" component={Sidebar} />
+            <Route path="/:language/:ruin" component={SidebarContainer} />
           </Switch>
         </div>
       </IntlProvider>
