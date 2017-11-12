@@ -133,9 +133,7 @@ class App extends React.Component {
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/:language/:ruin" component={App} />
-      <Route path="/:language" component={App} />
-      <Route path="/" component={App} />
+      <Route path="/:language?/:ruin?" component={App} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root'),
