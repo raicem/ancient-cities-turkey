@@ -32,10 +32,9 @@ class SidebarContainer extends React.Component {
     );
   }
 
-  fetchStateData() {
-    axios.get(`/api/${this.state.language}/ruins/${this.state.ruinSlug}`).then(response => {
-      this.setState({ ruin: response.data, isLoaded: true, isFormShowing: false });
-    });
+  async fetchStateData() {
+    const response = await axios.get(`/api/${this.state.language}/ruins/${this.state.ruinSlug}`);
+    this.setState({ ruin: response.data, isLoaded: true, isFormShowing: false });
   }
 
   handleClick() {

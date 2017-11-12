@@ -43,12 +43,12 @@ class App extends React.Component {
     };
   }
 
-  componentWillMount() {
-    axios.get(`/api/${this.state.language}/ruins`).then(response => {
-      this.setState({ ruins: response.data }, () => {
-        const newState = this.syncStateWithUrl(this.props);
-        this.setState(newState);
-      });
+  async componentWillMount() {
+    const response = await axios.get(`/api/${this.state.language}/ruins`);
+
+    this.setState({ ruins: response.data }, () => {
+      const newState = this.syncStateWithUrl(this.props);
+      this.setState(newState);
     });
   }
 
