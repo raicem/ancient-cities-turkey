@@ -23,13 +23,30 @@ class SidebarContainer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState(
-      {
-        language: nextProps.match.params.language,
-        ruinSlug: nextProps.match.params.ruin,
-      },
-      this.fetchStateData,
-    );
+    const { language, ruin } = nextProps.match.params;
+
+    if (this.state.language !== language || this.state.ruinSlug !== ruin) {
+      this.setState(
+        {
+          language: nextProps.match.params.language,
+          ruinSlug: nextProps.match.params.ruin,
+          isLoaded: false,
+        },
+        this.fetchStateData,
+      );
+    }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const { language, ruin } = nextProps.match.params;
+    if (
+      this.state.language === language &&
+      this.state.ruinSlug === ruin &&
+      this.state.isLoaded === true
+    ) {
+      return false;
+    }
+    return true;
   }
 
   async fetchStateData() {
