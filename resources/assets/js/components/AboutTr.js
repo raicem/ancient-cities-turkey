@@ -22,7 +22,9 @@ export default function AboutTr() {
       </p>
       <p>
         Proje hakkında daha fazla bilgi almak isterseniz{' '}
-        <a href="https://raicem.github.io/2017/08/28/turkiyenin-antik-kentleri/"> blog yazımı</a>
+        <a href="https://raicem.github.io/2017/08/28/turkiyenin-antik-kentleri/">
+          blog yazımı
+        </a>{' '}
         ziyaret edebilirsiniz.
       </p>
       <p>
@@ -31,7 +33,7 @@ export default function AboutTr() {
         bulundurun.
       </p>
       <p>
-        Sitedeki hata bildir formundan, <a href="https://twitter.com/ciftehavuz"> Twitter'dan</a>
+        Sitedeki hata bildir formundan, <a href="https://twitter.com/ciftehavuz">Twitter'dan </a>
         veya <a href="mailto:unalancem@gmail.com">unalancem@gmail.com</a> adresinden bana
         ulaşabilirsiniz.
       </p>
