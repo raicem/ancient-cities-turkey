@@ -16,7 +16,7 @@ export default function AboutTr() {
       <p>
         Türkiye'nin tüm antik kentlerini bir harita üzerinde görmek istedim. Böylece yakınlarda ne
         var ne yok görebilecek ve ona göre seyahat edebilecektim. İstediğime yakın bir şey
-        bulamadığımdan dolayı, bu siteyi yapmaya başladım. Şu anda sitede 80 adet ören yeri
+        bulamadığımdan dolayı, bu siteyi yapmaya başladım. Şu anda sitede 110 adet ören yeri
         bulunmakta. Ancak tahminlerime göre bu sayı 140'a kadar çıkabilir. Yani hala ekleyecek bolca
         nokta var.
       </p>

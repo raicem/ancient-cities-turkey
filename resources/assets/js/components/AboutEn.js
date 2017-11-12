@@ -16,12 +16,12 @@ export default function AboutTr() {
       <p>
         I wanted to be able see all of the ancient cities in Turkey on a map so that I can discover
         and travel whichever is close to my location. I could not find anything similar to what I've
-        wanted so I started building this web site. Currently this contains around 80 archeological
+        wanted so I started building this web site. Currently this contains around 110 archeological
         sites in Turkey. I assume the maximum number would be around 140 so there is still a lot of
         points to add.
       </p>
       <p>
-        If you'd like to read more about this project you can read my blog post 
+        If you'd like to read more about this project you can read my blog post
         <a href="https://raicem.github.io/2017/08/28/ancient-cities-of-turkey/"> here.</a>
       </p>
       <p>
