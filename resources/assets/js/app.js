@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ReactMapboxGL, { Layer, Feature } from 'react-mapbox-gl';
+import axios from 'axios';
 import { addLocaleData, IntlProvider } from 'react-intl';
 import trLocaleData from 'react-intl/locale-data/tr';
-import axios from 'axios';
+import messages from './messages';
 import SidebarContainer from './components/Sidebar/SidebarContainer';
 import AboutTr from './components/AboutTr';
 import AboutEn from './components/AboutEn';
 import FeaturePopup from './components/FeaturePopup';
-import messages from './messages';
 
 const Map = ReactMapboxGL({
   accessToken:
@@ -69,6 +69,10 @@ class App extends React.Component {
       const selected = this.state.ruins.find(item => item.slug === this.props.match.params.ruin);
 
       newState = { selected };
+    }
+
+    if (ruin === undefined) {
+      newState = { selected: null };
     }
 
     return newState;
