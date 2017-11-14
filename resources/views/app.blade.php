@@ -14,11 +14,8 @@
     <meta property="og:title" content="Ancient Cities of Turkey" />
     <meta property="og:description" content="Map of Ancient Cities in Turkey. You can get discover new places with useful links to history, visiting info and much more." />
     <meta property="og:image" content="http://ancientcitiesturkey.com/img/preview.jpeg" />
-    <link href='{{ asset('css/mapbox-gl.css') }}' rel='stylesheet'/>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @yield('head-scripts')
 </head>
 <body>

@@ -10,7 +10,10 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-//    .sass('resources/assets/sass/app.scss', 'public/css');
+
+if (mix.inProduction()) {
+  mix.version();
+}
 
 mix.options({
   uglify: {
@@ -22,6 +25,7 @@ mix.options({
 
 mix.react('resources/assets/js/app.js', 'public/js');
 
-if (mix.inProduction()) {
-  mix.version();
-}
+mix.styles(
+  ['resources/assets/css/mapbox-gl.css', 'resources/assets/css/app.css'],
+  'public/css/app.css',
+);
