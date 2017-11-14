@@ -12,11 +12,15 @@ const mix = require('laravel-mix');
  */
 //    .sass('resources/assets/sass/app.scss', 'public/css');
 
-mix.react('resources/assets/js/app.js', 'public/js');
+mix.options({
+  uglify: {
+    uglifyOptions: {
+      compress: false,
+    },
+  },
+});
 
-if (!mix.inProduction()) {
-  mix.sourceMaps();
-}
+mix.react('resources/assets/js/app.js', 'public/js');
 
 if (mix.inProduction()) {
   mix.version();
