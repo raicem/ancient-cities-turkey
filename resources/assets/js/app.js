@@ -78,9 +78,10 @@ class App extends React.Component {
     return newState;
   }
 
-  handleClick(feature) {
-    if (feature !== undefined) {
-      this.setState({ selected: feature });
+  handleClick(event) {
+    console.log('event', event);
+    if (event.feature !== undefined) {
+      this.setState({ selected: event.feature });
     }
   }
 
@@ -97,7 +98,7 @@ class App extends React.Component {
               height: '100vh',
               width: '100vw',
             }}
-            onClick={() => this.handleClick()}
+            onClick={this.handleClick}
           >
             <Layer
               type="symbol"
@@ -109,16 +110,14 @@ class App extends React.Component {
                   item={item}
                   key={item.slug}
                   coordinates={[item.longitude, item.latitude]}
-                  onClick={() => {
-                    this.handleClick(item);
-                  }}
+                  onClick={this.handleClick}
                   onMouseEnter={App.changeCursor}
                   onMouseLeave={App.changeCursor}
                 />
               ))}
             </Layer>
             {selected && <FeaturePopup selected={selected} language={language} />}
-          </Map>
+          </Map> 
           <Switch>
             <Route exact path="/tr/hakkinda" component={AboutTr} />
             <Route exact path="/en/about" component={AboutEn} />

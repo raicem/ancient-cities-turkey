@@ -23,7 +23,7 @@ mix.options({
   },
 });
 
-mix.react('resources/assets/js/app.js', 'public/js');
+mix.react('resources/assets/js/app.js', 'public/js').sourceMaps();
 
 mix.styles(
   ['resources/assets/css/mapbox-gl.css', 'resources/assets/css/app.css'],
