@@ -40,10 +40,7 @@ class App extends React.Component {
       ruins: [],
       selected: null,
       language,
-      bounds: [
-        [25.059009, 35.259924],
-        [45.351057, 42.210808]
-      ]
+      bounds: [[25.059009, 35.259924], [45.351057, 42.210808]],
     };
   }
 
@@ -52,7 +49,6 @@ class App extends React.Component {
 
     this.setState({ ruins: response.data }, async () => {
       const newState = await this.syncStateWithUrl(this.props);
-      console.log('will receive', newState);
       this.setState(newState);
     });
   }
@@ -88,7 +84,7 @@ class App extends React.Component {
   handleClick(event) {
     const mapBounds = event.map.getBounds();
     const bounds = mapBounds.toArray();
-    
+
     if (event.feature !== undefined) {
       const selected = this.state.ruins[event.feature.properties.id];
       this.setState({ selected, bounds });
@@ -126,7 +122,7 @@ class App extends React.Component {
               ))}
             </Layer>
             {selected && <FeaturePopup selected={selected} language={language} />}
-          </Map> 
+          </Map>
           <Switch>
             <Route exact path="/tr/hakkinda" component={AboutTr} />
             <Route exact path="/en/about" component={AboutEn} />

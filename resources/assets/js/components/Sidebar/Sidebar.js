@@ -36,9 +36,9 @@ export default function Sidebar(props) {
             </div>
             <p className="info-bar-description">{ruin.information}</p>
             <ul className="image-list flex">
-              <li className="image-list-item">
-                <a href="http://maps.apple.com/?ll=@{{ latitude }},@{{ longitude }}">
-                  <img src="/img/map.png" alt="Open in default maps app" />
+              <li className="image-list-item maps-link-item">
+                <a href={`http://maps.apple.com/?ll=${ruin.latitude},${ruin.longitude}`} className="maps-link">
+                  <FormattedMessage id="openInMapsApp" />
                 </a>
               </li>
               {ruin.tripadvisor && (
@@ -72,6 +72,7 @@ export default function Sidebar(props) {
               <Link to={`/tr/${ruin.slug}`} href={`/tr/${ruin.slug}`}>
                 Türkçe
               </Link>
+              {' '}
               <Link to={`/en/${ruin.slug}`} href={`/en/${ruin.slug}`}>
                 English
               </Link>

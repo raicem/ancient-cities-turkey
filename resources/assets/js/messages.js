@@ -10,6 +10,7 @@ export default {
     placeholder: 'Please enter info about {name}',
     error: 'An error ocurred.',
     success: 'Successfully sent.',
+    openInMapsApp: 'Open in Maps App'
   },
   tr: {
     close: 'Kapat',
@@ -22,5 +23,6 @@ export default {
     placeholder: 'Lütfen {name} hakkında bilgi giriniz',
     error: 'Bir hata oluştu.',
     success: 'Başarıyla gönderildi.',
+    openInMapsApp: 'Harita Uygulamasında Açın'
   },
 };
