@@ -40,65 +40,74 @@ class App extends React.Component {
       ruins: [],
       selected: null,
       language,
+      bounds: [
+        [25.059009, 35.259924],
+        [45.351057, 42.210808]
+      ]
     };
   }
 
   async componentWillMount() {
     const response = await axios.get(`/api/${this.state.language}/ruins`);
 
-    this.setState({ ruins: response.data }, () => {
-      const newState = this.syncStateWithUrl(this.props);
+    this.setState({ ruins: response.data }, async () => {
+      const newState = await this.syncStateWithUrl(this.props);
+      console.log('will receive', newState);
       this.setState(newState);
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    const newState = this.syncStateWithUrl(nextProps);
+  async componentWillReceiveProps(nextProps) {
+    const newState = await this.syncStateWithUrl(nextProps);
     this.setState(newState);
   }
 
-  syncStateWithUrl(props) {
+  async syncStateWithUrl(props) {
     const { language, ruin } = props.match.params;
-    let newState = {};
+    const newState = {};
 
-    if (language !== this.state.language) {
-      newState = { language };
+    if (language !== this.state.language && language !== undefined) {
+      newState.language = language;
+      const response = await axios.get(`/api/${language}/ruins`);
+      newState.ruins = response.data;
     }
 
     if (this.state.selected === null || ruin !== this.state.selected.slug) {
       const selected = this.state.ruins.find(item => item.slug === this.props.match.params.ruin);
 
-      newState = { selected };
+      newState.selected = selected;
     }
 
     if (ruin === undefined) {
-      newState = { selected: null };
+      newState.selected = null;
     }
 
     return newState;
   }
 
   handleClick(event) {
-    console.log('event', event);
+    const mapBounds = event.map.getBounds();
+    const bounds = mapBounds.toArray();
+    
     if (event.feature !== undefined) {
-      this.setState({ selected: event.feature });
+      const selected = this.state.ruins[event.feature.properties.id];
+      this.setState({ selected, bounds });
     }
   }
 
   render() {
-    const { ruins, selected, language } = this.state;
+    const { ruins, selected, language, bounds } = this.state;
 
     return (
       <IntlProvider locale={language} messages={messages[language]}>
         <div>
           <Map
-            fitBounds={[[25.059009, 35.259924], [45.351057, 42.210808]]}
+            fitBounds={bounds}
             style="mapbox://styles/mapbox/streets-v9"
             containerStyle={{
               height: '100vh',
               width: '100vw',
             }}
-            onClick={this.handleClick}
           >
             <Layer
               type="symbol"
