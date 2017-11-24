@@ -11,10 +11,6 @@ const mix = require('laravel-mix');
  |
  */
 
-if (mix.inProduction()) {
-  mix.version();
-}
-
 mix.options({
   uglify: {
     uglifyOptions: {
@@ -23,9 +19,17 @@ mix.options({
   },
 });
 
-mix.react('resources/assets/js/app.js', 'public/js').sourceMaps();
+mix.react('resources/assets/js/app.js', 'public/js');
 
 mix.styles(
   ['resources/assets/css/mapbox-gl.css', 'resources/assets/css/app.css'],
   'public/css/app.css',
 );
+
+if (mix.inProduction()) {
+  mix.version();
+}
+
+if (!mix.inProduction()) {
+  mix.sourceMaps();
+}
