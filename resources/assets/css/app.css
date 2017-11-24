@@ -62,10 +62,10 @@ body {
   height: 100vh;
   width: 400px;
   float: right;
-  z-index: 1;
   background-color: #ffffff;
   transition: all 0.2s ease-in-out;
   overflow-y: scroll;
+  z-index: 4;
 }
 
 .info-bar-image {
