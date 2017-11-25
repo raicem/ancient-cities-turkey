@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import FeedbackContainer from '../FeedbackContainer';
+import FeedbackContainer from '../Feedback/FeedbackContainer';
 import LinkList from './LinkList';
 
 export default function Sidebar(props) {
@@ -19,9 +19,9 @@ export default function Sidebar(props) {
           <div className="ruin-info">
             <div className="info-bar-image" style={{ backgroundImage: `url(/${ruin.image})` }} />
             <div className="level info-bar-title">
-              <h3 className="link-list-title">{ruin.name}</h3>
+              <h3 className="ruin-title">{ruin.name}</h3>
               {ruin.official_site === 1 && (
-                <div>
+                <div className="level">
                   <img
                     className="ministry-logo"
                     src="/img/official.png"
@@ -36,21 +36,24 @@ export default function Sidebar(props) {
             </div>
             <p className="info-bar-description">{ruin.information}</p>
             <ul className="image-list flex">
-              <li className="image-list-item maps-link-item">
-                <a href={`http://maps.apple.com/?ll=${ruin.latitude},${ruin.longitude}`} className="maps-link">
+              <li className="image-list-item">
+                <a
+                  href={`http://maps.apple.com/?ll=${ruin.latitude},${ruin.longitude}`}
+                  className="image-list-link with-border"
+                >
                   <FormattedMessage id="openInMapsApp" />
                 </a>
               </li>
               {ruin.tripadvisor && (
                 <li className="image-list-item">
-                  <a href={ruin.tripadvisor}>
+                  <a href={ruin.tripadvisor} className="image-list-link">
                     <img src="/img/tripadvisor.png" alt="Tripadvisor Logo" />
                   </a>
                 </li>
               )}
               {ruin.foursquare && (
                 <li className="image-list-item">
-                  <a href={ruin.foursquare}>
+                  <a href={ruin.foursquare} className="image-list-link">
                     <img src="/img/foursquare.png" alt="Foursquare Logo" />
                   </a>
                 </li>
@@ -71,8 +74,7 @@ export default function Sidebar(props) {
             <div className="lang-buttons">
               <Link to={`/tr/${ruin.slug}`} href={`/tr/${ruin.slug}`}>
                 Türkçe
-              </Link>
-              {' '}
+              </Link>{' '}
               <Link to={`/en/${ruin.slug}`} href={`/en/${ruin.slug}`}>
                 English
               </Link>

@@ -23,6 +23,7 @@ class SidebarContainer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('component will receive props');
     const { language, ruin } = nextProps.match.params;
 
     if (this.state.language !== language || this.state.ruinSlug !== ruin) {
@@ -35,18 +36,6 @@ class SidebarContainer extends React.Component {
         this.fetchStateData,
       );
     }
-  }
-
-  shouldComponentUpdate(nextProps) {
-    const { language, ruin } = nextProps.match.params;
-    if (
-      this.state.language === language &&
-      this.state.ruinSlug === ruin &&
-      this.state.isLoaded === true
-    ) {
-      return false;
-    }
-    return true;
   }
 
   async fetchStateData() {

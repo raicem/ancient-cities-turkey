@@ -84,6 +84,10 @@ body {
   padding: 0;
 }
 
+.ruin-title {
+  margin: 0;
+}
+
 .flex {
   display: flex;
   align-content: space-around;
@@ -95,15 +99,7 @@ body {
   margin: 0;
 }
 
-.image-list-item a:not(.maps-link) {
-  display: block;
-}
-
-.maps-link-item {
-  margin: 0 5px;
-}
-
-.maps-link {
+.image-list-link {
   width: 100%;
   height: 100%;
   display: flex;
@@ -113,8 +109,12 @@ body {
   color: #444;
   font-size: 12px;
   text-align: center;
+}
+
+.with-border {
   border: 1px solid #444;
   border-radius: 5px;
+  padding: 0.2em;
 }
 
 .image-list-item img {
@@ -124,6 +124,7 @@ body {
 
 .link-list {
   padding: 0;
+  margin-top: 1em;
 }
 
 .link-list-item {
@@ -136,7 +137,7 @@ body {
 }
 
 .link-list-title {
-  margin: 0;
+  margin: 1em 0 0 0;
 }
 
 .alert-error {
