@@ -44,10 +44,11 @@ class CheckLinks extends Command
         $failedLinks = [];
 
         foreach ($links as $link) {
+            $this->info('Checking link: ' . $link->url);
             try {
-                $res = $client->request('GET', $url, ['timeout' => 20]);
+                $res = $client->request('GET', $link->url, ['timeout' => 20]);
             } catch (\GuzzleHttp\Exception\RequestException $e) {
-                $failedLinks[] = $url;
+                $failedLinks[] = $link->url;
             }
         }
 
