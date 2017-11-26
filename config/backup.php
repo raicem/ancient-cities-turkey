@@ -90,12 +90,12 @@ return [
         ],
 
         'slack' => [
-            'webhook_url' => env('SLACK_WEBHOOK'),
+            'webhook_url' => config('services.slack.webhook'),
 
             /*
              * If this is set to null the default channel of the webhook will be used.
              */
-            'channel' => '#genel',
+            'channel' => 'genel',
         ],
     ],
 

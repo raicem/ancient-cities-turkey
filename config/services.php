@@ -14,6 +14,10 @@ return [
     |
     */
 
+    'slack' => [
+        'webhook' => env('SLACK_WEBHOOK'),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
