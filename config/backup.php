@@ -1,9 +1,7 @@
 <?php
 
 return [
-
     'backup' => [
-
         /*
          * The name of this application. You can use this name to monitor
          * the backups.
@@ -11,9 +9,7 @@ return [
         'name' => env('APP_URL'),
 
         'source' => [
-
             'files' => [
-
                 /*
                  * The list of directories and files that will be included in the backup.
                  */
@@ -52,7 +48,6 @@ return [
         'gzip_database_dump' => false,
 
         'destination' => [
-
             /*
              * The filename prefix used for the backup zip file.
              */
@@ -75,14 +70,13 @@ return [
      * the `Spatie\Backup\Events` classes.
      */
     'notifications' => [
-
         'notifications' => [
-            \Spatie\Backup\Notifications\Notifications\BackupHasFailed::class         => ['slack'],
+            \Spatie\Backup\Notifications\Notifications\BackupHasFailed::class => ['slack'],
             \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFound::class => ['slack'],
-            \Spatie\Backup\Notifications\Notifications\CleanupHasFailed::class        => ['slack'],
-            \Spatie\Backup\Notifications\Notifications\BackupWasSuccessful::class     => ['slack'],
-            \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFound::class   => ['slack'],
-            \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessful::class    => ['slack'],
+            \Spatie\Backup\Notifications\Notifications\CleanupHasFailed::class => ['slack'],
+            \Spatie\Backup\Notifications\Notifications\BackupWasSuccessful::class => ['slack'],
+            \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFound::class => ['slack'],
+            \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessful::class => ['slack'],
         ],
 
         /*
@@ -96,12 +90,12 @@ return [
         ],
 
         'slack' => [
-            'webhook_url' => 'https://hooks.slack.com/services/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',
+            'webhook_url' => env('SLACK_WEBHOOK'),
 
             /*
              * If this is set to null the default channel of the webhook will be used.
              */
-            'channel' => null,
+            'channel' => '#genel',
         ],
     ],
 
@@ -114,8 +108,8 @@ return [
         [
             'name' => env('APP_URL'),
             'disks' => ['local'],
-            'newestBackupsShouldNotBeOlderThanDays' => 1,
-            'storageUsedMayNotBeHigherThanMegabytes' => 5000,
+            'newestBackupsShouldNotBeOlderThanDays' => 7,
+            'storageUsedMayNotBeHigherThanMegabytes' => 300,
         ],
 
         /*
@@ -141,7 +135,6 @@ return [
         'strategy' => \Spatie\Backup\Tasks\Cleanup\Strategies\DefaultStrategy::class,
 
         'defaultStrategy' => [
-
             /*
              * The number of days for which backups must be kept.
              */
