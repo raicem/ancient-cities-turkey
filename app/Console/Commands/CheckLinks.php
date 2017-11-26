@@ -55,7 +55,7 @@ class CheckLinks extends Command
         $message = [
             'text' => 'Bu linklere ulaşılamıyor',
             'attachments' => [
-                ['text' => implode(" \n ", $results['failed'])]
+                ['text' => implode(" \n ", $failedLinks)]
             ],
             'channel' => '#genel'
         ];
