@@ -14,7 +14,7 @@ class RuinsController extends Controller
         ]);
     }
 
-    public function index($locale)
+    public function index($locale = 'tr')
     {
         App::setLocale($locale);
 
