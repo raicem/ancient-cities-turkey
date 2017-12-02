@@ -4,18 +4,17 @@ namespace App\Http\Controllers\Api;
 
 use App\Ruin;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class RuinsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index($language)
+    public function index($locale)
     {
         $ruins = Ruin::select('name', 'name_tr', 'slug', 'latitude', 'longitude')->get();
-        
-        if ($language === 'tr') {
+
+        if ($locale === 'tr') {
             $ruins->map(function ($item) {
                 $item['name'] = $item['name_tr'];
                 unset($item['name_tr']);
@@ -28,11 +27,11 @@ class RuinsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($language = 'en', Ruin $ruin)
+    public function show($locale = 'en', Ruin $ruin)
     {
         $ruin = Ruin::with('turkishLinks', 'englishLinks')->find($ruin->id);
-        
-        if ($language === 'tr') {
+
+        if ($locale === 'tr') {
             return $ruin->asTurkish();
         }
 

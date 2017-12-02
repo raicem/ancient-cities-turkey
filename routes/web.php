@@ -3,6 +3,5 @@
 use App\Ruin;
 
 Route::get('/sitemap', 'RuinsController@sitemap');
-Route::get('/', 'RuinsController@index');
-Route::get('/{ruin}', 'RuinsController@index');
-Route::get('/{lang}/{ruin}', 'RuinsController@index');
+Route::get('/{locale}', 'RuinsController@index');
+Route::get('/{locale}/{ruin}', 'RuinsController@show');

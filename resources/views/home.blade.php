@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('title')
-    Ancient Cities Turkey
+    @lang('messages.meta.title')
 @endsection
 @section('content')
     <div id="root"></div>

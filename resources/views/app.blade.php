@@ -5,16 +5,15 @@
 	<meta charset='utf-8' />
 	<title>@yield('title')</title>
 	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-	<meta name="keywords" content="ancient cities, antique cities, turkey, ruins, historical sites">
-	<meta name="description" content="Map of Ancient Cities in Turkey. You can get discover new places with useful links to history, visiting info and much more.">
+	<meta name="keywords" content="@lang('messages.meta.keywords')">
+	<meta name="description" content="@lang('messages.meta.description')">
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content="Ancient Cities of Turkey">
-	<meta name="twitter:description" content="Map of Ancient Cities in Turkey. You can get discover new places with useful links to history, visiting info and much more.">
+	<meta name="twitter:title" content="@lang('messages.meta.title')">
+	<meta name="twitter:description" content="@lang('messages.meta.description')">
 	<meta name="twitter:image" content="http://ancientcitiesturkey.com/img/preview.jpeg">
 	<meta property="og:url" content="http://ancientcitiesturkey.com" />
-	<meta property="og:title" content="Ancient Cities of Turkey" />
-	<meta property="og:description" content="Map of Ancient Cities in Turkey. You can get discover new places with useful links to history, visiting info and much more."
-	/>
+	<meta property="og:title" content="@lang('messages.meta.title')" />
+	<meta property="og:description" content="@lang('messages.meta.description')" />
 	<meta property="og:image" content="http://ancientcitiesturkey.com/img/preview.jpeg" />
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link rel="stylesheet" href="{{ mix('css/app.css') }}"> 
@@ -23,8 +22,7 @@
 
 <body>
 
-	@yield('content') 
-	@yield('scripts')
+	@yield('content') @yield('scripts')
 	<script src="{{ mix('js/app.js') }}"></script>
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
