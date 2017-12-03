@@ -10,11 +10,11 @@
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="@lang('messages.meta.title')">
 	<meta name="twitter:description" content="@lang('messages.meta.description')">
-	<meta name="twitter:image" content="http://ancientcitiesturkey.com/img/preview.jpeg">
-	<meta property="og:url" content="http://ancientcitiesturkey.com" />
+	<meta name="twitter:image" content="https://ancientcitiesturkey.com/img/preview.png">
+	<meta property="og:url" content="https://ancientcitiesturkey.com" />
 	<meta property="og:title" content="@lang('messages.meta.title')" />
 	<meta property="og:description" content="@lang('messages.meta.description')" />
-	<meta property="og:image" content="http://ancientcitiesturkey.com/img/preview.jpeg" />
+	<meta property="og:image" content="https://ancientcitiesturkey.com/img/preview.png" />
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link rel="stylesheet" href="{{ mix('css/app.css') }}"> 
 	@yield('head-scripts')
