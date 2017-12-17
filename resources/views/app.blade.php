@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app()->getLocale() }}" dir="ltr">
 
 <head>
 	<meta charset='utf-8' />
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>@yield('title')</title>
 	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 	<meta name="keywords" content="@lang('messages.meta.keywords')">
