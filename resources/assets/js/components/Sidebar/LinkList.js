@@ -12,7 +12,9 @@ export default function LinkList(props) {
       {links &&
         links.map(item => (
           <li key={item.url} className="link-list-item">
-            <a href={item.url}>{item.description}</a>
+            <a href={item.url} target="_blank" rel="noopener">
+              {item.description}
+            </a>
           </li>
         ))}
     </div>

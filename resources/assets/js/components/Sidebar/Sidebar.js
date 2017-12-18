@@ -46,14 +46,24 @@ export default function Sidebar(props) {
               </li>
               {ruin.tripadvisor && (
                 <li className="image-list-item">
-                  <a href={ruin.tripadvisor} className="image-list-link">
+                  <a
+                    href={ruin.tripadvisor}
+                    className="image-list-link"
+                    target="_blank"
+                    rel="noopener"
+                  >
                     <img src="/img/tripadvisor.png" alt="Tripadvisor Logo" />
                   </a>
                 </li>
               )}
               {ruin.foursquare && (
                 <li className="image-list-item">
-                  <a href={ruin.foursquare} className="image-list-link">
+                  <a
+                    href={ruin.foursquare}
+                    className="image-list-link"
+                    target="_blank"
+                    rel="noopener"
+                  >
                     <img src="/img/foursquare.png" alt="Foursquare Logo" />
                   </a>
                 </li>
