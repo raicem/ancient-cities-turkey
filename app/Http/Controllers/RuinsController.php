@@ -23,14 +23,15 @@ class RuinsController extends Controller
 
     public function testingGeolocation()
     {
-        $curl = curl_init();
-        $accessToken = 'pk.eyJ1IjoicmFpY2VtIiwiYSI6ImNqMjZmaHl6aTAwMmYzM3BqeWVrYnVjODIifQ.iZRVG8IE35SdbbkMhnK9ow';
-        $url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=' . $accessToken;
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, $url);
-        $response = curl_exec($curl);
-        $json = json_decode($response, true);
+        $geocoder = new \App\Http\Geocoding\Geocoder('pk.eyJ1IjoicmFpY2VtIiwiYSI6ImNqMjZmaHl6aTAwMmYzM3BqeWVrYnVjODIifQ.iZRVG8IE35SdbbkMhnK9ow');
 
-        return response()->json($json);
+        $ruin = Ruin::find(1);
+        $lat = $ruin->latitude;
+        $lng = $ruin->longitude;
+        $coordinates = $lng . ',' . $lat;
+
+        $result = $geocoder->resolve($coordinates);
+
+        return $result;
     }
 }
