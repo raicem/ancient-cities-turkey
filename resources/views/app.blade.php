@@ -5,17 +5,8 @@
 	<meta charset='utf-8' />
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>@yield('title')</title>
+	@yield('seo')
 	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-	<meta name="keywords" content="@lang('messages.meta.keywords')">
-	<meta name="description" content="@lang('messages.meta.description')">
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content="@lang('messages.meta.title')">
-	<meta name="twitter:description" content="@lang('messages.meta.description')">
-	<meta name="twitter:image" content="https://ancientcitiesturkey.com/img/preview.png">
-	<meta property="og:url" content="https://ancientcitiesturkey.com" />
-	<meta property="og:title" content="@lang('messages.meta.title')" />
-	<meta property="og:description" content="@lang('messages.meta.description')" />
-	<meta property="og:image" content="https://ancientcitiesturkey.com/img/preview.png" />
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link rel="stylesheet" href="{{ mix('css/app.css') }}"> 
 	@yield('head-scripts')
