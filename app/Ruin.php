@@ -42,6 +42,11 @@ class Ruin extends Model
         return $this->hasMany(Link::class);
     }
 
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
     /**
      * Returns the turkish language informational links.
      *
@@ -107,7 +112,7 @@ class Ruin extends Model
      *
      * @return array
      */
-    public function sluggable()
+    public function sluggable(): array
     {
         return [
             'slug' => [
