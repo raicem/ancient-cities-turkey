@@ -42,16 +42,31 @@ class Ruin extends Model
         return $this->hasMany(Link::class);
     }
 
+    /**
+     * Returns the turkish language informational links.
+     *
+     * @return mixed
+     */
     public function turkishLinks()
     {
         return $this->links()->turkish()->orderBy('description', 'ASC');
     }
 
+    /**
+     * Returns the english language informational links.
+     *
+     * @return mixed
+     */
     public function englishLinks()
     {
         return $this->links()->english()->orderBy('description', 'ASC');
     }
 
+    /**
+     * Maps the necessery values to turkish.
+     *
+     * @return $this
+     */
     public function asTurkish()
     {
         $this->information = $this->information_tr;
@@ -100,5 +115,15 @@ class Ruin extends Model
                 'separator' => '-'
             ]
         ];
+    }
+
+    /**
+     * Returns the coordinates as string.
+     *
+     * @return string
+     */
+    public function coordinates(): string
+    {
+        return $this->longitude.','.$this->latitude;
     }
 }

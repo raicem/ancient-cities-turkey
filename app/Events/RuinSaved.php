@@ -14,7 +14,7 @@ class RuinSaved
     /**
      * Create a new event instance.
      *
-     * @param Ruin $ruin
+     * @param Ruin     $ruin
      */
     public function __construct(Ruin $ruin)
     {
