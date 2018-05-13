@@ -25,6 +25,7 @@ class CreateRuinsTable extends Migration
             $table->string('tripadvisor')->nullable();
             $table->string('foursquare')->nullable();
             $table->boolean('official_site')->default(0);
+            $table->integer('city_id')->nullable();
             $table->timestamps();
         });
     }

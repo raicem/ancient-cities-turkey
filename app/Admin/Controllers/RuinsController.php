@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\City;
 use App\Ruin;
 
 use Encore\Admin\Form;
@@ -104,6 +105,9 @@ class RuinsController extends Controller
 
                 $form->text('latitude', 'Latitude');
                 $form->text('longitude', 'Longitude');
+
+                $form->select('city_id', 'City')->options(City::all()->pluck('name', 'id'));
+
                 $form->text('tripadvisor', 'Tripadvisor');
                 $form->text('foursquare', 'Foursquare');
 
