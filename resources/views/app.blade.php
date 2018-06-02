@@ -5,16 +5,27 @@
 	<meta charset='utf-8' />
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>@yield('title')</title>
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="application-name" content="Ancient Cities Turkey">
+	<meta name="apple-mobile-web-app-title" content="Ancient Cities Turkey">
+	<meta name="msapplication-navbutton-color" content="#ffffff">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="msapplication-starturl" content="/">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="manifest" href="/manifest.json">
+	@include('partials.icons')
+
 	@yield('seo')
 	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<link rel="stylesheet" href="{{ mix('css/app.css') }}"> 
+	<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 	@yield('head-scripts')
 </head>
 
 <body>
 
-	@yield('content') 
+	@yield('content')
 	@yield('scripts')
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

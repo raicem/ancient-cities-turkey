@@ -17,6 +17,7 @@
 @endsection
 @section('content')
     <div id="root"></div>
+    <noscript>@lang('messages.javascript.warning')</noscript>
 @endsection
 @section('scripts')
     <script src="{{ mix('js/app.js') }}"></script>
