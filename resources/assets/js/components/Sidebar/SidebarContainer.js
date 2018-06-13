@@ -14,7 +14,7 @@ class SidebarContainer extends React.Component {
       isLoaded: false,
       language: props.match.params.language,
       ruinSlug: props.match.params.ruin,
-      isFormShowing: false,
+      isFormShowing: false
     };
   }
 
@@ -23,7 +23,6 @@ class SidebarContainer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('component will receive props');
     const { language, ruin } = nextProps.match.params;
 
     if (this.state.language !== language || this.state.ruinSlug !== ruin) {
@@ -31,9 +30,9 @@ class SidebarContainer extends React.Component {
         {
           language: nextProps.match.params.language,
           ruinSlug: nextProps.match.params.ruin,
-          isLoaded: false,
+          isLoaded: false
         },
-        this.fetchStateData,
+        this.fetchStateData
       );
     }
   }

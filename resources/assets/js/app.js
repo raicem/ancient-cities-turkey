@@ -13,7 +13,7 @@ import FeaturePopup from './components/FeaturePopup';
 
 const Map = ReactMapboxGL({
   accessToken:
-    'pk.eyJ1IjoicmFpY2VtIiwiYSI6ImNqMjZmaHl6aTAwMmYzM3BqeWVrYnVjODIifQ.iZRVG8IE35SdbbkMhnK9ow',
+    'pk.eyJ1IjoicmFpY2VtIiwiYSI6ImNqMjZmaHl6aTAwMmYzM3BqeWVrYnVjODIifQ.iZRVG8IE35SdbbkMhnK9ow'
 });
 
 addLocaleData(trLocaleData);
@@ -40,7 +40,7 @@ class App extends React.Component {
       ruins: [],
       selected: null,
       language,
-      bounds: [[25.059009, 35.259924], [45.351057, 42.210808]],
+      bounds: [[25.059009, 35.259924], [45.351057, 42.210808]]
     };
   }
 
@@ -68,14 +68,10 @@ class App extends React.Component {
       newState.ruins = response.data;
     }
 
-    if (this.state.selected === null || ruin !== this.state.selected.slug) {
-      const selected = this.state.ruins.find(item => item.slug === this.props.match.params.ruin);
+    if (ruin !== undefined) {
+      const selected = this.state.ruins.find(item => item.slug === ruin);
 
       newState.selected = selected;
-    }
-
-    if (ruin === undefined) {
-      newState.selected = null;
     }
 
     return newState;
@@ -102,7 +98,7 @@ class App extends React.Component {
             style="mapbox://styles/mapbox/streets-v9"
             containerStyle={{
               height: '100vh',
-              width: '100vw',
+              width: '100vw'
             }}
           >
             <Layer
@@ -140,5 +136,5 @@ ReactDOM.render(
       <Route path="/:language?/:ruin?" component={App} />
     </Switch>
   </BrowserRouter>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );
