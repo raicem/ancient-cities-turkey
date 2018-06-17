@@ -32,7 +32,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleClick = this.handleClick.bind(this);
+    this.handleFeatureClicked = this.handleFeatureClicked.bind(this);
+    this.handleMapClicked = this.handleMapClicked.bind(this);
 
     const language = this.props.match.params.language || locale;
 
@@ -77,7 +78,13 @@ class App extends React.Component {
     return newState;
   }
 
-  handleClick(event) {
+  handleMapClicked(event) {
+    if (event.feature === undefined) {
+      this.setState({ selected: null });
+    }
+  }
+
+  handleFeatureClicked(event) {
     const mapBounds = event.map.getBounds();
     const bounds = mapBounds.toArray();
 
@@ -100,6 +107,7 @@ class App extends React.Component {
               height: '100vh',
               width: '100vw'
             }}
+            onClick={this.handleMapClicked}
           >
             <Layer
               type="symbol"
@@ -111,7 +119,7 @@ class App extends React.Component {
                   item={item}
                   key={item.slug}
                   coordinates={[item.longitude, item.latitude]}
-                  onClick={this.handleClick}
+                  onClick={this.handleFeatureClicked}
                   onMouseEnter={App.changeCursor}
                   onMouseLeave={App.changeCursor}
                 />
