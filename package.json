@@ -2,17 +2,18 @@
   "private": true,
   "scripts": {
     "dev": "npm run development",
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "development":
+      "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
     "watch-poll": "npm run watch -- --watch-poll",
-    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot":
+      "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "production":
+      "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-react": "^6.23.0",
-    "babel-preset-stage-3": "^6.24.1",
+    "@babel/preset-react": "^7.0.0",
     "bootstrap-sass": "^3.3.7",
     "cross-env": "^5.1.5",
     "eslint": "^4.19.1",
@@ -21,13 +22,12 @@
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "laravel-mix": "^1.7.2",
+    "laravel-mix": "^4.0.14",
     "prettier": "^1.12.1",
     "prettier-eslint": "^8.8.1"
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "babel-preset-env": "^1.7.0",
     "mapbox-gl": "^0.45.0",
     "prop-types": "^15.6.1",
     "react": "^15.4.2",

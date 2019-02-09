@@ -14,16 +14,16 @@ const mix = require('laravel-mix');
 mix.options({
   uglify: {
     uglifyOptions: {
-      compress: false,
-    },
-  },
+      compress: false
+    }
+  }
 });
 
 mix.react('resources/assets/js/app.js', 'public/js');
 
 mix.styles(
   ['resources/assets/css/mapbox-gl.css', 'resources/assets/css/app.css'],
-  'public/css/app.css',
+  'public/css/app.css'
 );
 
 if (mix.inProduction()) {
