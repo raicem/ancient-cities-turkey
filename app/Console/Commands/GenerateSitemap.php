@@ -41,13 +41,12 @@ class GenerateSitemap extends Command
     public function handle()
     {
         $sitemap = Sitemap::create()
-            ->add(Url::create('/tr/hakkinda'))
-            ->add(Url::create('/en/about'));
+            ->add(Url::create('/en/about')->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->addAlternate('/tr/hakkinda', 'tr'));
 
         $ruins = Ruin::all();
         
         $ruins->each(function (Ruin $ruin) use ($sitemap) {
-            $sitemap->add(Url::create("/en/{$ruin->slug}")->addAlternate("/tr/{$ruin->slug}", 'tr'));
+            $sitemap->add(Url::create("/en/{$ruin->slug}")->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->addAlternate("/tr/{$ruin->slug}", 'tr'));
         });
 
         $sitemap->writeToFile(public_path('sitemap.xml'));
