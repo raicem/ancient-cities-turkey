@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\CheckLinks::class,
+        Commands\GenerateSitemap::class,
     ];
 
     /**
@@ -25,8 +26,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('links:check')->weekly()->fridays()->at('20:00');
-        $schedule->command('backup:clean')->weekly()->fridays()->at('21:00');
-        $schedule->command('backup:run')->weekly()->fridays()->at('22:00');
+        // $schedule->command('backup:clean')->weekly()->fridays()->at('21:00');
+        // $schedule->command('backup:run')->weekly()->fridays()->at('22:00');
     }
 
     /**
