@@ -12,8 +12,8 @@ const mix = require('laravel-mix');
  */
 
 mix.options({
-  uglify: {
-    uglifyOptions: {
+  terser: {
+    terserOptions: {
       compress: false
     }
   }
