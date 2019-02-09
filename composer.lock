@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a8e3c48761e36e04bd3dd759f60e0308",
+    "content-hash": "94cd2d28063132a17ac63825ecc1663c",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2586,16 +2586,16 @@
         },
         {
             "name": "spatie/laravel-sitemap",
-            "version": "5.2.8",
+            "version": "5.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-sitemap.git",
-                "reference": "5fa183bb7a3e39235ddd7cd4732ac1bec3dc1264"
+                "reference": "9a8a58c4cfbcb7a7f46ce78e01d7be4bd7e8f93d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-sitemap/zipball/5fa183bb7a3e39235ddd7cd4732ac1bec3dc1264",
-                "reference": "5fa183bb7a3e39235ddd7cd4732ac1bec3dc1264",
+                "url": "https://api.github.com/repos/spatie/laravel-sitemap/zipball/9a8a58c4cfbcb7a7f46ce78e01d7be4bd7e8f93d",
+                "reference": "9a8a58c4cfbcb7a7f46ce78e01d7be4bd7e8f93d",
                 "shasum": ""
             },
             "require": {
@@ -2641,7 +2641,7 @@
                 "laravel-sitemap",
                 "spatie"
             ],
-            "time": "2019-02-06T21:58:53+00:00"
+            "time": "2018-11-05T13:42:06+00:00"
         },
         {
             "name": "spatie/robots-txt",
