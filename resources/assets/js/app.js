@@ -11,10 +11,7 @@ import AboutTr from './components/AboutTr';
 import AboutEn from './components/AboutEn';
 import FeaturePopup from './components/FeaturePopup';
 
-const Map = ReactMapboxGL({
-  accessToken:
-    'pk.eyJ1IjoicmFpY2VtIiwiYSI6ImNqMjZmaHl6aTAwMmYzM3BqeWVrYnVjODIifQ.iZRVG8IE35SdbbkMhnK9ow'
-});
+const Map = ReactMapboxGL({ accessToken: window.mapboxToken });
 
 addLocaleData(trLocaleData);
 

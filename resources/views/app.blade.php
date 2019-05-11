@@ -26,6 +26,9 @@
 <body>
 
 	@yield('content')
+	<script>
+		window.mapboxToken = "{{ config('services.mapbox.access_token') }}";
+	</script>
 	@yield('scripts')
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
