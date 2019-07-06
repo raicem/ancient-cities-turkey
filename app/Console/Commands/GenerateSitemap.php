@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\City;
 use App\Ruin;
 use Illuminate\Console\Command;
 use Spatie\Sitemap\Sitemap;
@@ -41,12 +42,27 @@ class GenerateSitemap extends Command
     public function handle()
     {
         $sitemap = Sitemap::create()
-            ->add(Url::create('/en/about')->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->addAlternate('/tr/hakkinda', 'tr'));
+            ->add(Url::create('/en/about')->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->addAlternate('/tr/hakkinda',
+                'tr'));
 
         $ruins = Ruin::all();
-        
+
         $ruins->each(function (Ruin $ruin) use ($sitemap) {
-            $sitemap->add(Url::create("/en/{$ruin->slug}")->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->addAlternate("/tr/{$ruin->slug}", 'tr'));
+            $sitemap->add(
+                Url::create("/en/{$ruin->slug}")
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
+                    ->addAlternate("/tr/{$ruin->slug}", 'tr')
+            );
+        });
+
+        $cities = City::all();
+
+        $cities->each(function (City $city) use ($sitemap) {
+            $sitemap->add(
+                Url::create("en/ancient-cities-in{$city->slug}/")
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
+                    ->addAlternate("/tr/{$city->slug}-antik-kentleri", 'tr')
+            );
         });
 
         $sitemap->writeToFile(public_path('sitemap.xml'));

@@ -21,10 +21,11 @@
     "spatie/laravel-sitemap": "5.2.7"
   },
   "require-dev": {
+    "barryvdh/laravel-ide-helper": "^2.6",
+    "filp/whoops": "~2.0",
     "fzaninotto/faker": "~1.4",
     "mockery/mockery": "0.9.*",
-    "phpunit/phpunit": "^7.0",
-    "filp/whoops": "~2.0"
+    "phpunit/phpunit": "^7.0"
   },
   "autoload": {
     "classmap": ["database"],

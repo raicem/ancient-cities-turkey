@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('KAPSAM IS KING');
+            $content->header('Panel');
 
             $number['ruins'] = Ruin::all()->count();
             $number['links'] = Link::all()->count();

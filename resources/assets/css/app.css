@@ -169,6 +169,16 @@ body {
   margin-top: 1em;
 }
 
+.site-header {
+  text-align: center;
+}
+
+.site-header__title {
+  text-decoration: none;
+  font-size: 24px;
+  color: #444;
+}
+
 @media (max-width: 632px) {
   .info-bar {
     width: 100%;

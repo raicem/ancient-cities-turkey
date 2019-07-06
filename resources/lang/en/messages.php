@@ -8,4 +8,11 @@ return [
     'meta.keywords' => 'ancient cities, antique cities, turkey, ruins, historical sites, ancient cities of turkey',
     'ruins.show.meta.title' => 'Ancient City',
     'javascript.warning' => 'This site required JavaScript. Please turn JavaScript on from your browsers preferences.',
+
+    'header.homePage' => 'Home',
+    'header.about' => 'About',
+
+    'cities.list.ancientCities' => 'Ancient Cities in :city',
+    'cities.list.description' => ':city has :count ancient cities.',
+    'cities.list.more' => 'Click for more...',
 ];
