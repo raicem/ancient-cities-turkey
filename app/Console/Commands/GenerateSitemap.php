@@ -57,9 +57,13 @@ class GenerateSitemap extends Command
 
         $cities = City::all();
 
+        $cities = $cities->filter(function (City $city) {
+            return $city->ruins->count() > 0;
+        });
+
         $cities->each(function (City $city) use ($sitemap) {
             $sitemap->add(
-                Url::create("en/ancient-cities-in{$city->slug}/")
+                Url::create("en/ancient-cities-in-{$city->slug}/")
                     ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
                     ->addAlternate("/tr/{$city->slug}-antik-kentleri", 'tr')
             );
