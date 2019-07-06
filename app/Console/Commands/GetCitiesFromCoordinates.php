@@ -93,7 +93,7 @@ class GetCitiesFromCoordinates extends Command
         $city = City::where('slug', $slug)->first();
 
         if (!$city) {
-            throw new \RuntimeException('No city found!');
+            throw new \RuntimeException("No city found: {$slug}");
         }
 
         return $city;
