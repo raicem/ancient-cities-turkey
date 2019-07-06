@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94cd2d28063132a17ac63825ecc1663c",
+    "content-hash": "045038156ab8419acf80d346445c896b",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2423,24 +2423,24 @@
         },
         {
             "name": "spatie/db-dumper",
-            "version": "2.14.2",
+            "version": "2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/db-dumper.git",
-                "reference": "093750d69c383fb14d9e7cd6caa052ea7b35e5b5"
+                "reference": "61cf73e3b53e163d6e888a0013b9df6bb235752c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/093750d69c383fb14d9e7cd6caa052ea7b35e5b5",
-                "reference": "093750d69c383fb14d9e7cd6caa052ea7b35e5b5",
+                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/61cf73e3b53e163d6e888a0013b9df6bb235752c",
+                "reference": "61cf73e3b53e163d6e888a0013b9df6bb235752c",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.3",
-                "symfony/process": "^4.2"
+                "php": "^7.0",
+                "symfony/process": "^3.0|^4.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.0|^8.0"
+                "phpunit/phpunit": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -2469,7 +2469,7 @@
                 "mysqldump",
                 "spatie"
             ],
-            "time": "2019-06-28T08:23:04+00:00"
+            "time": "2018-12-10T10:41:18+00:00"
         },
         {
             "name": "spatie/image",

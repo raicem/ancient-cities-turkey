@@ -16,6 +16,7 @@
     "laravel-admin-ext/log-viewer": "^1.0",
     "laravel/framework": "5.6.*",
     "laravel/tinker": "~1.0",
+    "spatie/db-dumper": "2.12",
     "spatie/laravel-backup": "^5.0",
     "spatie/laravel-sitemap": "5.2.7"
   },
