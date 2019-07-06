@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "81e9b5333347334dfe1078143e354610",
+    "content-hash": "bb33f088590a288ccf45c78de6f00657",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -1200,20 +1200,21 @@
         },
         {
             "name": "laravel-admin-ext/helpers",
-            "version": "v1.1.1",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-admin-extensions/helpers.git",
-                "reference": "67b2573029f90ca1873e1598a2d46ae8d9acca66"
+                "reference": "cd87681d770d2ce90ad94ed3abafb08545271938"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-admin-extensions/helpers/zipball/67b2573029f90ca1873e1598a2d46ae8d9acca66",
-                "reference": "67b2573029f90ca1873e1598a2d46ae8d9acca66",
+                "url": "https://api.github.com/repos/laravel-admin-extensions/helpers/zipball/cd87681d770d2ce90ad94ed3abafb08545271938",
+                "reference": "cd87681d770d2ce90ad94ed3abafb08545271938",
                 "shasum": ""
             },
             "require": {
-                "encore/laravel-admin": "~1.6",
+                "encore/laravel-admin": "~1.5",
+                "laravel/framework": "~5.5",
                 "php": ">=7.0.0"
             },
             "require-dev": {
@@ -1248,27 +1249,29 @@
                 "helpers",
                 "laravel-admin"
             ],
-            "time": "2018-10-24T15:21:11+00:00"
+            "time": "2018-09-09T09:36:49+00:00"
         },
         {
             "name": "laravel-admin-ext/log-viewer",
-            "version": "v1.0.3",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-admin-extensions/log-viewer.git",
-                "reference": "742a2550746c9346d463249ba16b8fba9ac9cf97"
+                "reference": "19c78d7b81b0f062d4a1a61fb0c0310305b097c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-admin-extensions/log-viewer/zipball/742a2550746c9346d463249ba16b8fba9ac9cf97",
-                "reference": "742a2550746c9346d463249ba16b8fba9ac9cf97",
+                "url": "https://api.github.com/repos/laravel-admin-extensions/log-viewer/zipball/19c78d7b81b0f062d4a1a61fb0c0310305b097c2",
+                "reference": "19c78d7b81b0f062d4a1a61fb0c0310305b097c2",
                 "shasum": ""
             },
             "require": {
-                "encore/laravel-admin": "~1.6",
+                "encore/laravel-admin": "~1.5",
+                "laravel/framework": "~5.5",
                 "php": ">=7.0.0"
             },
             "require-dev": {
+                "laravel/laravel": "~5.5",
                 "phpunit/phpunit": "~6.0"
             },
             "type": "library",
@@ -1301,7 +1304,7 @@
                 "laravel-admin",
                 "log"
             ],
-            "time": "2018-11-13T17:17:36+00:00"
+            "time": "2018-04-25T06:14:03+00:00"
         },
         {
             "name": "laravel/framework",

@@ -15,7 +15,8 @@ body {
 }
 
 .container {
-  margin: 0 auto;
+  margin: 0 auto 1rem auto;
+  padding: 1rem;
   max-width: 800px;
 }
 
@@ -177,6 +178,11 @@ body {
   text-decoration: none;
   font-size: 24px;
   color: #444;
+}
+
+.site-ruin__image {
+  max-width: 100%;
+  height: auto;
 }
 
 @media (max-width: 632px) {

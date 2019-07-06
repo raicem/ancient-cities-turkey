@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\City;
 use App\Ruin;
 
+use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
@@ -14,7 +15,7 @@ use Encore\Admin\Controllers\ModelForm;
 
 class RuinsController extends Controller
 {
-    use ModelForm;
+    use HasResourceActions;
 
     /**
      * Index interface.
@@ -34,15 +35,15 @@ class RuinsController extends Controller
     /**
      * Edit interface.
      *
-     * @param $id
+     * @param $slug
      * @return Content
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        return Admin::content(function (Content $content) use ($id) {
-            $ruin = Ruin::find($id);
+        return Admin::content(function (Content $content) use ($slug) {
+            $ruin = Ruin::where(['slug' => $slug])->first();
             $content->header($ruin->name);
-            $content->body($this->form()->edit($id));
+            $content->body($this->form()->edit($ruin->id));
         });
     }
 

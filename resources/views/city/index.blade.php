@@ -26,8 +26,8 @@
     @foreach($ruins as $ruin)
         <div class="site-ruin">
             <h2 class="site_ruin__title">{{ $ruin->name }}</h2>
-            <div class="site-ruin__image">
-                <img src="{{ url($ruin->image) }}" alt="">
+            <div>
+                <img class="site-ruin__image" src="{{ url($ruin->image) }}" alt="">
             </div>
             <p class="site-ruin__description">{{$ruin->information}}</p>
             <a href="/tr/{{$ruin->slug}}">@lang('messages.cities.list.more')</a>
