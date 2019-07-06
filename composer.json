@@ -18,7 +18,9 @@
     "laravel/tinker": "~1.0",
     "spatie/db-dumper": "2.12",
     "spatie/laravel-backup": "^5.0",
-    "spatie/laravel-sitemap": "5.2.7"
+    "spatie/laravel-sitemap": "5.2.7",
+    "ext-curl": "*",
+    "ext-json": "*"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.6",

@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\CheckLinks::class,
         Commands\GenerateSitemap::class,
+        Commands\GetCitiesFromCoordinates::class
     ];
 
     /**
