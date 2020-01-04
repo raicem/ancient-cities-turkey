@@ -7,11 +7,11 @@ use App\Http\Controllers\Controller;
 
 class RuinsController extends Controller
 {
-    public function index($locale)
+    public function index()
     {
         $ruins = Ruin::select('name', 'name_tr', 'slug', 'latitude', 'longitude')->get();
 
-        if ($locale === 'tr') {
+        if (app()->getLocale() === 'tr') {
             $ruins->map(function ($item) {
                 $item['name'] = $item['name_tr'];
                 unset($item['name_tr']);
@@ -24,11 +24,11 @@ class RuinsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($locale = 'en', Ruin $ruin)
+    public function show(string $locale, Ruin $ruin)
     {
         $ruin = Ruin::with('turkishLinks', 'englishLinks')->find($ruin->id);
 
-        if ($locale === 'tr') {
+        if (app()->getLocale() === 'tr') {
             return $ruin->asTurkish();
         }
 
