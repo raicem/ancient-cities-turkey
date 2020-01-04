@@ -83,22 +83,14 @@ class RuinsControllerTest extends TestCase
                 'city_id' => $ruin->city->id,
             ])
             ->assertJsonFragment([
-                'id' => $turkishLink->id,
-                'ruin_id' => $ruin->id,
                 'description' => $turkishLink->description,
                 'url' => $turkishLink->url,
                 'language' => $turkishLink->language,
-                'created_at' => $turkishLink->created_at->format('Y-m-d H:i:s'),
-                'updated_at' => $turkishLink->updated_at->format('Y-m-d H:i:s'),
             ])->assertJsonFragment([
-                'id' => $englishLink->id,
-                'ruin_id' => $ruin->id,
                 'description' => $englishLink->description,
                 'url' => $englishLink->url,
                 'language' => $englishLink->language,
-                'created_at' => $englishLink->created_at->format('Y-m-d H:i:s'),
-                'updated_at' => $englishLink->updated_at->format('Y-m-d H:i:s'),
-            ]);
+           ]);
     }
 
     public function test_it_serves_a_detail_ruin_info_in_turkish()
@@ -129,21 +121,13 @@ class RuinsControllerTest extends TestCase
                 'city_id' => $ruin->city->id,
             ])
             ->assertJsonFragment([
-                'id' => $turkishLink->id,
-                'ruin_id' => $ruin->id,
                 'description' => $turkishLink->description,
                 'url' => $turkishLink->url,
                 'language' => $turkishLink->language,
-                'created_at' => $turkishLink->created_at->format('Y-m-d H:i:s'),
-                'updated_at' => $turkishLink->updated_at->format('Y-m-d H:i:s'),
             ])->assertJsonFragment([
-                'id' => $englishLink->id,
-                'ruin_id' => $ruin->id,
                 'description' => $englishLink->description,
                 'url' => $englishLink->url,
                 'language' => $englishLink->language,
-                'created_at' => $englishLink->created_at->format('Y-m-d H:i:s'),
-                'updated_at' => $englishLink->updated_at->format('Y-m-d H:i:s'),
             ]);
     }
 }
