@@ -3,12 +3,13 @@
 namespace Tests\Feature;
 
 use App\Ruin;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ServerRendersSingleViewsTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testServerSideRendersSingleViews()
     {

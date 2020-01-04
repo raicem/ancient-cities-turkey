@@ -4,13 +4,14 @@ namespace Tests\Feature;
 
 use App\Ruin;
 use App\Feedback;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class UserCanSendFeedbackTest extends TestCase
 {
-    use DatabaseMigrations;
-    
+    use RefreshDatabase;
+
     public function testUsersCanSendFeedbackAboutARuin()
     {
         $feedback = factory(Feedback::class)->make();

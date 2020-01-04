@@ -7,9 +7,6 @@ use App\Http\Controllers\Controller;
 
 class RuinsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index($locale)
     {
         $ruins = Ruin::select('name', 'name_tr', 'slug', 'latitude', 'longitude')->get();
