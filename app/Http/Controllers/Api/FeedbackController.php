@@ -14,7 +14,7 @@ class FeedbackController extends Controller
             'attachments' => [
                 ['text' => "Lokasyon: " . request('ruin') . " \n " . "Mesaj: " . request('body')]
             ],
-            'channel' => '#genel'
+            'channel' => '#ancientcitiesturkey'
         ];
 
         $client->request('POST', config('services.slack.webhook'), [

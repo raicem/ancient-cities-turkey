@@ -14,7 +14,9 @@ class RuinTest extends TestCase
     public function testRuinsMayHaveLinks()
     {
         $ruin = factory(Ruin::class)->create();
+
         factory(Link::class)->create(['ruin_id' => $ruin->id]);
+
         $this->assertInstanceOf(Link::class, $ruin->links->first());
     }
 }
