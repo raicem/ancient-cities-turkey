@@ -35,6 +35,8 @@ $factory->define(App\Ruin::class, function (Faker\Generator $faker) {
         'information' => $faker->sentence,
         'information_tr' => $faker->sentence,
         'official_site' => $faker->boolean,
+        'tripadvisor' => $faker->url,
+        'foursquare' => $faker->url,
         'official_site_tr' => $faker->url,
         'official_site_en' => $faker->url,
         'city_id' => factory(\App\City::class)->create()->id,

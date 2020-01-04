@@ -9,11 +9,11 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $ruin->name }} @lang('messages.ruins.show.meta.title') - @lang('messages.meta.title')">
     <meta name="twitter:description" content="{{ $ruin->information }}">
-    <meta name="twitter:image" content="{{ url($ruin->image) }}">
+    <meta name="twitter:image" content="{{ $ruin->image ? url($ruin->image) : '' }}">
     <meta property="og:url" content="{{ request()->url() }}"/>
     <meta property="og:title" content="{{ $ruin->name }} @lang('messages.ruins.show.meta.title') - @lang('messages.meta.title')"/>
     <meta property="og:description" content="{{ $ruin->information }}"/>
-    <meta property="og:image" content="{{ url($ruin->image) }}"/>
+    <meta property="og:image" content="{{ $ruin->image ? url($ruin->image) : '' }}"/>
 @endsection
 @section('content')
     <div id="root"></div>
