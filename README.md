@@ -1,5 +1,4 @@
 ## Ancient Cities Turkey
----------
 Source code for the [ancientcitiesturkey.com](https://ancientcitiesturkey.com).
 It is built by Laravel and React.
 ### Pipeline
