@@ -18,3 +18,4 @@ _ide_helper_models.php
 /public/js/*
 /public/css/*
 /public/sitemap.xml
+.phpunit.result.cache
