@@ -12,8 +12,10 @@ npm-debug.log
 .env
 .php_cs.cache
 _ide_helper.php
+_ide_helper_models.php
 /public/img/ruins/*
 /public/mix-manifest.json
 /public/js/*
 /public/css/*
 /public/sitemap.xml
+.phpunit.result.cache

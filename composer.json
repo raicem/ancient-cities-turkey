@@ -5,8 +5,8 @@
   "license": "MIT",
   "type": "project",
   "require": {
-    "php": "^7.1",
-    "cviebrock/eloquent-sluggable": "^4.3",
+    "php": "^7.2",
+    "cviebrock/eloquent-sluggable": "^4.7",
     "doctrine/dbal": "^2.5",
     "encore/laravel-admin": "1.7.2",
     "guzzlehttp/guzzle": "^6.3",
@@ -14,20 +14,23 @@
     "laravel-admin-ext/backup": "^1.0",
     "laravel-admin-ext/helpers": "1.0.3",
     "laravel-admin-ext/log-viewer": "1.0.2",
-    "laravel/framework": "5.6.*",
+    "laravel/framework": "5.8.*",
     "laravel/tinker": "~1.0",
     "spatie/db-dumper": "2.12",
     "spatie/laravel-backup": "^5.0",
-    "spatie/laravel-sitemap": "5.2.7",
+    "spatie/laravel-sitemap": "^5.2",
     "ext-curl": "*",
     "ext-json": "*"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.6",
     "filp/whoops": "~2.0",
+    "friendsofphp/php-cs-fixer": "^2.16",
     "fzaninotto/faker": "~1.4",
     "mockery/mockery": "0.9.*",
-    "phpunit/phpunit": "^7.0"
+    "nunomaduro/larastan": "^0.4",
+    "nunomaduro/phpinsights": "^1.11",
+    "phpunit/phpunit": "^8.0"
   },
   "autoload": {
     "classmap": ["database"],

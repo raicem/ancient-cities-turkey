@@ -20,7 +20,6 @@ class ResizeRuinImage
     /**
      * Handle the event.
      *
-     * @param  RuinSaved $event
      * @return void
      */
     public function handle(RuinSaved $event)

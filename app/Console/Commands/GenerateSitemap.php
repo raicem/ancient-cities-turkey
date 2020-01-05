@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\City;
 use App\Ruin;
 use Illuminate\Console\Command;
 use Spatie\Sitemap\Sitemap;
@@ -37,13 +36,14 @@ class GenerateSitemap extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
      */
     public function handle()
     {
         $sitemap = Sitemap::create()
-            ->add(Url::create('/en/about')->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->addAlternate('/tr/hakkinda',
-                'tr'));
+            ->add(Url::create('/en/about')->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->addAlternate(
+                '/tr/hakkinda',
+                'tr'
+            ));
 
         $ruins = Ruin::all();
 
@@ -55,20 +55,8 @@ class GenerateSitemap extends Command
             );
         });
 
-        $cities = City::all();
-
-        $cities = $cities->filter(function (City $city) {
-            return $city->ruins->count() > 0;
-        });
-
-        $cities->each(function (City $city) use ($sitemap) {
-            $sitemap->add(
-                Url::create("en/ancient-cities-in-{$city->slug}/")
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
-                    ->addAlternate("/tr/{$city->slug}-antik-kentleri", 'tr')
-            );
-        });
-
         $sitemap->writeToFile(public_path('sitemap.xml'));
+
+        return;
     }
 }
