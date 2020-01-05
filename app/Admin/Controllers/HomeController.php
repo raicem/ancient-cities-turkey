@@ -14,7 +14,6 @@ class HomeController extends Controller
     public function index()
     {
         return Admin::content(function (Content $content) {
-
             $content->header('Panel');
 
             $number['ruins'] = Ruin::all()->count();

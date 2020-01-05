@@ -23,7 +23,6 @@ class LinksController extends Controller
     public function index()
     {
         return Admin::content(function (Content $content) {
-
             $content->header('Links');
             $content->description('Resources for the ruins');
 
@@ -40,7 +39,6 @@ class LinksController extends Controller
     public function edit($id)
     {
         return Admin::content(function (Content $content) use ($id) {
-
             $content->header('Links');
 
             $content->body($this->form()->edit($id));
@@ -55,7 +53,6 @@ class LinksController extends Controller
     public function create()
     {
         return Admin::content(function (Content $content) {
-
             $content->header('Links');
 
             $content->body($this->form());
@@ -70,7 +67,6 @@ class LinksController extends Controller
     protected function grid()
     {
         return Admin::grid(Link::class, function (Grid $grid) {
-
             $grid->id('ID')->sortable();
 
             $grid->column('description');
@@ -90,7 +86,6 @@ class LinksController extends Controller
     protected function form()
     {
         return Admin::form(Link::class, function (Form $form) {
-
             $form->display('id', 'ID');
 
             $form->text('description', 'Description');

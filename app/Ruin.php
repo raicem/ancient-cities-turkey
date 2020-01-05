@@ -9,7 +9,8 @@ use Illuminate\Notifications\Notifiable;
 
 class Ruin extends Model
 {
-    use Sluggable, Notifiable;
+    use Sluggable;
+    use Notifiable;
 
     protected $guarded = [];
 
@@ -55,7 +56,7 @@ class Ruin extends Model
 
     public function getCoordinatesAttribute(): string
     {
-        return $this->longitude.','.$this->latitude;
+        return $this->longitude . ',' . $this->latitude;
     }
 
     public function getNameAttribute($value)

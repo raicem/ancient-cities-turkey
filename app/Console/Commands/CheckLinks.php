@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Link;
 use Illuminate\Console\Command;
-use function GuzzleHttp\json_encode;
 
 class CheckLinks extends Command
 {
@@ -35,12 +34,11 @@ class CheckLinks extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
      */
     public function handle(\GuzzleHttp\Client $client)
     {
         $links = Link::all();
-        
+
         $failedLinks = [];
 
         foreach ($links as $link) {

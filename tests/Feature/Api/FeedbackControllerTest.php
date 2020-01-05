@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Api;
 
-use App\Ruin;
 use App\Feedback;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
@@ -10,7 +9,6 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class FeedbackControllerTest extends TestCase
 {

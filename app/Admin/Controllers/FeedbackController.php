@@ -23,7 +23,6 @@ class FeedbackController extends Controller
     public function index()
     {
         return Admin::content(function (Content $content) {
-
             $content->header('Feedback');
 
             $content->body($this->grid());
@@ -38,7 +37,6 @@ class FeedbackController extends Controller
     public function create()
     {
         return Admin::content(function (Content $content) {
-
             $content->header('header');
             $content->description('description');
 
@@ -54,7 +52,6 @@ class FeedbackController extends Controller
     protected function grid()
     {
         return Admin::grid(Feedback::class, function (Grid $grid) {
-
             $grid->id('ID')->sortable();
 
             $grid->column('ruin');
@@ -80,7 +77,6 @@ class FeedbackController extends Controller
     protected function form()
     {
         return Admin::form(Feedback::class, function (Form $form) {
-
             $form->display('id', 'ID');
 
             $form->display('created_at', 'Created At');

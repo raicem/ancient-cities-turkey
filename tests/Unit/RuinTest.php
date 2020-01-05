@@ -6,7 +6,6 @@ use App\Ruin;
 use App\Link;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class RuinTest extends TestCase
 {

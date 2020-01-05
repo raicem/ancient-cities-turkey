@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\City;
 use App\Ruin;
 use Illuminate\Console\Command;
 use Spatie\Sitemap\Sitemap;
@@ -37,13 +36,14 @@ class GenerateSitemap extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
      */
     public function handle()
     {
         $sitemap = Sitemap::create()
-            ->add(Url::create('/en/about')->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->addAlternate('/tr/hakkinda',
-                'tr'));
+            ->add(Url::create('/en/about')->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->addAlternate(
+                '/tr/hakkinda',
+                'tr'
+            ));
 
         $ruins = Ruin::all();
 
