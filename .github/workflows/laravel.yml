@@ -12,14 +12,29 @@ jobs:
         node-version: '10.x'
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+    - uses: actions/cache@v1
+      id: cache
+      with:
+        path: ~/.composer/cache/files
+        key: dependencies-laravel-composer-${{ hashFiles('composer.lock') }}
+
+    - name: Install Dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+
     - name: Install Composer Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+
     - name: Install NPM Dependencies
       run: npm install
+
     - name: Build Assets
       run: npm run prod
+
     - name: Generate key
       run: php artisan key:generate
+
     - name: Execute tests with PHPUnit
       env:
         DB_CONNECTION: sqlite
