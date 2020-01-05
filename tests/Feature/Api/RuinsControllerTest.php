@@ -22,14 +22,14 @@ class RuinsControllerTest extends TestCase
             ->assertJsonFragment([
                 'name' => $firstRuin->name_tr,
                 'slug' => $firstRuin->slug,
-                'latitude' => $firstRuin->latitude . 0,
-                'longitude' => $firstRuin->longitude . 0,
+                'latitude' => $firstRuin->latitude,
+                'longitude' => $firstRuin->longitude,
             ])
             ->assertJsonFragment([
                 'name' => $secondRuin->name_tr,
                 'slug' => $secondRuin->slug,
-                'latitude' => $secondRuin->latitude . 0,
-                'longitude' => $secondRuin->longitude . 0,
+                'latitude' => $secondRuin->latitude,
+                'longitude' => $secondRuin->longitude,
             ]);
     }
 
@@ -44,14 +44,14 @@ class RuinsControllerTest extends TestCase
             ->assertJsonFragment([
                 'name' => $firstRuin->name,
                 'slug' => $firstRuin->slug,
-                'latitude' => $firstRuin->latitude . 0,
-                'longitude' => $firstRuin->longitude . 0,
+                'latitude' => $firstRuin->latitude,
+                'longitude' => $firstRuin->longitude,
             ])
             ->assertJsonFragment([
                 'name' => $secondRuin->name,
                 'slug' => $secondRuin->slug,
-                'latitude' => $secondRuin->latitude . 0,
-                'longitude' => $secondRuin->longitude . 0,
+                'latitude' => $secondRuin->latitude,
+                'longitude' => $secondRuin->longitude,
             ]);
     }
 
@@ -72,8 +72,8 @@ class RuinsControllerTest extends TestCase
                 'id' => $ruin->id,
                 'name' => $ruin->name,
                 'slug' => $ruin->slug,
-                'latitude' => $ruin->latitude . 0,
-                'longitude' => $ruin->longitude . 0,
+                'latitude' => $ruin->latitude,
+                'longitude' => $ruin->longitude,
                 'information' => $ruin->information,
                 'image' => $ruin->image,
                 'tripadvisor' => $ruin->tripadvisor,
@@ -110,8 +110,8 @@ class RuinsControllerTest extends TestCase
                 'id' => $ruin->id,
                 'name' => $ruin->name_tr,
                 'slug' => $ruin->slug,
-                'latitude' => $ruin->latitude . 0,
-                'longitude' => $ruin->longitude . 0,
+                'latitude' => $ruin->latitude,
+                'longitude' => $ruin->longitude,
                 'information' => $ruin->information_tr,
                 'image' => $ruin->image,
                 'tripadvisor' => $ruin->tripadvisor,

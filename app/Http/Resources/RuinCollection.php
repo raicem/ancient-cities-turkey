@@ -14,12 +14,10 @@ class RuinCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        $locale = app()->getLocale();
-
-        $collection = $this->collection->map(function ($ruin) use ($locale) {
+        $collection = $this->collection->map(function ($ruin) {
             return [
                 'id' => $ruin->id,
-                'name' => $locale === 'tr' ? $ruin->name_tr : $ruin->name,
+                'name' => $ruin->name,
                 'slug' => $ruin->slug,
                 'latitude' => $ruin->latitude,
                 'longitude' => $ruin->longitude,

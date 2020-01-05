@@ -13,6 +13,12 @@ class Ruin extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'latitude' => 'float',
+        'longitude' => 'float',
+        'official_site' => 'int',
+    ];
+
     /**
      * The event map for the model.
      *
@@ -21,16 +27,6 @@ class Ruin extends Model
     protected $dispatchesEvents = [
         'saved' => RuinSaved::class,
     ];
-
-    /**
-     * Changes the key for route-model binding.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
 
     /**
      * Defines ruins and links relationship.
@@ -47,71 +43,48 @@ class Ruin extends Model
         return $this->belongsTo(City::class);
     }
 
-    /**
-     * Returns the turkish language informational links.
-     *
-     * @return mixed
-     */
     public function turkishLinks()
     {
         return $this->links()->turkish()->orderBy('description', 'ASC');
     }
 
-    /**
-     * Returns the english language informational links.
-     *
-     * @return mixed
-     */
     public function englishLinks()
     {
         return $this->links()->english()->orderBy('description', 'ASC');
     }
 
-    /**
-     * Maps the necessery values to turkish.
-     *
-     * @return $this
-     */
-    public function asTurkish()
+    public function getCoordinatesAttribute(): string
     {
-        $this->information = $this->information_tr;
-        $this->name = $this->name_tr;
-        $this->official_site_link = $this->official_site_tr;
-        
-        unset(
-            $this->information_tr,
-            $this->official_site_tr,
-            $this->official_site_en,
-            $this->name_tr
-        );
-
-        return $this;
+        return $this->longitude.','.$this->latitude;
     }
 
-    /**
-     * Since there is no official_site_link column we manually mutate it.
-     * If we do change the column name this method is not
-     * necessery.
-     */
-    public function asEnglish()
+    public function getNameAttribute($value)
     {
-        $this->official_site_link = $this->official_site_en;
-        
-        unset(
-            $this->information_tr,
-            $this->official_site_tr,
-            $this->official_site_en,
-            $this->name_tr
-        );
-        
-        return $this;
+        if (app()->getLocale() === 'tr') {
+            return $this->name_tr;
+        }
+
+        return $value;
     }
 
-    /**
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
-     */
+    public function getInformationAttribute($value)
+    {
+        if (app()->getLocale() === 'tr') {
+            return $this->information_tr;
+        }
+
+        return $value;
+    }
+
+    public function getOfficialSiteLinkAttribute()
+    {
+        if (app()->getLocale() === 'tr') {
+            return $this->official_site_tr;
+        }
+
+        return $this->official_site_en;
+    }
+
     public function sluggable(): array
     {
         return [
@@ -122,13 +95,8 @@ class Ruin extends Model
         ];
     }
 
-    /**
-     * Returns the coordinates as string.
-     *
-     * @return string
-     */
-    public function coordinates(): string
+    public function getRouteKeyName(): string
     {
-        return $this->longitude.','.$this->latitude;
+        return 'slug';
     }
 }
