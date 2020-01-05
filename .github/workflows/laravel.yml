@@ -13,27 +13,34 @@ jobs:
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
-    - uses: actions/cache@v1
-      id: cache
-      with:
-        path: ~/.composer/cache/files
-        key: dependencies-laravel-composer-${{ hashFiles('composer.lock') }}
+    - name: Get Composer Cache Directory
+      id: composer-cache
+      run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
-    - name: Install Dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+    - uses: actions/cache@v1
+      id: composer_cache
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: dependencies-laravel-composer-${{ hashFiles('composer.lock') }}
+        restore-keys: dependencies-laravel-composer-
 
     - name: Install Composer Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+      run: composer install --prefer-dist
+
+    - name: Generate key
+      run: php artisan key:generate
+
+    - uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: node-
 
     - name: Install NPM Dependencies
       run: npm install
 
     - name: Build Assets
       run: npm run prod
-
-    - name: Generate key
-      run: php artisan key:generate
 
     - name: Execute tests with PHPUnit
       env:
