@@ -28,6 +28,8 @@
     "friendsofphp/php-cs-fixer": "^2.16",
     "fzaninotto/faker": "~1.4",
     "mockery/mockery": "0.9.*",
+    "nunomaduro/larastan": "^0.4",
+    "nunomaduro/phpinsights": "^1.11",
     "phpunit/phpunit": "^8.0"
   },
   "autoload": {

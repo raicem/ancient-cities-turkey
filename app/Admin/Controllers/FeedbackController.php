@@ -52,17 +52,17 @@ class FeedbackController extends Controller
     protected function grid()
     {
         return Admin::grid(Feedback::class, function (Grid $grid) {
-            $grid->id('ID')->sortable();
+            $grid->column('id', 'ID')->sortable();
 
             $grid->column('ruin');
             $grid->column('body');
-            $grid->created_at()->sortable();
+            $grid->column('created_at')->sortable();
 
-            $grid->actions(function ($actions) {
+            $grid->actions(function (Grid\Displayers\Actions $actions) {
                 $actions->disableEdit();
             });
 
-            $grid->filter(function ($filter) {
+            $grid->filter(function (Grid\Filter $filter) {
                 $filter->like('ruin', 'Ruin');
                 $filter->like('body', 'Feedback contains...');
             });

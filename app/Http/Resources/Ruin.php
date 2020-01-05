@@ -14,23 +14,24 @@ class Ruin extends JsonResource
      */
     public function toArray($request)
     {
-        $locale = app()->getLocale();
+        /** @var \App\Ruin $ruin */
+        $ruin = $this;
 
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'slug' => $this->slug,
-            'latitude' => $this->latitude,
-            'longitude' => $this->longitude,
-            'information' => $this->information,
-            'image' => $this->image,
-            'tripadvisor' => $this->tripadvisor,
-            'foursquare' => $this->foursquare,
-            'official_site' => $this->official_site,
-            'official_site_link' => $this->official_site_link,
-            'city_id' => $this->city ? $this->city->id : null,
-            'turkish_links' => Link::collection($this->turkishLinks()->get()),
-            'english_links' => Link::collection($this->englishLinks()->get()),
+            'id' => $ruin->id,
+            'name' => $ruin->name,
+            'slug' => $ruin->slug,
+            'latitude' => $ruin->latitude,
+            'longitude' => $ruin->longitude,
+            'information' => $ruin->information,
+            'image' => $ruin->image,
+            'tripadvisor' => $ruin->tripadvisor,
+            'foursquare' => $ruin->foursquare,
+            'official_site' => $ruin->official_site,
+            'official_site_link' => $ruin->official_site_link,
+            'city_id' => $ruin->city ? $ruin->city->id : null,
+            'turkish_links' => Link::collection($ruin->turkishLinks()->get()),
+            'english_links' => Link::collection($ruin->englishLinks()->get()),
         ];
     }
 }

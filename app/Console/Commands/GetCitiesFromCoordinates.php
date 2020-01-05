@@ -70,6 +70,7 @@ class GetCitiesFromCoordinates extends Command
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, $url);
         sleep(1);
         $response = curl_exec($curl);
+
         $response = json_decode($response, true);
 
         $features = $response['features'];

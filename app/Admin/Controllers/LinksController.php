@@ -33,7 +33,7 @@ class LinksController extends Controller
     /**
      * Edit interface.
      *
-     * @param $id
+     * @param int $id
      * @return Content
      */
     public function edit($id)
@@ -67,12 +67,12 @@ class LinksController extends Controller
     protected function grid()
     {
         return Admin::grid(Link::class, function (Grid $grid) {
-            $grid->id('ID')->sortable();
+            $grid->column('id', 'ID')->sortable();
 
             $grid->column('description');
             $grid->column('url');
             $grid->column('language')->sortable();
-            $grid->ruin('Ruin')->display(function ($ruin) {
+            $grid->column('ruin', 'Ruin')->display(function ($ruin) {
                 return "<span class='label label-warning'>{$ruin['name']}</span>";
             });
         });

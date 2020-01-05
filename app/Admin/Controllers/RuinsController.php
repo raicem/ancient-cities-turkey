@@ -30,15 +30,10 @@ class RuinsController extends Controller
         });
     }
 
-    /**
-     * Edit interface.
-     *
-     * @param $slug
-     * @return Content
-     */
     public function edit($slug)
     {
         return Admin::content(function (Content $content) use ($slug) {
+            /** @var Ruin $ruin */
             $ruin = Ruin::where(['slug' => $slug])->first();
             $content->header($ruin->name);
             $content->body($this->form()->edit($ruin->id));
@@ -67,15 +62,16 @@ class RuinsController extends Controller
     protected function grid()
     {
         return Admin::grid(Ruin::class, function (Grid $grid) {
-            $grid->id('ID')->sortable();
+            $grid->column('id', 'ID')->sortable();
+
             $grid->column('name')->sortable();
             $grid->column('name_tr')->sortable();
-            $grid->links('Links')->display(function ($link) {
+            $grid->column('links', 'Links')->display(function ($link) {
                 $count = count($link);
                 return "<span class='label label-warning'>{$count}</span>";
             });
 
-            $grid->filter(function ($filter) {
+            $grid->filter(function (Grid\Filter $filter) {
                 $filter->like('name', 'Name');
             });
         });
