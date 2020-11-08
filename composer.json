@@ -6,6 +6,9 @@
   "type": "project",
   "require": {
     "php": "^7.2",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "composer/package-versions-deprecated": "^1.11",
     "cviebrock/eloquent-sluggable": "^4.7",
     "doctrine/dbal": "^2.5",
     "encore/laravel-admin": "1.7.2",
@@ -18,9 +21,7 @@
     "laravel/tinker": "~1.0",
     "spatie/db-dumper": "2.12",
     "spatie/laravel-backup": "^5.0",
-    "spatie/laravel-sitemap": "^5.2",
-    "ext-curl": "*",
-    "ext-json": "*"
+    "spatie/laravel-sitemap": "^5.2"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.6",
