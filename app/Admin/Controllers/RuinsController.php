@@ -97,6 +97,7 @@ class RuinsController extends Controller
                 $form->text('latitude', 'Latitude');
                 $form->text('longitude', 'Longitude');
 
+                /* @phpstan-ignore-next-line */
                 $form->select('city_id', 'City')->options(City::all()->pluck('name', 'id'));
 
                 $form->text('tripadvisor', 'Tripadvisor');

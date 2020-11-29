@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\City;
 use App\Ruin;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class GetCitiesFromCoordinates extends Command
 {
@@ -85,7 +86,7 @@ class GetCitiesFromCoordinates extends Command
 
         $region = current($region);
 
-        return $this->fetchCity(str_slug($region['text']));
+        return $this->fetchCity(Str::slug($region['text']));
     }
 
     private function fetchCity(string $slug): City

@@ -12,6 +12,9 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+
+use Illuminate\Support\Str;
+
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
@@ -29,7 +32,7 @@ $factory->define(App\Ruin::class, function (Faker\Generator $faker) {
     return [
         'name'        => $name,
         'name_tr'     => $faker->word,
-        'slug'        => str_slug($name),
+        'slug'        => Str::slug($name),
         'latitude'    => $faker->latitude(36, 42),
         'longitude'   => $faker->longitude(26, 44),
         'information' => $faker->sentence,

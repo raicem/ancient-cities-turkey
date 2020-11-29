@@ -42,12 +42,14 @@ return [
     /*
      * Use `https`.
      */
-    'secure' => true,
+    'https' => env('ADMIN_HTTPS', false),
 
     /*
      * Laravel-admin auth setting.
      */
     'auth' => [
+        'guard' => 'admin',
+
         'guards' => [
             'admin' => [
                 'driver'   => 'session',
@@ -60,6 +62,15 @@ return [
                 'driver' => 'eloquent',
                 'model'  => Encore\Admin\Auth\Database\Administrator::class,
             ],
+        ],
+
+        // Redirect to the specified URI when user is not authorized.
+        'redirect_to' => 'auth/login',
+
+        // The URIs that should be excluded from authorization.
+        'excepts' => [
+            'auth/login',
+            'auth/logout',
         ],
     ],
 

@@ -66,7 +66,7 @@ class RuinsControllerTest extends TestCase
         /** @var Link $englishLink */
         $englishLink = factory(Link::class)->create(['ruin_id' => $ruin->id, 'language' => 'en']);
 
-        $this->json('GET', route('api.ruins.show', ['slug' => $ruin->slug, 'locale' => 'en']))
+        $this->json('GET', route('api.ruins.show', ['ruin' => $ruin->slug, 'locale' => 'en']))
             ->assertStatus(200)
             ->assertJsonFragment([
                 'id' => $ruin->id,
@@ -104,7 +104,7 @@ class RuinsControllerTest extends TestCase
         /** @var Link $englishLink */
         $englishLink = factory(Link::class)->create(['ruin_id' => $ruin->id, 'language' => 'en']);
 
-        $this->json('GET', route('api.ruins.show', ['slug' => $ruin->slug, 'locale' => 'tr']))
+        $this->json('GET', route('api.ruins.show', ['ruin' => $ruin->slug, 'locale' => 'tr']))
             ->assertStatus(200)
             ->assertJsonFragment([
                 'id' => $ruin->id,

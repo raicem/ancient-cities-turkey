@@ -3,7 +3,7 @@
 use Encore\Admin\Facades\Admin;
 use Illuminate\Routing\Router;
 
-Admin::registerAuthRoutes();
+Admin::routes();
 
 Route::group([
     'prefix'        => config('admin.route.prefix'),

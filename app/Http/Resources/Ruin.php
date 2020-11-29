@@ -29,7 +29,7 @@ class Ruin extends JsonResource
             'foursquare' => $ruin->foursquare,
             'official_site' => $ruin->official_site,
             'official_site_link' => $ruin->official_site_link,
-            'city_id' => $ruin->city ? $ruin->city->id : null,
+            'city_id' => $ruin->city->id ?? null, /* @phpstan-ignore-line */
             'turkish_links' => Link::collection($ruin->turkishLinks()->get()),
             'english_links' => Link::collection($ruin->englishLinks()->get()),
         ];

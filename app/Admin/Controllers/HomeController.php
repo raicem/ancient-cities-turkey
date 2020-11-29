@@ -16,8 +16,8 @@ class HomeController extends Controller
         return Admin::content(function (Content $content) {
             $content->header('Panel');
 
-            $number['ruins'] = (string) Ruin::all()->count();
-            $number['links'] = (string) Link::all()->count();
+            $number['ruins'] = (string) Ruin::count();
+            $number['links'] = (string) Link::count();
             $number['withInfo'] = Ruin::where('information_tr', '!=', null)->count();
             $number['percentage'] = ceil($number['withInfo'] / $number['ruins'] * 100);
 

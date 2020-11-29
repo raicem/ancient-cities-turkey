@@ -7,4 +7,4 @@ It is built with Laravel and React.
 - Installing Dependencies 
 - PHPUnit
 - Check code style 
-- Statis analysis with Larastan and PHPInsights
+- Static analysis with Larastan
