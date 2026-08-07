@@ -9,10 +9,16 @@ class FeedbackController extends Controller
 {
     public function store(\GuzzleHttp\Client $client)
     {
+        $validated = request()->validate([
+            'ruin_id' => ['required', 'integer', 'exists:ruins,id'],
+            'ruin' => ['required', 'string', 'max:255'],
+            'body' => ['required', 'string', 'max:2000'],
+        ]);
+
         $message = [
             'text' => 'Yeni geri bildirim!',
             'attachments' => [
-                ['text' => "Lokasyon: " . request('ruin') . " \n " . "Mesaj: " . request('body')]
+                ['text' => "Lokasyon: " . $validated['ruin'] . " \n " . "Mesaj: " . $validated['body']]
             ],
             'channel' => '#ancientcitiesturkey'
         ];
@@ -21,10 +27,6 @@ class FeedbackController extends Controller
             'json' => $message,
         ]);
 
-        return Feedback::create([
-            'ruin_id' => request('ruin_id'),
-            'ruin'    => request('ruin'),
-            'body'    => request('body')
-        ]);
+        return Feedback::create($validated);
     }
 }

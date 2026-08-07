@@ -61,7 +61,7 @@ function App() {
       }
 
       const feature = event.features[0];
-      const selectedRuin = ruins[feature.properties.id];
+      const selectedRuin = ruins.find(item => item.id === feature.properties.id);
 
       if (selectedRuin) {
         setSelected(selectedRuin);
@@ -76,9 +76,9 @@ function App() {
 
   const features = ruins
     .filter(item => item.latitude !== null && item.longitude !== null)
-    .map((item, index) => ({
+    .map(item => ({
       type: 'Feature',
-      properties: { id: index },
+      properties: { id: item.id },
       geometry: {
         type: 'Point',
         coordinates: [item.longitude, item.latitude],
