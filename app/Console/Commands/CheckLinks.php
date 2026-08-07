@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Link;
+use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 
 class CheckLinks extends Command
@@ -22,20 +23,9 @@ class CheckLinks extends Command
     protected $description = 'Checks links in the system about their availability.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
-     *
      */
-    public function handle(\GuzzleHttp\Client $client)
+    public function handle(Client $client): void
     {
         $links = Link::all();
 
@@ -44,7 +34,7 @@ class CheckLinks extends Command
         foreach ($links as $link) {
             $this->info('Checking link: ' . $link->url);
             try {
-                $res = $client->request('GET', $link->url, ['timeout' => 20]);
+                $client->request('GET', $link->url, ['timeout' => 20]);
             } catch (\GuzzleHttp\Exception\RequestException $e) {
                 $failedLinks[] = $link->url;
             }
@@ -53,9 +43,9 @@ class CheckLinks extends Command
         $message = [
             'text' => 'Bu linklere ulaşılamıyor',
             'attachments' => [
-                ['text' => implode(" \n ", $failedLinks)]
+                ['text' => implode(" \n ", $failedLinks)],
             ],
-            'channel' => '#genel'
+            'channel' => '#genel',
         ];
 
         $client->request('POST', config('services.slack.webhook'), [

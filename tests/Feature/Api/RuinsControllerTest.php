@@ -13,7 +13,7 @@ class RuinsControllerTest extends TestCase
 
     public function test_it_serves_all_ruins_in_the_database_in_turkish()
     {
-        $ruin = factory(Ruin::class, 2)->create();
+        $ruin = Ruin::factory()->count(2)->create();
         $firstRuin = $ruin[0];
         $secondRuin = $ruin[1];
 
@@ -35,7 +35,7 @@ class RuinsControllerTest extends TestCase
 
     public function test_it_serves_all_ruins_in_the_database_in_english()
     {
-        $ruin = factory(Ruin::class, 2)->create();
+        $ruin = Ruin::factory()->count(2)->create();
         $firstRuin = $ruin[0];
         $secondRuin = $ruin[1];
 
@@ -58,13 +58,13 @@ class RuinsControllerTest extends TestCase
     public function test_it_serves_a_detail_ruin_info_in_english()
     {
         /** @var Ruin $ruin */
-        $ruin = factory(Ruin::class)->create();
+        $ruin = Ruin::factory()->create();
 
         /** @var Link $turkishLink */
-        $turkishLink = factory(Link::class)->create(['ruin_id' => $ruin->id, 'language' => 'tr']);
+        $turkishLink = Link::factory()->create(['ruin_id' => $ruin->id, 'language' => 'tr']);
 
         /** @var Link $englishLink */
-        $englishLink = factory(Link::class)->create(['ruin_id' => $ruin->id, 'language' => 'en']);
+        $englishLink = Link::factory()->create(['ruin_id' => $ruin->id, 'language' => 'en']);
 
         $this->json('GET', route('api.ruins.show', ['ruin' => $ruin->slug, 'locale' => 'en']))
             ->assertStatus(200)
@@ -96,13 +96,13 @@ class RuinsControllerTest extends TestCase
     public function test_it_serves_a_detail_ruin_info_in_turkish()
     {
         /** @var Ruin $ruin */
-        $ruin = factory(Ruin::class)->create();
+        $ruin = Ruin::factory()->create();
 
         /** @var Link $turkishLink */
-        $turkishLink = factory(Link::class)->create(['ruin_id' => $ruin->id, 'language' => 'tr']);
+        $turkishLink = Link::factory()->create(['ruin_id' => $ruin->id, 'language' => 'tr']);
 
         /** @var Link $englishLink */
-        $englishLink = factory(Link::class)->create(['ruin_id' => $ruin->id, 'language' => 'en']);
+        $englishLink = Link::factory()->create(['ruin_id' => $ruin->id, 'language' => 'en']);
 
         $this->json('GET', route('api.ruins.show', ['ruin' => $ruin->slug, 'locale' => 'tr']))
             ->assertStatus(200)

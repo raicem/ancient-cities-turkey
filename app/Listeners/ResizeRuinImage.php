@@ -3,36 +3,31 @@
 namespace App\Listeners;
 
 use App\Events\RuinSaved;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\ImageManager;
 
 class ResizeRuinImage
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function __construct(private readonly ImageManager $images)
     {
-        //
     }
 
     /**
      * Handle the event.
-     *
-     * @return void
      */
-    public function handle(RuinSaved $event)
+    public function handle(RuinSaved $event): void
     {
-        if ($event->ruin->image) {
-            $image = Image::make(public_path() . '/' . $event->ruin->image);
+        if (! $event->ruin->image) {
+            return;
+        }
 
-            if ($image->filesize() > 350000) {
-                $image->resize(1080, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-                $image->save();
-            }
+        $path = public_path($event->ruin->image);
+
+        if (! file_exists($path)) {
+            return;
+        }
+
+        if (filesize($path) > 350000) {
+            $this->images->read($path)->scale(width: 1080)->save($path);
         }
     }
 }

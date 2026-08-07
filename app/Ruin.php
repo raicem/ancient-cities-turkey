@@ -4,6 +4,7 @@ namespace App;
 
 use App\Events\RuinSaved;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
@@ -11,6 +12,7 @@ class Ruin extends Model
 {
     use Sluggable;
     use Notifiable;
+    use HasFactory;
 
     protected $guarded = [];
 
@@ -23,7 +25,7 @@ class Ruin extends Model
     /**
      * The event map for the model.
      *
-     * @var array
+     * @var array<string, class-string>
      */
     protected $dispatchesEvents = [
         'saved' => RuinSaved::class,
@@ -31,8 +33,6 @@ class Ruin extends Model
 
     /**
      * Defines ruins and links relationship.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function links()
     {
@@ -91,8 +91,8 @@ class Ruin extends Model
         return [
             'slug' => [
                 'source' => 'name',
-                'separator' => '-'
-            ]
+                'separator' => '-',
+            ],
         ];
     }
 

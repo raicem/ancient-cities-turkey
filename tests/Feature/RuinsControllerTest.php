@@ -15,7 +15,7 @@ class RuinsControllerTest extends TestCase
         $this->withoutExceptionHandling();
 
         /** @var Ruin $ruin */
-        $ruin = factory(Ruin::class)->create();
+        $ruin = Ruin::factory()->create();
 
         $response = $this->get(route('ruins.show', ['locale' => 'tr', 'ruin' => $ruin->slug]));
 
@@ -28,7 +28,7 @@ class RuinsControllerTest extends TestCase
         $this->withoutExceptionHandling();
 
         /** @var Ruin $ruin */
-        $ruin = factory(Ruin::class)->create();
+        $ruin = Ruin::factory()->create();
 
         $response = $this->get(route('ruins.show', ['locale' => 'en', 'ruin' => $ruin->slug]));
 

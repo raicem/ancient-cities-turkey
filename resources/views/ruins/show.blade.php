@@ -20,5 +20,5 @@
     <noscript>@lang('messages.javascript.warning')</noscript>
 @endsection
 @section('scripts')
-    <script src="{{ mix('js/app.js') }}"></script>
+    @vite(['resources/js/app.jsx'])
 @endsection

@@ -19,7 +19,7 @@
 	@yield('seo')
 	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<link rel="stylesheet" href="{{ mix('css/app.css') }}">
+	@vite(['resources/css/app.css'])
 	@yield('head-scripts')
 </head>
 

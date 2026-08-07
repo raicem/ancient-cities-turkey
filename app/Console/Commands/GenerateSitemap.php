@@ -24,20 +24,9 @@ class GenerateSitemap extends Command
     protected $description = 'Generates the sitemap';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
-     *
      */
-    public function handle()
+    public function handle(): void
     {
         $sitemap = Sitemap::create()
             ->add(Url::create('/en/about')->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)->addAlternate(
@@ -56,7 +45,5 @@ class GenerateSitemap extends Command
         });
 
         $sitemap->writeToFile(public_path('sitemap.xml'));
-
-        return;
     }
 }

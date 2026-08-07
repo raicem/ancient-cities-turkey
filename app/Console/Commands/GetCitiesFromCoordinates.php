@@ -24,18 +24,7 @@ class GetCitiesFromCoordinates extends Command
     protected $description = 'Geocode cities from the coordinates.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
-     *
      */
     public function handle()
     {
@@ -68,7 +57,7 @@ class GetCitiesFromCoordinates extends Command
         $curl = curl_init();
         $url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' . $coordinates . '.json?access_token=' . $accessToken;
         curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         sleep(1);
         $response = curl_exec($curl);
 

@@ -2,6 +2,7 @@
 /public/img/ruins/*
 /public/hot
 /public/storage
+/public/build
 /storage/*.key
 /vendor
 /.idea
@@ -10,12 +11,9 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 .env
-.php_cs.cache
 _ide_helper.php
 _ide_helper_models.php
-/public/img/ruins/*
-/public/mix-manifest.json
-/public/js/*
-/public/css/*
 /public/sitemap.xml
-.phpunit.result.cache
+/.phpunit.cache
+/.phpunit.result.cache
+.php-cs-fixer.cache

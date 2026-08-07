@@ -1,5 +1,9 @@
 <?php
 
-Route::middleware('api')->get('/{locale}/ruins', 'Api\RuinsController@index')->name('api.ruins.list');
-Route::middleware('api')->get('/{locale}/ruins/{ruin}', 'Api\RuinsController@show')->name('api.ruins.show');
-Route::middleware('api')->post('/feedback', 'Api\FeedbackController@store')->name('api.feedback.store');
+use App\Http\Controllers\Api\FeedbackController;
+use App\Http\Controllers\Api\RuinsController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/{locale}/ruins', [RuinsController::class, 'index'])->name('api.ruins.list');
+Route::get('/{locale}/ruins/{ruin}', [RuinsController::class, 'show'])->name('api.ruins.show');
+Route::post('/feedback', [FeedbackController::class, 'store'])->name('api.feedback.store');

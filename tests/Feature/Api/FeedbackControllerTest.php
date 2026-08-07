@@ -25,7 +25,7 @@ class FeedbackControllerTest extends TestCase
 
         $this->app->instance(Client::class, $client);
 
-        $feedback = factory(Feedback::class)->make();
+        $feedback = Feedback::factory()->make();
 
         $this->post('/api/feedback', $feedback->toArray())->assertStatus(201);
 
