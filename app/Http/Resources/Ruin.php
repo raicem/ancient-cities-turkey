@@ -30,6 +30,8 @@ class Ruin extends JsonResource
             'official_site' => $this->official_site,
             'official_site_link' => $this->official_site_link,
             'city_id' => $this->city_id,
+            'city' => $this->city?->name,
+            'district' => $this->district,
             'turkish_links' => Link::collection($this->turkishLinks()->get()),
             'english_links' => Link::collection($this->englishLinks()->get()),
         ];

@@ -32,7 +32,7 @@ export default function Feedback(props) {
           />
         </div>
         <div className="form-group">
-          <button className="button button-blue" onClick={handleClick}>
+          <button className="button" onClick={handleClick}>
             <FormattedMessage id="send" />
           </button>
         </div>
