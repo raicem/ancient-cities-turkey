@@ -15,6 +15,7 @@ vendor/bin/phpunit   # sqlite :memory:, no MySQL needed
 
 - Single test: `vendor/bin/phpunit --filter test_name`, or pass a file path.
 - Local dev: `docker compose up -d` (php-fpm + nginx :80 + mysql), then `npm run dev` for the Vite server.
+- Deploy: `vendor/bin/envoy run deploy` (Envoy.blade.php, same shape as feedzen's). Pulls `master` on pluto (Tailscale) to `/var/www/ancientcitiesturkey.com/public`, composer + npm build, migrate, sitemap, optimize. Commit/push first — it deploys from origin.
 
 ## Gotchas
 
