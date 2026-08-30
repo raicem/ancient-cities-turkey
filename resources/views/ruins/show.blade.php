@@ -20,5 +20,4 @@
     <noscript>@lang('messages.javascript.warning')</noscript>
 @endsection
 @section('scripts')
-    @vite(['resources/js/app.jsx'])
 @endsection

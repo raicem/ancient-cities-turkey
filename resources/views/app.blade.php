@@ -19,7 +19,8 @@
 	@yield('seo')
 	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	@vite(['resources/css/app.css'])
+	@viteReactRefresh
+	@vite(['resources/css/app.css', 'resources/js/app.jsx'])
 	@yield('head-scripts')
 </head>
 
