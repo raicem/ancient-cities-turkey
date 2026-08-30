@@ -6,6 +6,7 @@ use App\Events\RuinSaved;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 
 class Ruin extends Model
@@ -39,7 +40,12 @@ class Ruin extends Model
         return $this->hasMany(Link::class);
     }
 
-    public function city()
+    /**
+     * Defines ruins and city relationship.
+     *
+     * @return BelongsTo<City, $this>
+     */
+    public function city(): BelongsTo
     {
         return $this->belongsTo(City::class);
     }

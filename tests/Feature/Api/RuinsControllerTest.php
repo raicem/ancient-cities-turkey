@@ -24,7 +24,11 @@ class RuinsControllerTest extends TestCase
                 'slug' => $firstRuin->slug,
                 'latitude' => $firstRuin->latitude,
                 'longitude' => $firstRuin->longitude,
+                'image' => $firstRuin->image,
+                'city' => $firstRuin->city->name,
+                'district' => $firstRuin->district,
             ])
+
             ->assertJsonFragment([
                 'name' => $secondRuin->name_tr,
                 'slug' => $secondRuin->slug,
@@ -46,7 +50,11 @@ class RuinsControllerTest extends TestCase
                 'slug' => $firstRuin->slug,
                 'latitude' => $firstRuin->latitude,
                 'longitude' => $firstRuin->longitude,
+                'image' => $firstRuin->image,
+                'city' => $firstRuin->city->name,
+                'district' => $firstRuin->district,
             ])
+
             ->assertJsonFragment([
                 'name' => $secondRuin->name,
                 'slug' => $secondRuin->slug,
@@ -81,6 +89,8 @@ class RuinsControllerTest extends TestCase
                 'official_site' => (int)$ruin->official_site,
                 'official_site_link' => $ruin->official_site_en,
                 'city_id' => $ruin->city->id,
+                'city' => $ruin->city->name,
+                'district' => $ruin->district,
             ])
             ->assertJsonFragment([
                 'description' => $turkishLink->description,
@@ -119,6 +129,8 @@ class RuinsControllerTest extends TestCase
                 'official_site' => (int)$ruin->official_site,
                 'official_site_link' => $ruin->official_site_tr,
                 'city_id' => $ruin->city->id,
+                'city' => $ruin->city->name,
+                'district' => $ruin->district,
             ])
             ->assertJsonFragment([
                 'description' => $turkishLink->description,

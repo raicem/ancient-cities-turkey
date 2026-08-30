@@ -11,7 +11,7 @@ class RuinsController extends Controller
 {
     public function index()
     {
-        return new RuinCollection(Ruin::all());
+        return new RuinCollection(Ruin::with('city')->get());
     }
 
     /**

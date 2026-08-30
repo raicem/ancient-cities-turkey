@@ -34,6 +34,7 @@ class RuinFactory extends Factory
             'official_site_tr' => $this->faker->url,
             'official_site_en' => $this->faker->url,
             'city_id' => City::factory()->create()->id,
+            'district' => $this->faker->city,
         ];
     }
 }

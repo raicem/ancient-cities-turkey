@@ -21,6 +21,9 @@ class RuinCollection extends ResourceCollection
                 'slug' => $ruin->slug,
                 'latitude' => $ruin->latitude,
                 'longitude' => $ruin->longitude,
+                'image' => $ruin->image,
+                'city' => $ruin->city?->name,
+                'district' => $ruin->district,
             ];
         });
 

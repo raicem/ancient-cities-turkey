@@ -33,9 +33,133 @@ body {
   justify-content: space-around;
 }
 
-.info-image {
-  width: 22px;
-  margin-left: 0.3em;
+.ruin-popup {
+  display: block;
+  min-width: 200px;
+  text-decoration: none;
+  color: #444;
+}
+
+.ruin-popup:focus-visible {
+  outline: 2px solid #a61919;
+  outline-offset: -2px;
+}
+
+.ruin-popup__image {
+  display: block;
+  width: 100%;
+  height: 76px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(68, 68, 68, 0.2);
+}
+
+.ruin-popup__body {
+  display: block;
+  padding: 9px 11px 10px;
+}
+
+.ruin-popup__city {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 2px;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6d6d6d;
+}
+
+.ruin-popup__city::before {
+  content: '';
+  flex: none;
+  width: 6px;
+  height: 6px;
+  background-color: #a61919;
+}
+
+.ruin-popup__name {
+  display: block;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.25;
+  color: #444;
+}
+
+.ruin-popup__footer {
+  display: flex;
+  align-items: baseline;
+  margin-top: 7px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(68, 68, 68, 0.2);
+}
+
+.ruin-popup__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  color: #a61919;
+}
+
+.ruin-popup__arrow {
+  display: block;
+}
+
+.mapboxgl-popup-content {
+  padding: 0;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.22),
+    0 1px 3px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.mapboxgl-popup-close-button {
+  top: 6px;
+  right: 6px;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  font-size: 16px;
+  line-height: 1;
+  color: #444;
+  background-color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+}
+
+.mapboxgl-popup-close-button:focus-visible {
+  outline: 2px solid #a61919;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mapboxgl-popup-content {
+    animation: ruin-popup-enter 180ms ease-out;
+  }
+
+  .ruin-popup__arrow {
+    transition: transform 150ms ease;
+  }
+
+  .ruin-popup:hover .ruin-popup__arrow {
+    transform: translateX(2px);
+  }
+}
+
+@keyframes ruin-popup-enter {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .button {
