@@ -46,7 +46,7 @@ class CheckLinks extends Command
                 if ($response->getStatusCode() >= 400) {
                     $failedLinks[] = $link->url;
                 }
-            } catch (\GuzzleHttp\Exception\RequestException $e) {
+            } catch (\GuzzleHttp\Exception\TransferException $e) {
                 $failedLinks[] = $link->url;
             }
         }
