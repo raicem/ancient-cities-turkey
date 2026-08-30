@@ -34,10 +34,25 @@ class CheckLinks extends Command
         foreach ($links as $link) {
             $this->info('Checking link: ' . $link->url);
             try {
-                $client->request('GET', $link->url, ['timeout' => 20]);
+                $response = $client->request('GET', $link->url, [
+                    'timeout' => 20,
+                    'http_errors' => false,
+                    'headers' => [
+                        'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36',
+                        'Accept' => 'text/html,application/xhtml+xml',
+                    ],
+                ]);
+
+                if ($response->getStatusCode() >= 400) {
+                    $failedLinks[] = $link->url;
+                }
             } catch (\GuzzleHttp\Exception\RequestException $e) {
                 $failedLinks[] = $link->url;
             }
+        }
+
+        if (empty($failedLinks)) {
+            return;
         }
 
         $message = [
