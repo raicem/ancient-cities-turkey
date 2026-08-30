@@ -1,0 +1,141 @@
+id,name,type,period,confidence,notes
+1,Knidos,city,Archaic–Byzantine,high,
+2,Termessos,city,Hellenistic–Roman,high,Abandoned after earthquakes; no Byzantine phase
+3,Bathonea,city,Roman–Byzantine,medium,Harbor settlement on Küçükçekmece; identification debated
+4,Perinthos-Heraklia,city,Archaic–Byzantine,high,
+5,Vize Ancient Theater,monument,Roman,high,Single structure of ancient Bizye
+6,Vize Castle,fortress,Byzantine–Ottoman,high,Pre-Ottoman core; Ottoman era = scope edge
+7,Aşağı Pınar Mound,city,Chalcolithic–Iron Age,high,Prehistoric settlement mound (Thrace)
+8,Ainos,city,Archaic–Byzantine,high,
+9,Assos - Behramkale,city,Archaic–Roman,high,Village continued after antiquity
+10,Truva,city,Bronze Age–Roman,high,Troy: BA citadel plus Graeco-Roman city
+11,Apollon Smintheus,sanctuary,Classical–Roman,high,Temple sanctuary; no settlement at site
+12,Parion,city,Archaic–Roman,high,
+13,Neandria,city,Archaic–Hellenistic,high,
+14,Alexandria Troas,city,Hellenistic–Byzantine,high,
+15,Daskyleion,city,Iron Age–Hellenistic,high,Achaemenid satrapal seat
+16,Antandros,city,Archaic–Roman,high,
+17,Cyzicus,city,Archaic–Byzantine,high,
+18,İzmir Agorası,monument,Roman,high,Agora of Smyrna; single monument
+19,Teos,city,Archaic–Roman,high,
+20,Metropolis,city,Archaic–Roman,high,Ionian city; Neolithic/BA finds below
+21,Klazomenai,city,Archaic–Roman,high,
+22,Klaros,sanctuary,Archaic–Roman,high,Oracle sanctuary of Apollo
+23,Pergamon,city,Hellenistic–Roman,high,Royal capital
+24,Asclepeion,sanctuary,Hellenistic–Roman,high,Pergamon healing sanctuary
+25,Erythrae,city,Archaic–Roman,high,
+26,Ephesus,city,Archaic–Byzantine,high,
+27,Afrodisyas,city,Hellenistic–Byzantine,high,Aphrodisias
+28,Miletus,city,Bronze Age–Byzantine,high,
+29,Nysa,city,Hellenistic–Byzantine,high,
+30,Sardes,city,Iron Age–Byzantine,high,Lydian capital
+31,Blaundos,city,Hellenistic–Byzantine,high,
+32,Hierapolis,city,Hellenistic–Byzantine,high,UNESCO WHS
+33,Laodicea,city,Hellenistic–Byzantine,high,
+34,Sagalassos,city,Hellenistic–Byzantine,high,
+35,Antioch of Pisidia,city,Hellenistic–Byzantine,high,Roman colony; same site as id 132
+36,Ayazini,monument,Iron Age–Byzantine,medium,Phrygian rock monuments plus Byzantine rock village
+37,Aslankaya,monument,Iron Age (Phrygian),high,Phrygian rock monument
+38,Aizanoi,city,Hellenistic–Roman,high,
+39,Pessinus,city,Iron Age–Byzantine,high,Temple-state of Cybele; urbanized
+40,Midas Monument,monument,Iron Age (Phrygian),high,Rock monument of Midas City
+41,İznik Castle,fortress,Classical–Byzantine,high,Walls of Nicaea; Ottoman conquest 1331 = scope edge
+42,Prusias ad Hypium,city,Hellenistic–Byzantine,high,
+43,Hadrianapolis,city,Roman–Byzantine,medium,Paphlagonian site; identification reasonably solid
+44,Tieion,city,Hellenistic–Byzantine,high,
+45,Pompeiopolis,city,Hellenistic–Roman,high,Paphlagonian Pompeiopolis
+46,Roma Hamamı,monument,Roman,high,Roman bath; Ankara
+47,Augustus Tapınağı,monument,Roman,high,Temple of Augustus; Res Gestae inscription
+48,Gordium,city,Iron Age–Hellenistic,high,Phrygian capital
+49,Çatalhöyük,city,Neolithic,high,Proto-city; UNESCO WHS
+50,Kilistra,city,Hellenistic–Byzantine,medium,Rock-cut settlement with churches
+51,Kedrai,city,Classical–Byzantine,high,Sedir Island; Caria
+52,Lagina,sanctuary,Hellenistic–Roman,high,Sanctuary of Hecate; dependent on Stratonikeia
+53,Stratonikeia,city,Hellenistic–Ottoman,high,Continuously inhabited into Ottoman era
+54,Mausoleum at Halicarnassus,monument,Classical,high,Tomb of Mausolus; Seven Wonders
+55,Iasos,city,Archaic–Byzantine,high,
+56,Letoon,sanctuary,Archaic–Roman,high,Lycian federal sanctuary; UNESCO WHS with Xanthos
+57,Xanthos,city,Archaic–Byzantine,high,UNESCO WHS
+61,Anemurium,city,Roman–Byzantine,high,
+63,Şar,city,Hellenistic–Roman,medium,Comana Cappadociae temple-state
+64,Kanlıdivane,city,Hellenistic–Byzantine,medium,Rock-cut settlement in Olba territory
+65,Mamure Kalesi,fortress,Roman–Medieval,high,Multi-period fortress
+66,Aya Thecla,religious-complex,Roman–Byzantine,high,St Thecla pilgrimage complex; Meriamlik
+67,Yesemek,monument,Bronze Age–Iron Age,high,Hittite sculpture quarry and workshop
+68,Göbeklitepe,sanctuary,Neolithic,high,Cult site; never a settlement; UNESCO WHS
+69,Perre,monument,Roman–Byzantine,medium,Necropolis of Comana Pontica
+70,Melid,city,Chalcolithic–Iron Age,high,Arslantepe; UNESCO WHS
+71,Ani,city,Medieval,high,Armenian capital; medieval is in scope; UNESCO WHS
+72,Kültepe,city,Bronze Age–Iron Age,high,Kanesh plus Assyrian karum; UNESCO WHS
+73,Hasankeyf,city,Roman–Medieval,high,Town through Artuqid/Ayyubid era
+74,Karatepe Aslantaş,fortress,Iron Age,high,Neo-Hittite fortress of Azatiwata
+75,Kibyra,city,Hellenistic–Roman,high,
+76,Priene,city,Archaic–Byzantine,high,
+77,Didyma,sanctuary,Archaic–Roman,high,Apollo oracle; no city at site
+78,Kaunos,city,Archaic–Byzantine,high,
+79,Patara,city,Archaic–Roman,high,
+80,Phaselis,city,Archaic–Byzantine,high,
+81,Aspendos,city,Classical–Roman,high,
+82,Perge,city,Hellenistic–Roman,high,
+83,Side,city,Hellenistic–Byzantine,high,
+84,Temnos,city,Archaic–Roman,medium,Aeolian city; sparse remains
+85,Hattusa,city,Bronze Age,high,Hittite capital; UNESCO WHS
+86,Aigai,city,Archaic–Roman,high,
+87,Tripolis,city,Hellenistic–Byzantine,high,Tripolis on the Maeander
+88,Olba / Uzuncaburc,city,Hellenistic–Byzantine,high,City with temple of Zeus Olbios
+89,Olympus,city,Hellenistic–Byzantine,high,Lycian city near Chimera
+90,Simena,city,Hellenistic–Byzantine,high,
+91,Zeugma,city,Hellenistic–Roman,high,
+92,Alacahöyük,city,Chalcolithic–Iron Age,high,Hittite settlement mound
+93,Myra,city,Archaic–Byzantine,high,
+94,Euromos,city,Archaic–Roman,high,City with Zeus Lepsynos temple
+95,Bayraklı Höyüğü,city,Iron Age–Archaic,high,Old Smyrna settlement
+96,Eumeneia,city,Hellenistic–Byzantine,high,
+97,Panionium,sanctuary,Archaic,high,Ionian League sanctuary
+98,Yeşilova Mound,city,Neolithic–Bronze Age,high,First settlement of İzmir plain
+99,Lysias,city,Hellenistic–Roman,medium,Rock-cut site near Çal; identification debated
+100,Mopsuestia,city,Iron Age–Byzantine,high,Mamistra; Cilicia
+101,Gerga,city,Classical–Roman,low,Carian site near Çine; ancient name uncertain
+102,Magarsus,city,Classical–Roman,medium,City plus temple of Athena Magarsia
+103,Anazarbus,city,Roman–Byzantine,high,Capital of Cilicia Secunda
+104,Arycanda,city,Hellenistic–Roman,high,
+105,Idebessos,city,Hellenistic–Byzantine,medium,Lycian minor site; necropolis-rich
+106,Kitanaura,city,Hellenistic–Byzantine,medium,Lycian/Termessian minor site
+107,Amorium,city,Hellenistic–Byzantine,high,Major Byzantine city
+108,Tralles,city,Archaic–Byzantine,high,
+109,Dara,city,Roman–Byzantine,high,Late Roman frontier city
+110,Tuşpa,city,Iron Age,high,Urartian capital; Van citadel
+111,Cyme,city,Archaic–Roman,high,
+112,Karakabaklı,city,Roman–Byzantine,medium,Cilician rural settlement; Manastır area
+113,Notion,city,Archaic–Hellenistic,high,Harbor city of Colophon
+114,Orthosia,city,Hellenistic–Roman,low,Several Orthosias exist; coordinates point near Nysa; verify which
+115,Perperene,city,Archaic–Roman,medium,Aeolian city; sparse remains
+116,Alabanda,city,Archaic–Byzantine,high,
+117,Alinda,city,Archaic–Roman,high,
+118,Hyllarima,city,Classical–Roman,high,
+120,Kastabos,sanctuary,Hellenistic–Roman,low,Sanctuary of Hemithea?; identification debated
+121,Kyon,city,Classical–Roman,low,Obscure Carian polis; verify
+122,Antiphellus,city,Hellenistic–Roman,high,Kaş
+123,Apollonia,city,Hellenistic–Roman,medium,Lycian Apollonia on Çukurbağ peninsula; verify
+124,Balbura,city,Hellenistic–Roman,high,
+125,Bubon,city,Hellenistic–Roman,high,
+126,Kadyanda,city,Archaic–Byzantine,high,
+127,Cyaneae,city,Archaic–Byzantine,high,
+128,Limyra,city,Archaic–Byzantine,high,
+129,Oenoanda,city,Hellenistic–Byzantine,high,Epicurean inscription of Diogenes
+130,Telmessos,city,Archaic–Roman,high,Fethiye
+131,Adada,city,Hellenistic–Byzantine,high,
+132,Antiokheia,city,Hellenistic–Byzantine,high,DUPLICATE of id 35 Antioch of Pisidia; same coordinates
+133,Cremna,city,Hellenistic–Roman,high,
+134,Selge,city,Archaic–Byzantine,high,
+135,Vasada,city,Hellenistic–Byzantine,medium,
+136,Alahan Monastery,religious-complex,Byzantine,high,Church complex; Mut
+137,Kastabala,city,Hellenistic–Byzantine,high,Hierapolis-Kastabala; Cilicia
+138,Soli,city,Iron Age–Roman,high,Soli-Pompeiopolis; Mersin
+139,Gökçeseki,monument,Roman–Byzantine,low,Rock-cut tombs near Ermenek; verify identification
+140,Isaura,city,Hellenistic–Byzantine,medium,Isaura Palaea; Zengibar castle excavations
+141,Herakleia,city,Archaic–Byzantine,high,Herakleia under Latmus
+142,Magnesia,city,Hellenistic–Roman,high,Magnesia on the Maeander
+143,Syedra,city,Hellenistic–Byzantine,high,
+144,Labraunda,sanctuary,Archaic–Roman,high,Sanctuary of Zeus Labraundos
+145,Pedasa,city,Archaic–Roman,medium,Lelegian settlement near Bodrum
