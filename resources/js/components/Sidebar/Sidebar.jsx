@@ -37,6 +37,8 @@ export default function Sidebar(props) {
               className="info-bar-image"
               src={`/${ruin.image}`}
               alt={ruin.name}
+              fetchpriority="high"
+              decoding="async"
               onError={event => {
                 event.currentTarget.style.display = 'none';
               }}
@@ -89,7 +91,12 @@ export default function Sidebar(props) {
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src="/img/tripadvisor.png" alt="Tripadvisor Logo" />
+                    <img
+                      src="/img/tripadvisor.png"
+                      alt="Tripadvisor Logo"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </a>
                 </li>
               )}

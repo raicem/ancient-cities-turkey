@@ -23,29 +23,52 @@ function getLocale() {
   return languages[0].substring(0, 2);
 }
 
+// Ruins list inlined by Blade (window.__INITIAL_RUINS__) so markers render
+// without an API round-trip. Only usable when it matches the active locale;
+// client-side language switches still fetch from the API.
+function readInitialRuins(locale) {
+  const initial = window.__INITIAL_RUINS__;
+
+  if (initial && initial.locale === locale && Array.isArray(initial.data)) {
+    return initial.data;
+  }
+
+  return null;
+}
+
 function App() {
   const { language: languageParam, ruin: ruinParam } = useParams();
 
   const defaultLanguage = languageParam || getLocale();
 
-  const [ruins, setRuins] = useState([]);
+  const [ruins, setRuins] = useState(() => readInitialRuins(defaultLanguage) || []);
   const [selected, setSelected] = useState(null);
   const [cursor, setCursor] = useState('move');
 
   useEffect(() => {
     let active = true;
 
-    axios.get(`/api/${defaultLanguage}/ruins`).then(response => {
+    const applyRuins = data => {
       if (active) {
-        setRuins(response.data);
+        setRuins(data);
         setSelected(undefined);
 
         if (ruinParam) {
-          const selectedRuin = response.data.find(item => item.slug === ruinParam);
+          const selectedRuin = data.find(item => item.slug === ruinParam);
           setSelected(selectedRuin);
         }
       }
-    });
+    };
+
+    const initialRuins = readInitialRuins(defaultLanguage);
+
+    if (initialRuins) {
+      applyRuins(initialRuins);
+    } else {
+      axios.get(`/api/${defaultLanguage}/ruins`).then(response => {
+        applyRuins(response.data);
+      });
+    }
 
     return () => {
       active = false;

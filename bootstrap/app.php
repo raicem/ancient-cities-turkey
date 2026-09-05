@@ -13,6 +13,16 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // Web routes only serve cacheable GET views (the React SPA boots from
+        // Blade and all writes go to the stateless API), so drop session and
+        // CSRF middleware: anonymous responses set no cookies and can be
+        // cached by the edge.
+        $middleware->web(remove: [
+            \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \Illuminate\Foundation\Http\Middleware\PreventRequestForgery::class,
+        ]);
+
         $middleware->web(append: [
             SetLocale::class,
         ]);

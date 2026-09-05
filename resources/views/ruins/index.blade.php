@@ -17,6 +17,7 @@
 @endsection
 @section('content')
     <div id="root"></div>
+    @include('partials.initial-ruins')
     <noscript>@lang('messages.javascript.warning')</noscript>
 @endsection
 @section('scripts')

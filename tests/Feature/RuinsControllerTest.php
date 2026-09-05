@@ -35,4 +35,18 @@ class RuinsControllerTest extends TestCase
         $this->assertStringContainsString($ruin->name, $response->getContent());
         $this->assertStringContainsString($ruin->information, $response->getContent());
     }
+
+    public function test_show_page_is_publicly_cacheable()
+    {
+        /** @var Ruin $ruin */
+        $ruin = Ruin::factory()->create();
+
+        $response = $this->get(route('ruins.show', ['locale' => 'en', 'ruin' => $ruin->slug]));
+
+        $response->assertStatus(200);
+        $cacheControl = $response->headers->get('Cache-Control');
+        $this->assertStringContainsString('public', $cacheControl);
+        $this->assertStringContainsString('s-maxage=3600', $cacheControl);
+        $this->assertStringContainsString('stale-while-revalidate=86400', $cacheControl);
+    }
 }

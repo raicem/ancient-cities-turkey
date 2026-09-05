@@ -63,6 +63,19 @@ class RuinsControllerTest extends TestCase
             ]);
     }
 
+    public function test_index_is_publicly_cacheable()
+    {
+        Ruin::factory()->count(2)->create();
+
+        $response = $this->json('GET', route('api.ruins.list', ['locale' => 'en']));
+
+        $response->assertStatus(200);
+        $cacheControl = $response->headers->get('Cache-Control');
+        $this->assertStringContainsString('public', $cacheControl);
+        $this->assertStringContainsString('s-maxage=3600', $cacheControl);
+        $this->assertStringContainsString('stale-while-revalidate=86400', $cacheControl);
+    }
+
     public function test_it_serves_a_detail_ruin_info_in_english()
     {
         /** @var Ruin $ruin */
