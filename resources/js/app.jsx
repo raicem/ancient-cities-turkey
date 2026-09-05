@@ -74,6 +74,10 @@ function App() {
     setCursor(event.features && event.features.length > 0 ? 'pointer' : 'move');
   }, []);
 
+  const handlePopupClose = useCallback(() => {
+    setSelected(null);
+  }, []);
+
   const features = ruins
     .filter(item => item.latitude !== null && item.longitude !== null)
     .map(item => ({
@@ -108,7 +112,7 @@ function App() {
               layout={{ 'icon-image': 'star-15', 'icon-allow-overlap': true }}
             />
           </Source>
-          {selected && <FeaturePopup selected={selected} language={defaultLanguage} />}
+          {selected && <FeaturePopup selected={selected} language={defaultLanguage} onClose={handlePopupClose} />}
         </Map>
         {languageParam === 'tr' && ruinParam === 'hakkinda' && <AboutTr />}
         {languageParam === 'en' && ruinParam === 'about' && <AboutEn />}

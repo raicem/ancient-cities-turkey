@@ -5,7 +5,7 @@ import { Popup } from 'react-map-gl/mapbox';
 import { FormattedMessage } from 'react-intl';
 
 export default function FeaturePopup(props) {
-  const { selected, language } = props;
+  const { selected, language, onClose } = props;
   const location = selected.district && selected.district.toLowerCase() !== (selected.city || '').toLowerCase()
     ? [selected.district, selected.city].filter(Boolean).join(', ')
     : selected.city;
@@ -19,6 +19,7 @@ export default function FeaturePopup(props) {
       focusAfterOpen={false}
       longitude={Number(selected.longitude)}
       latitude={Number(selected.latitude)}
+      onClose={onClose}
     >
       <Link to={`/${language}/${selected.slug}`} className="ruin-popup">
         {selected.image && (
@@ -71,4 +72,5 @@ FeaturePopup.propTypes = {
     district: PropTypes.string,
   }).isRequired,
   language: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
