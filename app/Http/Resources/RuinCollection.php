@@ -24,6 +24,9 @@ class RuinCollection extends ResourceCollection
                 'image' => $ruin->image,
                 'city' => $ruin->city?->name,
                 'district' => $ruin->district,
+                'site_type' => $ruin->site_type,
+                'is_unesco' => $ruin->is_unesco,
+                'official_site_link' => $ruin->official_site_link,
             ];
         });
 

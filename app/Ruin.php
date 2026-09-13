@@ -20,7 +20,8 @@ class Ruin extends Model
     protected $casts = [
         'latitude' => 'float',
         'longitude' => 'float',
-        'official_site' => 'int',
+        'other_names' => 'array',
+        'is_unesco' => 'bool',
     ];
 
     /**
@@ -85,11 +86,7 @@ class Ruin extends Model
 
     public function getOfficialSiteLinkAttribute()
     {
-        if (app()->getLocale() === 'tr') {
-            return $this->official_site_tr;
-        }
-
-        return $this->official_site_en;
+        return $this->official_site_url;
     }
 
     public function sluggable(): array

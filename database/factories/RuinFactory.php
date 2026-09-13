@@ -28,13 +28,13 @@ class RuinFactory extends Factory
             'longitude' => $this->faker->longitude(26, 44),
             'information' => $this->faker->sentence,
             'information_tr' => $this->faker->sentence,
-            'official_site' => $this->faker->boolean,
+            'official_site_url' => $this->faker->optional(0.5)->url,
             'tripadvisor' => $this->faker->url,
-            'foursquare' => $this->faker->url,
-            'official_site_tr' => $this->faker->url,
-            'official_site_en' => $this->faker->url,
             'city_id' => City::factory()->create()->id,
             'district' => $this->faker->city,
+            'site_type' => $this->faker->randomElement(['city', 'sanctuary', 'fortress', 'monument', 'religious-complex']),
+            'other_names' => null,
+            'is_unesco' => false,
         ];
     }
 }

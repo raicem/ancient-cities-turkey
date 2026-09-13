@@ -18,9 +18,14 @@ composer install
 npm install
 cp .env.example .env
 php artisan key:generate
-docker compose up -d --build
-npm run dev   # Vite dev server
+composer run dev   # Docker containers + Vite dev server
 ```
+
+The Composer command starts the Docker containers in the background and keeps the
+Vite development server running in the foreground. Press `Ctrl+C` to stop Vite;
+run `docker compose down` when you want to stop the containers too. If a Dockerfile
+changes, rebuild the images with `docker compose up -d --build` before starting
+development.
 
 ### Pipeline
 

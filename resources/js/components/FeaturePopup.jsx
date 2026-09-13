@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Popup } from 'react-map-gl/mapbox';
 import { FormattedMessage } from 'react-intl';
+import { SITE_TYPE_MESSAGE_IDS } from '../siteTypes';
 
 export default function FeaturePopup(props) {
   const { selected, language, onClose } = props;
@@ -34,6 +35,26 @@ export default function FeaturePopup(props) {
         )}
         <div className="ruin-popup__body">
           {location && <span className="ruin-popup__city">{location}</span>}
+          {(SITE_TYPE_MESSAGE_IDS[selected.site_type] || selected.is_unesco || selected.official_site_link) && (
+            <span className="ruin-popup__metadata">
+              {SITE_TYPE_MESSAGE_IDS[selected.site_type] && (
+                <span className={`ruin-popup__type site-type--${selected.site_type}`}>
+                  <span className="ruin-popup__type-dot" aria-hidden="true" />
+                  <FormattedMessage id={SITE_TYPE_MESSAGE_IDS[selected.site_type]} />
+                </span>
+              )}
+              {selected.is_unesco && (
+                <span>
+                  <FormattedMessage id="unescoShort" />
+                </span>
+              )}
+              {selected.official_site_link && (
+                <span>
+                  <FormattedMessage id="officialSite" />
+                </span>
+              )}
+            </span>
+          )}
           <span className="ruin-popup__name">{selected.name}</span>
           <span className="ruin-popup__footer">
             <span className="ruin-popup__cta">
@@ -70,6 +91,9 @@ FeaturePopup.propTypes = {
     image: PropTypes.string,
     city: PropTypes.string,
     district: PropTypes.string,
+    site_type: PropTypes.string,
+    is_unesco: PropTypes.bool,
+    official_site_link: PropTypes.string,
   }).isRequired,
   language: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,

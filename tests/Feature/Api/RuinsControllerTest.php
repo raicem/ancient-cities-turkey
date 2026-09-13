@@ -13,7 +13,11 @@ class RuinsControllerTest extends TestCase
 
     public function test_it_serves_all_ruins_in_the_database_in_turkish()
     {
-        $ruin = Ruin::factory()->count(2)->create();
+        $ruin = Ruin::factory()->count(2)->create([
+            'site_type' => 'fortress',
+            'is_unesco' => true,
+            'official_site_url' => 'https://example.com/official',
+        ]);
         $firstRuin = $ruin[0];
         $secondRuin = $ruin[1];
 
@@ -27,6 +31,9 @@ class RuinsControllerTest extends TestCase
                 'image' => $firstRuin->image,
                 'city' => $firstRuin->city->name,
                 'district' => $firstRuin->district,
+                'site_type' => 'fortress',
+                'is_unesco' => true,
+                'official_site_link' => 'https://example.com/official',
             ])
 
             ->assertJsonFragment([
@@ -98,9 +105,10 @@ class RuinsControllerTest extends TestCase
                 'information' => $ruin->information,
                 'image' => $ruin->image,
                 'tripadvisor' => $ruin->tripadvisor,
-                'foursquare' => $ruin->foursquare,
-                'official_site' => (int)$ruin->official_site,
-                'official_site_link' => $ruin->official_site_en,
+                'official_site_link' => $ruin->official_site_url,
+                'site_type' => $ruin->site_type,
+                'other_names' => $ruin->other_names,
+                'is_unesco' => $ruin->is_unesco,
                 'city_id' => $ruin->city->id,
                 'city' => $ruin->city->name,
                 'district' => $ruin->district,
@@ -138,9 +146,10 @@ class RuinsControllerTest extends TestCase
                 'information' => $ruin->information_tr,
                 'image' => $ruin->image,
                 'tripadvisor' => $ruin->tripadvisor,
-                'foursquare' => $ruin->foursquare,
-                'official_site' => (int)$ruin->official_site,
-                'official_site_link' => $ruin->official_site_tr,
+                'official_site_link' => $ruin->official_site_url,
+                'site_type' => $ruin->site_type,
+                'other_names' => $ruin->other_names,
+                'is_unesco' => $ruin->is_unesco,
                 'city_id' => $ruin->city->id,
                 'city' => $ruin->city->name,
                 'district' => $ruin->district,

@@ -9,6 +9,8 @@ import SidebarContainer from './components/Sidebar/SidebarContainer';
 import AboutTr from './components/AboutTr';
 import AboutEn from './components/AboutEn';
 import FeaturePopup from './components/FeaturePopup';
+import MapLegend from './components/MapLegend';
+import { SITE_TYPE_MARKER_COLOR, SITE_TYPE_MARKER_ICON, SITE_TYPE_MARKER_SIZE } from './siteTypes';
 
 const turkeyBounds = [
   [25.059009, 35.259924],
@@ -105,7 +107,7 @@ function App() {
     .filter(item => item.latitude !== null && item.longitude !== null)
     .map(item => ({
       type: 'Feature',
-      properties: { id: item.id },
+      properties: { id: item.id, site_type: item.site_type },
       geometry: {
         type: 'Point',
         coordinates: [item.longitude, item.latitude],
@@ -132,11 +134,21 @@ function App() {
             <Layer
               id="marker"
               type="symbol"
-              layout={{ 'icon-image': 'star-15', 'icon-allow-overlap': true }}
+              layout={{
+                'text-field': SITE_TYPE_MARKER_ICON,
+                'text-size': SITE_TYPE_MARKER_SIZE,
+                'text-allow-overlap': true,
+              }}
+              paint={{
+                'text-color': SITE_TYPE_MARKER_COLOR,
+                'text-halo-color': 'rgba(255, 255, 255, 1)',
+                'text-halo-width': 2,
+              }}
             />
           </Source>
           {selected && <FeaturePopup selected={selected} language={defaultLanguage} onClose={handlePopupClose} />}
         </Map>
+        <MapLegend />
         {languageParam === 'tr' && ruinParam === 'hakkinda' && <AboutTr />}
         {languageParam === 'en' && ruinParam === 'about' && <AboutEn />}
         {ruinParam &&

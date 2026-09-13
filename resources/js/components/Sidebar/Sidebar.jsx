@@ -4,14 +4,19 @@ import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import FeedbackContainer from '../Feedback/FeedbackContainer';
 import LinkList from './LinkList';
+import { SITE_TYPE_MESSAGE_IDS } from '../../siteTypes';
 
 export default function Sidebar(props) {
-  const { ruin, isLoaded, isFormShowing, language, handleClick } = props;
+  const { ruin, isLoaded, hasLoadError, isFormShowing, language, handleClick, handleRetry } = props;
   const district = ruin && ruin.district;
   const city = ruin && ruin.city;
   const location = district && district.toLowerCase() !== (city || '').toLowerCase()
     ? [district, city].filter(Boolean).join(', ')
     : city;
+  const englishLinks = [...(ruin?.english_links ?? [])];
+  if (ruin?.tripadvisor && !englishLinks.some(link => link.url === ruin.tripadvisor)) {
+    englishLinks.push({ url: ruin.tripadvisor, description: 'Tripadvisor' });
+  }
 
   return (
     <div className="info-bar">
@@ -30,6 +35,29 @@ export default function Sidebar(props) {
           <FormattedMessage id="close" />
         </span>
       </Link>
+      {!isLoaded && !hasLoadError && (
+        <div className="info-bar__loading" aria-live="polite">
+          <span className="visually-hidden">
+            <FormattedMessage id="loadingSite" />
+          </span>
+          <div className="info-bar__skeleton info-bar__skeleton--image" />
+          <div className="info-bar__loading-body" aria-hidden="true">
+            <div className="info-bar__skeleton info-bar__skeleton--label" />
+            <div className="info-bar__skeleton info-bar__skeleton--title" />
+            <div className="info-bar__skeleton info-bar__skeleton--line" />
+            <div className="info-bar__skeleton info-bar__skeleton--line" />
+            <div className="info-bar__skeleton info-bar__skeleton--line-short" />
+          </div>
+        </div>
+      )}
+      {hasLoadError && (
+        <div className="info-bar__state" role="alert">
+          <p><FormattedMessage id="siteLoadError" /></p>
+          <button className="button" type="button" onClick={handleRetry}>
+            <FormattedMessage id="retry" />
+          </button>
+        </div>
+      )}
       {isLoaded && (
         <div>
           {ruin.image && (
@@ -46,32 +74,51 @@ export default function Sidebar(props) {
           )}
           <div className="info-bar__body">
             {location && <p className="info-bar__eyebrow">{location}</p>}
+            {(ruin.site_type || ruin.is_unesco || ruin.official_site_link) && (
+              <div className="info-bar__metadata">
+                {ruin.site_type && SITE_TYPE_MESSAGE_IDS[ruin.site_type] && (
+                  <span className={`info-bar__badge info-bar__badge--type site-type--${ruin.site_type}`}>
+                    <span className="info-bar__type-dot" aria-hidden="true" />
+                    <FormattedMessage id={SITE_TYPE_MESSAGE_IDS[ruin.site_type]} />
+                  </span>
+                )}
+                {ruin.is_unesco && (
+                  <span className="info-bar__badge info-bar__badge--unesco">
+                    <FormattedMessage id="unescoBadge" />
+                  </span>
+                )}
+                {ruin.official_site_link && (
+                  <a
+                    className="info-bar__badge info-bar__badge--official info-bar__badge--link"
+                    href={ruin.official_site_link}
+                    id="visitingInfo"
+                    rel="noreferrer"
+                  >
+                    <FormattedMessage id="visitingInfo" />
+                    <svg
+                      className="info-bar__arrow"
+                      width="10"
+                      height="10"
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        d="M1.5 8h12.2M9.4 3.7l4.3 4.3-4.3 4.3"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                      />
+                    </svg>
+                  </a>
+                )}
+              </div>
+            )}
             <h3 className="ruin-title">{ruin.name}</h3>
-            {ruin.official_site === 1 && (
-              <a className="info-bar__official" href={ruin.official_site_link} id="visitingInfo">
-                <img
-                  className="ministry-logo"
-                  src="/img/official.png"
-                  alt="Official Site"
-                  id="officialLogo"
-                />
-                <FormattedMessage id="visitingInfo" />
-                <svg
-                  className="info-bar__arrow"
-                  width="12"
-                  height="12"
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <path
-                    d="M1.5 8h12.2M9.4 3.7l4.3 4.3-4.3 4.3"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                  />
-                </svg>
-              </a>
+            {ruin.other_names && ruin.other_names.length > 0 && (
+              <p className="info-bar__aliases">
+                <FormattedMessage id="alsoKnownAs" />: {ruin.other_names.join(', ')}
+              </p>
             )}
             <p className="info-bar-description">{ruin.information}</p>
             <ul className="image-list">
@@ -83,38 +130,18 @@ export default function Sidebar(props) {
                   <FormattedMessage id="openInMapsApp" />
                 </a>
               </li>
-              {ruin.tripadvisor && (
-                <li className="image-list-item">
-                  <a
-                    href={ruin.tripadvisor}
-                    className="image-list-link"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img
-                      src="/img/tripadvisor.png"
-                      alt="Tripadvisor Logo"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </a>
-                </li>
-              )}
-              {ruin.foursquare && (
-                <li className="image-list-item">
-                  <a
-                    href={ruin.foursquare}
-                    className="image-list-link"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img src="/img/foursquare.png" alt="Foursquare Logo" />
-                  </a>
-                </li>
-              )}
             </ul>
-            <LinkList links={ruin.english_links} titleId="resourcesInEnglish" />
-            <LinkList links={ruin.turkish_links} titleId="resourcesInTurkish" />
+            {language === 'tr' ? (
+              <>
+                <LinkList links={ruin.turkish_links} titleId="resourcesInTurkish" />
+                <LinkList links={englishLinks} titleId="resourcesInEnglish" />
+              </>
+            ) : (
+              <>
+                <LinkList links={englishLinks} titleId="resourcesInEnglish" />
+                <LinkList links={ruin.turkish_links} titleId="resourcesInTurkish" />
+              </>
+            )}
             {!isFormShowing && (
               <div className="feedback">
                 <button className="button feedback-button" onClick={handleClick}>
@@ -153,11 +180,9 @@ Sidebar.propTypes = {
   ruin: PropTypes.shape({
     id: PropTypes.number,
     slug: PropTypes.string,
-    official_site: PropTypes.number,
     official_site_link: PropTypes.string,
     image: PropTypes.string,
     information: PropTypes.string,
-    foursquare: PropTypes.string,
     tripadvisor: PropTypes.string,
     english_links: PropTypes.array,
     turkish_links: PropTypes.array,
@@ -166,14 +191,19 @@ Sidebar.propTypes = {
     name: PropTypes.string,
     city: PropTypes.string,
     district: PropTypes.string,
+    site_type: PropTypes.string,
+    other_names: PropTypes.array,
+    is_unesco: PropTypes.bool,
     period: PropTypes.string,
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
   }),
   isLoaded: PropTypes.bool.isRequired,
+  hasLoadError: PropTypes.bool.isRequired,
   isFormShowing: PropTypes.bool.isRequired,
   language: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
+  handleRetry: PropTypes.func.isRequired,
 };
 
 Sidebar.defaultProps = {
