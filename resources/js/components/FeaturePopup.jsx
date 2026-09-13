@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Popup } from 'react-map-gl/mapbox';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { SITE_TYPE_MESSAGE_IDS } from '../siteTypes';
 
 export default function FeaturePopup(props) {
   const { selected, language, onClose } = props;
+  const intl = useIntl();
   const location = selected.district && selected.district.toLowerCase() !== (selected.city || '').toLowerCase()
     ? [selected.district, selected.city].filter(Boolean).join(', ')
     : selected.city;
@@ -49,7 +50,7 @@ export default function FeaturePopup(props) {
                 </span>
               )}
               {selected.official_site_link && (
-                <span>
+                <span title={intl.formatMessage({ id: 'officialSiteTitle' })}>
                   <FormattedMessage id="officialSite" />
                 </span>
               )}
