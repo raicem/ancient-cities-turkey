@@ -254,7 +254,16 @@ class CheckLinks extends Command
             $entries = [];
 
             foreach ($resolve as $host => $ip) {
-                $entries[] = $host . ':' . $this->portOf($url) . ':' . $ip;
+                // Register the override for both web ports so http → https
+                // redirects keep working without another DNS lookup.
+                $entries[] = $host . ':80:' . $ip;
+                $entries[] = $host . ':443:' . $ip;
+
+                $port = $this->portOf($url);
+
+                if ($port !== 80 && $port !== 443) {
+                    $entries[] = $host . ':' . $port . ':' . $ip;
+                }
             }
 
             $options['curl'] = [CURLOPT_RESOLVE => $entries];
