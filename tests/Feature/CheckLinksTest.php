@@ -339,6 +339,84 @@ class CheckLinksTest extends TestCase
         $this->assertSame('HTTP 404 (archive.org)', $link->fresh()->last_reason);
     }
 
+    public function test_archive_org_server_errors_are_not_reported_as_dead()
+    {
+        $ruin = Ruin::factory()->create();
+
+        $link = Link::factory()->create([
+            'ruin_id' => $ruin->id,
+            'url' => 'https://web.archive.org/web/20150505175447/http://example.com/',
+            'last_status' => 'ok',
+        ]);
+
+        $mock = $this->runCheck([new Response(503), new Response(200)]);
+
+        $this->assertSame('GET', $mock->getLastRequest()->getMethod());
+        $this->assertSame('blocked', $link->fresh()->last_status);
+        $this->assertSame('HTTP 503 (archive.org)', $link->fresh()->last_reason);
+    }
+
+    public function test_dns_failure_falls_back_to_public_resolver()
+    {
+        $ruin = Ruin::factory()->create();
+
+        $link = Link::factory()->create([
+            'ruin_id' => $ruin->id,
+            'url' => 'https://gov.example.com/page',
+            'last_status' => 'ok',
+        ]);
+
+        $mock = new MockHandler([
+            new ConnectException(
+                'cURL error 6: Could not resolve host: gov.example.com',
+                new Request('GET', 'https://gov.example.com/page')
+            ),
+            new Response(200, [], json_encode([
+                'Status' => 0,
+                'Answer' => [['name' => 'gov.example.com', 'type' => 1, 'data' => '203.0.113.10']],
+            ])),
+            new Response(200),
+        ]);
+
+        $container = [];
+        $stack = HandlerStack::create($mock);
+        $stack->push(Middleware::history($container));
+
+        $this->app->instance(Client::class, new Client(['handler' => $stack]));
+
+        $this->artisan('links:check')->assertExitCode(0);
+
+        $this->assertCount(3, $container);
+        $this->assertSame('cloudflare-dns.com', $container[1]['request']->getUri()->getHost());
+        $this->assertSame('gov.example.com', $container[2]['request']->getUri()->getHost());
+        $this->assertSame('ok', $link->fresh()->last_status);
+    }
+
+    public function test_dns_failure_without_public_record_is_dead()
+    {
+        $ruin = Ruin::factory()->create();
+
+        $link = Link::factory()->create([
+            'ruin_id' => $ruin->id,
+            'url' => 'https://gone-dns.example.com',
+            'last_status' => 'ok',
+        ]);
+
+        $mock = $this->runCheck([
+            new ConnectException(
+                'cURL error 6: Could not resolve host: gone-dns.example.com',
+                new Request('GET', 'https://gone-dns.example.com')
+            ),
+            new Response(200, [], '{"Status":3,"Answer":[]}'),
+            new Response(200),
+        ]);
+
+        $text = $this->attachmentText($this->slackAttachments($mock));
+
+        $this->assertStringContainsString('https://gone-dns.example.com (dns failure)', $text);
+        $this->assertSame('dead', $link->fresh()->last_status);
+    }
+
     public function test_duplicate_urls_are_checked_once_and_reported_with_ruin_context()
     {
         $first = Ruin::factory()->create();

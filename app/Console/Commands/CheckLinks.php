@@ -39,6 +39,13 @@ class CheckLinks extends Command
     private const NOTIFIABLE = ['dead', 'blocked', 'redirected', 'ssl', 'error'];
 
     /**
+     * Public-resolver fallback results, keyed by host.
+     *
+     * @var array<string, string|null>
+     */
+    private array $dnsCache = [];
+
+    /**
      * Execute the console command.
      */
     public function handle(Client $client): void
@@ -189,28 +196,28 @@ class CheckLinks extends Command
     private function attempt(Client $client, string $url): array
     {
         try {
-            $response = $client->request('GET', $url, [
-                'timeout' => 20,
-                'http_errors' => false,
-                'allow_redirects' => [
-                    'max' => 5,
-                    'strict' => true,
-                    'referer' => false,
-                    'protocols' => ['http', 'https'],
-                    'track_redirects' => true,
-                ],
-                'headers' => [
-                    'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36',
-                    'Accept' => 'text/html,application/xhtml+xml',
-                    'Accept-Language' => 'en-US,en;q=0.9,tr;q=0.8',
-                ],
-            ]);
+            return $this->request($client, $url);
+        } catch (ConnectException $exception) {
+            // The production host's resolver cannot reach some domains
+            // (e.g. Turkish government sites). Fall back to a public
+            // resolver before calling the link dead.
+            if ($this->isDnsFailure($exception) && ($host = $this->hostOf($url)) !== null) {
+                $ip = $this->resolveViaDoh($client, $host);
 
-            return $this->classifyStatus(
-                $url,
-                $response->getStatusCode(),
-                $response->getHeaderLine('X-Guzzle-Redirect-History')
-            );
+                if ($ip !== null) {
+                    try {
+                        return $this->request($client, $url, [$host => $ip]);
+                    } catch (TransferException $retryException) {
+                        return $this->classifyException($url, $retryException);
+                    } catch (\Throwable $retryException) {
+                        report($retryException);
+
+                        return ['status' => 'error', 'reason' => 'check failed'];
+                    }
+                }
+            }
+
+            return $this->classifyException($url, $exception);
         } catch (TransferException $exception) {
             return $this->classifyException($url, $exception);
         } catch (\Throwable $exception) {
@@ -218,6 +225,98 @@ class CheckLinks extends Command
 
             return ['status' => 'error', 'reason' => 'check failed'];
         }
+    }
+
+    /**
+     * @param array<string, string> $resolve Host => IP overrides
+     * @return array{status: string, reason: ?string}
+     */
+    private function request(Client $client, string $url, array $resolve = []): array
+    {
+        $options = [
+            'timeout' => 20,
+            'http_errors' => false,
+            'allow_redirects' => [
+                'max' => 5,
+                'strict' => true,
+                'referer' => false,
+                'protocols' => ['http', 'https'],
+                'track_redirects' => true,
+            ],
+            'headers' => [
+                'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36',
+                'Accept' => 'text/html,application/xhtml+xml',
+                'Accept-Language' => 'en-US,en;q=0.9,tr;q=0.8',
+            ],
+        ];
+
+        if ($resolve !== []) {
+            $entries = [];
+
+            foreach ($resolve as $host => $ip) {
+                $entries[] = $host . ':' . $this->portOf($url) . ':' . $ip;
+            }
+
+            $options['curl'] = [CURLOPT_RESOLVE => $entries];
+        }
+
+        $response = $client->request('GET', $url, $options);
+
+        return $this->classifyStatus(
+            $url,
+            $response->getStatusCode(),
+            $response->getHeaderLine('X-Guzzle-Redirect-History')
+        );
+    }
+
+    private function resolveViaDoh(Client $client, string $host): ?string
+    {
+        if (array_key_exists($host, $this->dnsCache)) {
+            return $this->dnsCache[$host];
+        }
+
+        $this->dnsCache[$host] = null;
+
+        try {
+            $response = $client->request('GET', 'https://cloudflare-dns.com/dns-query', [
+                'query' => ['name' => $host, 'type' => 'A'],
+                'headers' => ['Accept' => 'application/dns-json'],
+                'timeout' => 10,
+                'http_errors' => false,
+            ]);
+
+            $payload = json_decode((string) $response->getBody(), true);
+
+            foreach ($payload['Answer'] ?? [] as $answer) {
+                if (($answer['type'] ?? null) === 1 && isset($answer['data'])) {
+                    return $this->dnsCache[$host] = (string) $answer['data'];
+                }
+            }
+        } catch (\Throwable $exception) {
+            report($exception);
+        }
+
+        return null;
+    }
+
+    private function isDnsFailure(ConnectException $exception): bool
+    {
+        $message = $exception->getMessage();
+
+        return str_contains($message, 'Could not resolve host')
+            || str_contains($message, 'name or service not known')
+            || str_contains($message, 'getaddrinfo');
+    }
+
+    private function portOf(string $url): int
+    {
+        $port = parse_url($url, PHP_URL_PORT);
+
+        if (is_int($port)) {
+            return $port;
+        }
+
+        return parse_url($url, PHP_URL_SCHEME) === 'http' ? 80 : 443;
     }
 
     /**
@@ -229,23 +328,19 @@ class CheckLinks extends Command
             return $this->classifyRedirect($url, $redirectHistory) ?? ['status' => 'ok', 'reason' => null];
         }
 
-        if ($status === 404 || $status === 410) {
-            // web.archive.org answers 404 to server IPs even when the
-            // snapshot plays fine in a browser, so it is not reliable
-            // enough to call a link dead.
-            if ($this->hostOf($url) === 'web.archive.org') {
-                return ['status' => 'blocked', 'reason' => 'HTTP 404 (archive.org)'];
-            }
+        // web.archive.org answers 404 or 503 to server IPs even when the
+        // snapshot plays fine in a browser, so it is not reliable enough
+        // to call a link dead.
+        if ($this->hostOf($url) === 'web.archive.org' && ($status >= 500 || $status === 404 || $status === 410)) {
+            return ['status' => 'blocked', 'reason' => 'HTTP ' . $status . ' (archive.org)'];
+        }
 
+        if ($status === 404 || $status === 410 || $status >= 500) {
             return ['status' => 'dead', 'reason' => 'HTTP ' . $status];
         }
 
         if ($status === 429) {
             return ['status' => 'rate-limited', 'reason' => 'HTTP 429'];
-        }
-
-        if ($status >= 500) {
-            return ['status' => 'dead', 'reason' => 'HTTP ' . $status];
         }
 
         return ['status' => 'blocked', 'reason' => 'HTTP ' . $status];
@@ -267,6 +362,10 @@ class CheckLinks extends Command
         }
 
         if ($exception instanceof ConnectException) {
+            if ($this->isDnsFailure($exception)) {
+                return ['status' => 'dead', 'reason' => 'dns failure'];
+            }
+
             return ['status' => 'dead', 'reason' => 'connection failed'];
         }
 
