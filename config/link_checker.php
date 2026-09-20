@@ -40,6 +40,7 @@ return [
         'tripadvisor.co.uk',
         'tripadvisor.com',
         'tripadvisor.com.tr',
+        'turkishmuseums.com',
         'umich.edu',
         'unesco.org',
         'web.archive.org',
