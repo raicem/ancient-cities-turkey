@@ -417,6 +417,54 @@ class CheckLinksTest extends TestCase
         $this->assertSame('dead', $link->fresh()->last_status);
     }
 
+    public function test_dns_fallback_applies_to_redirect_targets()
+    {
+        $ruin = Ruin::factory()->create();
+
+        $link = Link::factory()->create([
+            'ruin_id' => $ruin->id,
+            'url' => 'https://gov-a.example.com/page',
+            'last_status' => 'ok',
+        ]);
+
+        $mock = new MockHandler([
+            new ConnectException(
+                'cURL error 6: Could not resolve host: gov-a.example.com',
+                new Request('GET', 'https://gov-a.example.com/page')
+            ),
+            new Response(200, [], json_encode([
+                'Status' => 0,
+                'Answer' => [['name' => 'gov-a.example.com', 'type' => 1, 'data' => '203.0.113.10']],
+            ])),
+            new Response(301, ['Location' => 'https://gov-b.example.com/page']),
+            new ConnectException(
+                'cURL error 6: Could not resolve host: gov-b.example.com',
+                new Request('GET', 'https://gov-b.example.com/page')
+            ),
+            new Response(200, [], json_encode([
+                'Status' => 0,
+                'Answer' => [['name' => 'gov-b.example.com', 'type' => 1, 'data' => '203.0.113.11']],
+            ])),
+            new Response(200),
+            new Response(200),
+        ]);
+
+        $container = [];
+        $stack = HandlerStack::create($mock);
+        $stack->push(Middleware::history($container));
+
+        $this->app->instance(Client::class, new Client(['handler' => $stack]));
+
+        $this->artisan('links:check')->assertExitCode(0);
+
+        $gets = array_filter($container, fn (array $transaction) => $transaction['request']->getMethod() === 'GET');
+        $this->assertCount(6, $gets);
+        $this->assertSame('redirected', $link->fresh()->last_status);
+
+        $text = $this->attachmentText($this->slackAttachments($mock));
+        $this->assertStringContainsString('https://gov-a.example.com/page (→ gov-b.example.com)', $text);
+    }
+
     public function test_duplicate_urls_are_checked_once_and_reported_with_ruin_context()
     {
         $first = Ruin::factory()->create();

@@ -6,10 +6,12 @@ use App\Link;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Exception\TooManyRedirectsException;
 use GuzzleHttp\Exception\TransferException;
+use GuzzleHttp\Psr7\Uri;
+use GuzzleHttp\Psr7\UriResolver;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
+use Psr\Http\Message\ResponseInterface;
 
 class CheckLinks extends Command
 {
@@ -197,27 +199,6 @@ class CheckLinks extends Command
     {
         try {
             return $this->request($client, $url);
-        } catch (ConnectException $exception) {
-            // The production host's resolver cannot reach some domains
-            // (e.g. Turkish government sites). Fall back to a public
-            // resolver before calling the link dead.
-            if ($this->isDnsFailure($exception) && ($host = $this->hostOf($url)) !== null) {
-                $ip = $this->resolveViaDoh($client, $host);
-
-                if ($ip !== null) {
-                    try {
-                        return $this->request($client, $url, [$host => $ip]);
-                    } catch (TransferException $retryException) {
-                        return $this->classifyException($url, $retryException);
-                    } catch (\Throwable $retryException) {
-                        report($retryException);
-
-                        return ['status' => 'error', 'reason' => 'check failed'];
-                    }
-                }
-            }
-
-            return $this->classifyException($url, $exception);
         } catch (TransferException $exception) {
             return $this->classifyException($url, $exception);
         } catch (\Throwable $exception) {
@@ -228,21 +209,65 @@ class CheckLinks extends Command
     }
 
     /**
-     * @param array<string, string> $resolve Host => IP overrides
+     * Follows redirects manually so hosts the server DNS cannot resolve
+     * (e.g. Turkish government sites) can be looked up through a public
+     * resolver on every hop.
+     *
      * @return array{status: string, reason: ?string}
      */
-    private function request(Client $client, string $url, array $resolve = []): array
+    private function request(Client $client, string $url): array
+    {
+        $current = $url;
+        $history = [];
+        $resolved = [];
+
+        for ($redirects = 0; $redirects <= 5; $redirects++) {
+            try {
+                $response = $this->sendRequest($client, $current, $resolved);
+            } catch (ConnectException $exception) {
+                $host = $this->hostOf($current);
+
+                if (! $this->isDnsFailure($exception) || $host === null || array_key_exists($host, $resolved)) {
+                    throw $exception;
+                }
+
+                $ip = $this->resolveViaDoh($client, $host);
+
+                if ($ip === null) {
+                    throw $exception;
+                }
+
+                $resolved[$host] = $ip;
+                $response = $this->sendRequest($client, $current, $resolved);
+            }
+
+            $status = $response->getStatusCode();
+
+            if ($status >= 300 && $status < 400 && $response->hasHeader('Location')) {
+                $current = (string) UriResolver::resolve(
+                    new Uri($current),
+                    new Uri($response->getHeaderLine('Location'))
+                );
+                $history[] = $current;
+
+                continue;
+            }
+
+            return $this->classifyStatus($url, $status, implode(', ', $history));
+        }
+
+        return ['status' => 'blocked', 'reason' => 'redirect loop'];
+    }
+
+    /**
+     * @param array<string, string> $resolved Host => IP overrides
+     */
+    private function sendRequest(Client $client, string $url, array $resolved): ResponseInterface
     {
         $options = [
             'timeout' => 20,
             'http_errors' => false,
-            'allow_redirects' => [
-                'max' => 5,
-                'strict' => true,
-                'referer' => false,
-                'protocols' => ['http', 'https'],
-                'track_redirects' => true,
-            ],
+            'allow_redirects' => false,
             'headers' => [
                 'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36',
                 'Accept' => 'text/html,application/xhtml+xml',
@@ -250,32 +275,20 @@ class CheckLinks extends Command
             ],
         ];
 
-        if ($resolve !== []) {
+        if ($resolved !== []) {
             $entries = [];
 
-            foreach ($resolve as $host => $ip) {
-                // Register the override for both web ports so http → https
-                // redirects keep working without another DNS lookup.
+            foreach ($resolved as $host => $ip) {
+                // Register both web ports so http → https hops keep
+                // working without another DNS lookup.
                 $entries[] = $host . ':80:' . $ip;
                 $entries[] = $host . ':443:' . $ip;
-
-                $port = $this->portOf($url);
-
-                if ($port !== 80 && $port !== 443) {
-                    $entries[] = $host . ':' . $port . ':' . $ip;
-                }
             }
 
             $options['curl'] = [CURLOPT_RESOLVE => $entries];
         }
 
-        $response = $client->request('GET', $url, $options);
-
-        return $this->classifyStatus(
-            $url,
-            $response->getStatusCode(),
-            $response->getHeaderLine('X-Guzzle-Redirect-History')
-        );
+        return $client->request('GET', $url, $options);
     }
 
     private function resolveViaDoh(Client $client, string $host): ?string
@@ -317,17 +330,6 @@ class CheckLinks extends Command
             || str_contains($message, 'getaddrinfo');
     }
 
-    private function portOf(string $url): int
-    {
-        $port = parse_url($url, PHP_URL_PORT);
-
-        if (is_int($port)) {
-            return $port;
-        }
-
-        return parse_url($url, PHP_URL_SCHEME) === 'http' ? 80 : 443;
-    }
-
     /**
      * @return array{status: string, reason: ?string}
      */
@@ -360,10 +362,6 @@ class CheckLinks extends Command
      */
     private function classifyException(string $url, TransferException $exception): array
     {
-        if ($exception instanceof TooManyRedirectsException) {
-            return ['status' => 'blocked', 'reason' => 'redirect loop'];
-        }
-
         $message = $exception->getMessage();
 
         if (str_contains($message, 'SSL') || str_contains($message, 'certificate')) {
