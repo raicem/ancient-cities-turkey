@@ -13,10 +13,7 @@ export default function Sidebar(props) {
   const location = district && district.toLowerCase() !== (city || '').toLowerCase()
     ? [district, city].filter(Boolean).join(', ')
     : city;
-  const englishLinks = [...(ruin?.english_links ?? [])];
-  if (ruin?.tripadvisor && !englishLinks.some(link => link.url === ruin.tripadvisor)) {
-    englishLinks.push({ url: ruin.tripadvisor, description: 'Tripadvisor' });
-  }
+  const englishLinks = ruin?.english_links ?? [];
 
   return (
     <div className="info-bar">
@@ -183,7 +180,6 @@ Sidebar.propTypes = {
     official_site_link: PropTypes.string,
     image: PropTypes.string,
     information: PropTypes.string,
-    tripadvisor: PropTypes.string,
     english_links: PropTypes.array,
     turkish_links: PropTypes.array,
     latitude: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

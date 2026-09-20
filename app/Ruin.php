@@ -58,7 +58,12 @@ class Ruin extends Model
 
     public function englishLinks()
     {
-        return $this->links()->english()->orderBy('description', 'ASC');
+        // Tripadvisor is user-generated content, so it stays after the
+        // editorial sources regardless of the alphabetical order.
+        return $this->links()
+            ->english()
+            ->orderByRaw('description = ?', ['Tripadvisor'])
+            ->orderBy('description', 'ASC');
     }
 
     public function getCoordinatesAttribute(): string

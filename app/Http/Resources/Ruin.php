@@ -25,7 +25,6 @@ class Ruin extends JsonResource
             'longitude' => $this->longitude,
             'information' => $this->information,
             'image' => $this->image,
-            'tripadvisor' => $this->tripadvisor,
             'official_site_link' => $this->official_site_link,
             'city_id' => $this->city_id,
             'city' => $this->city?->name,
