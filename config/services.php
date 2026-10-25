@@ -40,4 +40,8 @@ return [
         'access_token' => env('MAPBOX_ACCESS_TOKEN'),
     ],
 
+    'google_analytics' => [
+        'measurement_id' => env('GOOGLE_ANALYTICS_MEASUREMENT_ID', 'G-H2FR3RX6TM'),
+    ],
+
 ];

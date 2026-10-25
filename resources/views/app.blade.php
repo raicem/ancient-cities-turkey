@@ -2,6 +2,15 @@
 <html lang="{{ app()->getLocale() }}" dir="ltr">
 
 <head>
+	@if (app()->environment('production') && config('services.google_analytics.measurement_id'))
+	<script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google_analytics.measurement_id') }}"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', @json(config('services.google_analytics.measurement_id')));
+	</script>
+	@endif
 	<meta charset='utf-8' />
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>@yield('title')</title>
